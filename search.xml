@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>os</title>
-    <url>/2024/10/19/os/</url>
-    <content><![CDATA[<span id="more"></span>
-
-]]></content>
-      <tags>
-        <tag>操作系统笔记</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hello World</title>
     <url>/2025/10/19/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<span id="more"></span>
+
 <div class="story post-story"><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
@@ -30,9 +22,22 @@
 </div>]]></content>
   </entry>
   <entry>
+    <title>os</title>
+    <url>/2024/10/19/os/</url>
+    <content><![CDATA[<span id="more"></span>
+
+]]></content>
+      <tags>
+        <tag>操作系统笔记</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>初识Netty</title>
     <url>/2025/01/22/%E5%88%9D%E8%AF%86Netty/</url>
-    <content><![CDATA[<h1 id="前置概念"><a href="#前置概念" class="headerlink" title="前置概念"></a>前置概念</h1><div class="story post-story"><h2 id="同步和异步"><a href="#同步和异步" class="headerlink" title="同步和异步"></a>同步和异步</h2><p>同步：多个事物不能同时进行<br>异步：多个事物可以同时进行</p>
+    <content><![CDATA[<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>本文整理了同步&#x2F;异步、阻塞&#x2F;非阻塞、IO、BIO&#x2F;NIO 等前置概念，并用类比帮助快速理解 Netty 的核心组件与工作机制。</p>
+<span id="more"></span>
+
+<h1 id="前置概念"><a href="#前置概念" class="headerlink" title="前置概念"></a>前置概念</h1><div class="story post-story"><h2 id="同步和异步"><a href="#同步和异步" class="headerlink" title="同步和异步"></a>同步和异步</h2><p>同步：多个事物不能同时进行<br>异步：多个事物可以同时进行</p>
 </div><div class="story post-story"><h2 id="阻塞和非阻塞"><a href="#阻塞和非阻塞" class="headerlink" title="阻塞和非阻塞"></a>阻塞和非阻塞</h2><p>阻塞：遇到障碍从而无法继续运行，等待是阻塞的副作用，等待指的是等待某些相关事物，而不是整个线程都在等待。<br>非阻塞：没有障碍畅行无阻</p>
 <p>同步&#x2F;异步：指的是能不能同时进行<br>阻塞&#x2F;非阻塞：指的是能不能进行</p>
 <h3 id="同步阻塞：不能同时进行且等待，相当于单线程等待"><a href="#同步阻塞：不能同时进行且等待，相当于单线程等待" class="headerlink" title="同步阻塞：不能同时进行且等待，相当于单线程等待"></a>同步阻塞：不能同时进行且等待，相当于单线程等待</h3><h3 id="同步非阻塞：单线程运行"><a href="#同步非阻塞：单线程运行" class="headerlink" title="同步非阻塞：单线程运行"></a>同步非阻塞：单线程运行</h3><h3 id="异步阻塞：同时进行且等待，相当于多线程都在等待"><a href="#异步阻塞：同时进行且等待，相当于多线程都在等待" class="headerlink" title="异步阻塞：同时进行且等待，相当于多线程都在等待"></a>异步阻塞：同时进行且等待，相当于多线程都在等待</h3><h3 id="异步非阻塞：同时进行且正常运行，相当于多线程运行"><a href="#异步非阻塞：同时进行且正常运行，相当于多线程运行" class="headerlink" title="异步非阻塞：同时进行且正常运行，相当于多线程运行"></a>异步非阻塞：同时进行且正常运行，相当于多线程运行</h3></div><div class="story post-story"><h2 id="IO"><a href="#IO" class="headerlink" title="IO"></a>IO</h2><p>IO指的是读&#x2F;写数据的过程，和等待读入&#x2F;写出的过程。一旦拿到数据就变成数据操作了，不是IO。<br>拿网络IO举例子：等待的过程就是数据从网络到网卡再到内核空间，读写的过程就是内核空间和用户空间相互拷贝。</p>
@@ -114,6 +119,26 @@
   </entry>
   <entry>
     <title></title>
+    <url>/css/custom.css</url>
+    <content><![CDATA[/* 打字机效果的光标样式 */
+.typewriter-cursor {
+  display: inline-block;
+  color: #000;
+  animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* 暗模式下的光标颜色 */
+.theme-dark .typewriter-cursor {
+  color: #fff;
+}]]></content>
+  </entry>
+  <entry>
+    <title></title>
     <url>/js/typewriter.js</url>
     <content><![CDATA[// 打字机效果脚本
 document.addEventListener('DOMContentLoaded', function() {
@@ -151,25 +176,5 @@ document.addEventListener('DOMContentLoaded', function() {
     <url>/tags/index.html</url>
     <content><![CDATA[
 ]]></content>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/css/custom.css</url>
-    <content><![CDATA[/* 打字机效果的光标样式 */
-.typewriter-cursor {
-  display: inline-block;
-  color: #000;
-  animation: blink 0.7s infinite;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
-/* 暗模式下的光标颜色 */
-.theme-dark .typewriter-cursor {
-  color: #fff;
-}]]></content>
   </entry>
 </search>
