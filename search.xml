@@ -318,26 +318,6 @@
   </entry>
   <entry>
     <title></title>
-    <url>/css/custom.css</url>
-    <content><![CDATA[/* 打字机效果的光标样式 */
-.typewriter-cursor {
-  display: inline-block;
-  color: #000;
-  animation: blink 0.7s infinite;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
-/* 暗模式下的光标颜色 */
-.theme-dark .typewriter-cursor {
-  color: #fff;
-}]]></content>
-  </entry>
-  <entry>
-    <title></title>
     <url>/js/typewriter.js</url>
     <content><![CDATA[// 打字机效果脚本
 document.addEventListener('DOMContentLoaded', function() {
@@ -369,5 +349,25 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/css/custom.css</url>
+    <content><![CDATA[/* 打字机效果的光标样式 */
+.typewriter-cursor {
+  display: inline-block;
+  color: #000;
+  animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* 暗模式下的光标颜色 */
+.theme-dark .typewriter-cursor {
+  color: #fff;
+}]]></content>
   </entry>
 </search>
