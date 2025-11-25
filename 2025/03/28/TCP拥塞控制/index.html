@@ -5,8 +5,8 @@
   <meta name="Volantis" content="5.8.1">
   <meta charset="utf-8">
   <!-- SEO相关 -->
-  <meta name="robots" content="noindex,follow">
-  <link rel="canonical" href="https://hitme.cyou/archives/2025/11/"/>
+  
+  <link rel="canonical" href="https://hitme.cyou/2025/03/28/tcp拥塞控制/"/>
   <!-- 渲染优化 -->
     <meta http-equiv='x-dns-prefetch-control' content='on' />
       <link rel='dns-prefetch' href='https://unpkg.com'>
@@ -33,21 +33,22 @@
 
   <!-- feed -->
   <!-- 页面元数据 -->
-  <title>归档：2025/11 - 我的博客</title>
-  <meta name="keywords" content="博客,学习,生活">
-  <meta desc name="description" content="这是我的博客，记录我的学习和生活 - ZhenShuo Zhang - 我的博客">
+  <title>TCP拥塞控制 - Hexo</title>
+  <meta name="keywords" content="TCP,拥塞控制,undefined">
+  <meta desc name="description" content="Hexo - ZhenShuo Zhang - Hexo">
   
-<meta property="og:type" content="website">
-<meta property="og:title" content="我的博客">
-<meta property="og:url" content="https://hitme.cyou/archives/2025/11/">
-<meta property="og:site_name" content="我的博客">
-<meta property="og:description" content="这是我的博客，记录我的学习和生活">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TCP拥塞控制">
+<meta property="og:url" content="https://hitme.cyou/2025/03/28/TCP%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6/">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="什么是网络拥塞？当网络中的数据流量超过链路或路由器的处理能力时，就会发生：  路由器缓存溢出 -&gt; 丢包 排队延迟增加 -&gt; 高延迟 重传加剧TCP拥塞控制的目标就是：在不引起网络拥塞的的前提下，尽可能高效的利用带宽  TCP如何感知拥塞？TCP无法直接知道网络是否拥塞，但它可以通过两个信号简介判断：  超时重传：数据包长时间未收到ACK，即可能丢失 -&gt; 严重拥塞 收到重复的A">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+<meta property="article:published_time" content="2025-03-28T09:30:00.000Z">
+<meta property="article:modified_time" content="2025-11-25T09:36:00.479Z">
 <meta property="article:author" content="ZhenShuo Zhang">
-<meta property="article:tag" content="博客">
-<meta property="article:tag" content="学习">
-<meta property="article:tag" content="生活">
+<meta property="article:tag" content="TCP">
+<meta property="article:tag" content="拥塞控制">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
   <style>
@@ -1861,7 +1862,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: false,
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1764059348084),
+    lastupdate: new Date(1764063732366),
     sidebar: {
       for_page: ["toc"],
       for_post: ["toc"],
@@ -2296,7 +2297,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <!-- Custom Files bodyBegin end-->
     <!-- front-matter body_begin begin -->
     <!-- front-matter body_begin end -->
-    <header itemscope itemtype="http://schema.org/WPHeader" id="l_header" class="l_header auto shadow floatable blur " style='opacity: 0' >
+    <header itemscope itemtype="http://schema.org/WPHeader" id="l_header" class="l_header auto shadow floatable blur show" style='opacity: 0' >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -2531,7 +2532,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
       <!-- see: /layout/_partial/scripts/_ctrl/coverCtrl.ejs -->
-      <div id="half" class='cover-wrapper  focus' style="display: ;">
+      <div id="none" class='cover-wrapper post focus' style="display: none;">
         
   <div id="parallax-window"></div>
 
@@ -2542,7 +2543,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <p class="title">Hitme Blog</p>
     
     
-      <p class="subtitle">记录与分享</p>
+      <p class="subtitle">不要停下思考的脚步</p>
     
   </div>
   <div class='bottom'>
@@ -2594,326 +2595,298 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         <div class="body-wrapper">
           
 <div id="l_main" class=''>
-	
-		
-  <section class="post-list">
-    
-      
-        
-          
-        
-          
-        
-          
-        
-          
-        
-      
-    
-    
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://hitme.cyou/2025/11/25/HTTP 和 HTTPS/">
+  <article itemscope itemtype="http://schema.org/Article" class="article post white-box reveal md shadow floatable blur article-type-post" id="post" itemscope itemprop="blogPost">
+  <link itemprop="mainEntityOfPage" href="https://hitme.cyou/2025/03/28/TCP拥塞控制/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="我的博客">
+    <meta itemprop="name" content="Hexo">
   </span>
   <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
-    <meta itemprop="name" content="我的博客">
-    <meta itemprop="description" content="这是我的博客，记录我的学习和生活">
+    <meta itemprop="name" content="Hexo">
+    <meta itemprop="description" content="">
   </span>
   
-  
+
+
   
     <span hidden>
       <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
     </span>
   
-  
+  <div class="article-meta" id="top">
     
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/2025/11/25/HTTP%20%E5%92%8C%20HTTPS/"  itemprop="url">
-        2025年11月25日
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
     
-      
-        HTTP
-title: HTTP 和 HTTPSdate: 2025-11-25 00:00:00author: ZhenShuo Zhangcategories:  - 后端tags:  - HTTP  - HTTPSHTTPHTPP：Hyper Text Transfer Protocol，超文本传输协议，定义了客户端与服务器之间说话的规则，是应用层协议。
-
-应用层协议
-基于TCP
-默认...
-      
     
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/'><img src='https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png'></a>
-          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-            <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png">
-            <meta itemprop="name" content="请设置文章作者">
-            <meta itemprop="url" content="/">
-          </span>
-        
-        <time itemprop="dateCreated datePublished" datetime="2025-11-25T16:27:49+08:00">2025-11-25</time>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2025/11/25/HTTP%20%E5%92%8C%20HTTPS/' itemprop="url">
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://hitme.cyou/2025/11/25/键入网址到网页显示，期间发生了什么？/">
-  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="我的博客">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
-    <meta itemprop="name" content="我的博客">
-    <meta itemprop="description" content="这是我的博客，记录我的学习和生活">
-  </span>
-  
-  
-  
-    <span hidden>
-      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-    </span>
-  
-  
-    
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/2025/11/25/%E9%94%AE%E5%85%A5%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5%E6%98%BE%E7%A4%BA%EF%BC%8C%E6%9C%9F%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/"  itemprop="url">
-        键入网址到网页显示，期间发生了什么？
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
-    
-      <p>输入网址到网页显示，这个过程到底发生了什么，我相信这是初学者很想了解地方。明白这个过程，才能将所学的计算机网络的知识串连起来，而不是孤零零的去学一个点。<br>首先，让我们来了解一下五层模型。</p>
-<h1 id="五层模型"><a href="#五层模型" class="headerlink" title="五层模型"></a>五层模型</h1>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/'><img src='https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png'></a>
-          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-            <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png">
-            <meta itemprop="name" content="请设置文章作者">
-            <meta itemprop="url" content="/">
-          </span>
-        
-        <time itemprop="dateCreated datePublished" datetime="2025-11-25T00:00:00+08:00">2025-11-25</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url"><span itemprop="name">计算机网络</span></a>
-            </span>
-          
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2025/11/25/%E9%94%AE%E5%85%A5%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5%E6%98%BE%E7%A4%BA%EF%BC%8C%E6%9C%9F%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/' itemprop="url">
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://hitme.cyou/2025/11/25/TCP拥塞控制/">
-  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="我的博客">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
-    <meta itemprop="name" content="我的博客">
-    <meta itemprop="description" content="这是我的博客，记录我的学习和生活">
-  </span>
-  
-  
-  
-    <span hidden>
-      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-    </span>
-  
-  
-    
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/2025/11/25/TCP%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6/"  itemprop="url">
+      <h1 class="title" itemprop="name headline">
         TCP拥塞控制
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author' itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <a itemprop="url" class='author' href="/" rel="nofollow">
+    <img itemprop="image" src="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+    <p itemprop="name">请设置文章作者</p>
+  </a>
+</div>
+
+          
+        
+          
+            <div class="new-meta-item date" itemprop="dateCreated datePublished" datetime="2025-03-28T17:30:00+08:00">
+  <a class='notlink'>
+    <i class="fa-solid fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2025年3月28日</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class='new-meta-item category'>
+    <i class="fa-solid fa-folder-open fa-fw" aria-hidden="true"></i>
+    <a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
     
-      
-        什么是网络拥塞？当网络中的数据流量超过链路或路由器的处理能力时，就会发生：
-
-路由器缓存溢出 -&gt; 丢包
-排队延迟增加 -&gt; 高延迟
-重传加剧TCP拥塞控制的目标就是：在不引起网络拥塞的的前提下，尽可能高效的利用带宽
-
-TCP如何感知拥塞？TCP无法直接知道网络是否拥塞，但它可以通过两个信号简介判断：
-
-超时重传：数据包长时间未收到ACK，即可能丢失 -&gt; 严重拥塞
-收到重...
-      
+      <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+        <a href="/categories/%E5%90%8E%E7%AB%AF/" itemprop="url"><span itemprop="name">后端</span></a>
+      </span>
     
   </div>
+
+
+          
+        
+          
+            
   
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/'><img src='https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png'></a>
-          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-            <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png">
-            <meta itemprop="name" content="请设置文章作者">
-            <meta itemprop="url" content="/">
-          </span>
-        
-        <time itemprop="dateCreated datePublished" datetime="2025-11-25T00:00:00+08:00">2025-11-25</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/%E5%90%8E%E7%AB%AF/" itemprop="url"><span itemprop="name">后端</span></a>
-            </span>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/TCP/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>TCP</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>拥塞控制</p></a></div>
+  <span hidden itemprop="keywords">TCP 拥塞控制</span>
+
+
           
         
+        <!-- Custom Files topMeta begin-->
+        
+        <!-- Custom Files topMeta end-->
       </div>
+    
+  </div>
+
+
+  <div id="layoutHelper-page-plugins"></div>
+  <div id="post-body" itemprop="articleBody">
+    <h1 id="什么是网络拥塞？"><a href="#什么是网络拥塞？" class="headerlink" title="什么是网络拥塞？"></a>什么是网络拥塞？</h1><p>当网络中的数据流量超过链路或路由器的处理能力时，就会发生：</p>
+<ul>
+<li>路由器缓存溢出 -&gt; 丢包</li>
+<li>排队延迟增加 -&gt; 高延迟</li>
+<li>重传加剧<br>TCP拥塞控制的目标就是：在不引起网络拥塞的的前提下，尽可能高效的利用带宽</li>
+</ul>
+<h1 id="TCP如何感知拥塞？"><a href="#TCP如何感知拥塞？" class="headerlink" title="TCP如何感知拥塞？"></a>TCP如何感知拥塞？</h1><p>TCP无法直接知道网络是否拥塞，但它可以通过两个信号简介判断：</p>
+<ol>
+<li>超时重传：数据包长时间未收到ACK，即可能丢失 -&gt; 严重拥塞</li>
+<li>收到重复的ACK：对方多次请求同一个序号，即中间可能有包丢失 -&gt; 轻度拥塞</li>
+</ol>
+<h1 id="拥塞控制核心：拥塞窗口（cwnd）"><a href="#拥塞控制核心：拥塞窗口（cwnd）" class="headerlink" title="拥塞控制核心：拥塞窗口（cwnd）"></a>拥塞控制核心：拥塞窗口（cwnd）</h1><ul>
+<li>cwnd：表示可以发送但尚未确认的数据量（单位：MSS）</li>
+<li>实际发送：min（接收方窗口 rwnd, 拥塞窗口 cwnd)</li>
+</ul>
+<h1 id="经典拥塞控制算法（四个阶段）"><a href="#经典拥塞控制算法（四个阶段）" class="headerlink" title="经典拥塞控制算法（四个阶段）"></a>经典拥塞控制算法（四个阶段）</h1><p><img src="/../images/TCP%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6/Pasted%20image%2020251125160910.png" class="lazyload" data-srcset="/../images/TCP%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6/Pasted%20image%2020251125160910.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></p>
+<p>现代 TCP（如 Reno、Cubic）通常包含以下四个阶段：</p>
+<h3 id="1-慢启动（Slow-Start）"><a href="#1-慢启动（Slow-Start）" class="headerlink" title="1. 慢启动（Slow Start）"></a>1. 慢启动（Slow Start）</h3><ul>
+<li><strong>目的</strong>：快速探测网络可用带宽</li>
+<li><strong>规则</strong>：<ul>
+<li>每收到一个 ACK，<code>cwnd += 1 MSS</code></li>
+<li>实际效果：<strong>每轮 RTT，cwnd 翻倍</strong>（指数增长）</li>
+</ul>
+</li>
+<li><strong>起点</strong>：<code>cwnd = 初始值（如 10）</code></li>
+<li><strong>终点</strong>：达到 <strong>慢启动阈值（ssthresh）</strong> 或发生丢包</li>
+</ul>
+<blockquote>
+<p>📈 例子：<br>cwnd: 1 → 2 → 4 → 8 → 16 …（每 RTT 翻倍）</p>
+</blockquote>
+<hr>
+<h3 id="2-拥塞避免（Congestion-Avoidance）"><a href="#2-拥塞避免（Congestion-Avoidance）" class="headerlink" title="2.  拥塞避免（Congestion Avoidance）"></a>2.  拥塞避免（Congestion Avoidance）</h3><ul>
+<li><strong>目的</strong>：谨慎增加发送速率，避免触发拥塞</li>
+<li><strong>规则</strong>：<ul>
+<li>每收到一个 ACK，<code>cwnd += 1/cwnd</code></li>
+<li>实际效果：<strong>每 RTT，cwnd 增加 1 MSS</strong>（线性增长）</li>
+</ul>
+</li>
+<li><strong>起点</strong>：<code>cwnd &gt;= ssthresh</code></li>
+</ul>
+<blockquote>
+<p>📉 增长变慢，更“温和”</p>
+</blockquote>
+<hr>
+<h3 id="3️-快速重传（Fast-Retransmit）-快速恢复（Fast-Recovery）"><a href="#3️-快速重传（Fast-Retransmit）-快速恢复（Fast-Recovery）" class="headerlink" title="3️.  快速重传（Fast Retransmit） + 快速恢复（Fast Recovery）"></a>3️.  快速重传（Fast Retransmit） + 快速恢复（Fast Recovery）</h3><p>当收到 <strong>3 个重复 ACK</strong>（表示中间丢了一个包）：</p>
+<h4 id="快速重传："><a href="#快速重传：" class="headerlink" title="快速重传："></a>快速重传：</h4><ul>
+<li>不等超时，<strong>立即重传丢失的包</strong></li>
+</ul>
+<h4 id="快速恢复："><a href="#快速恢复：" class="headerlink" title="快速恢复："></a>快速恢复：</h4><ol>
+<li><code>ssthresh = cwnd / 2</code>（砍半）</li>
+<li><code>cwnd = ssthresh</code>（补偿已发出的包）</li>
+<li>每收到一个重复 ACK，<code>cwnd += 1</code>（继续发新数据）</li>
+<li>收到新 ACK（确认重传成功）→ <code>cwnd = ssthresh</code>，进入拥塞避免</li>
+</ol>
+<blockquote>
+<p>避免像超时那样直接回到慢启动（性能更好）</p>
+</blockquote>
+<hr>
+<h3 id="4-超时重传（Timeout）"><a href="#4-超时重传（Timeout）" class="headerlink" title="4.  超时重传（Timeout）"></a>4.  超时重传（Timeout）</h3><ul>
+<li>如果发生<strong>超时</strong>（比重复 ACK 更严重）：<ul>
+<li><code>ssthresh = cwnd / 2</code></li>
+<li><code>cwnd = 1</code>（或初始值）</li>
+<li><strong>重新进入慢启动</strong></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>超时意味着严重拥塞，必须大幅降速</p>
+</blockquote>
+
+
+  </div>
+  
+  
+    
+    <div class='footer'>
+       <!-- 参考资料、相关资料等 -->
       
-        <div>
-          <a class='readmore' href='/2025/11/25/TCP%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6/' itemprop="url">
-            阅读全文
-          </a>
-        </div>
+       <!-- 相关文章 -->
+      
+      <!-- 版权声明组件 -->
+      
+      <!-- 打赏组件 -->
       
     </div>
   
+  
+    
 
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2025-11-25T17:36:00+08:00">
+  <a class='notlink'>
+    <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
+    <p>本文最后更新于：2025年11月25日</p>
+  </a>
 </div>
 
-          </div>
         
       
         
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://hitme.cyou/2025/11/25/TCP握手挥手问题/">
-  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="我的博客">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
-    <meta itemprop="name" content="我的博客">
-    <meta itemprop="description" content="这是我的博客，记录我的学习和生活">
-  </span>
+          
   
-  
-  
-    <span hidden>
-      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-    </span>
-  
-  
-    
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/2025/11/25/TCP%E6%8F%A1%E6%89%8B%E6%8C%A5%E6%89%8B%E9%97%AE%E9%A2%98/"  itemprop="url">
-        TCP握手挥手问题
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/TCP/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>TCP</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>拥塞控制</p></a></div>
+  <span hidden itemprop="keywords">TCP 拥塞控制</span>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
     
       
-        TCP三次握手为什么是三次握手？
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://hitme.cyou/2025/03/28/TCP%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6/&title=TCP拥塞控制 - Hexo&summary="
+          
+          >
+          
+            <img src="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/qq.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/qq.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://hitme.cyou/2025/03/28/TCP%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6/&title=TCP拥塞控制 - Hexo&summary="
+          
+          >
+          
+            <img src="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/qzone.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/qzone.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://hitme.cyou/2025/03/28/TCP%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6/&title=TCP拥塞控制 - Hexo&summary="
+          
+          >
+          
+            <img src="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/weibo.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/weibo.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+          
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+    <!-- Custom Files bottomMeta begin -->
+    
+    <!-- Custom Files bottomMeta end -->
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+        <a class='prev' href='/2025/04/25/%E9%94%AE%E5%85%A5%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5%E6%98%BE%E7%A4%BA%EF%BC%8C%E6%9C%9F%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/'>
+          <p class='title'><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>键入网址到网页显示，期间发生了什么？</p>
+          <p class='content'>输入网址到网页显示，这个过程到底发生了什么，我相信这是初学者很想了解地方。明白这个过程，才能将所学的计算机网络的知识串连起来，而不是孤零零的去学一个点。
+
+首先，让我们来了解一下五层模型。
+五层...</p>
+        </a>
+      
+      
+        <a class='next' href='/2025/03/28/TCP%E6%8F%A1%E6%89%8B%E6%8C%A5%E6%89%8B%E9%97%AE%E9%A2%98/'>
+          <p class='title'>TCP握手挥手问题<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>TCP三次握手为什么是三次握手？
 双方都得确认建立连接
 防止历史的连接请求造成混乱
 
-TCP四次挥手为什么需要四次挥手？因为TCP是全双工的协议，连接的两端可以同时发送和接受数据，所以每一端都必须独立的关闭自己的“发送通道”，这就需要四次交互。服务器刚收到客户端的FIN时，往往还有数据没发完。
-什么时候可以三次挥手？有一种特殊情况：如果服务器收到客户端FIN时，已经没有数据要发了，那么可以将...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/'><img src='https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png'></a>
-          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-            <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png">
-            <meta itemprop="name" content="请设置文章作者">
-            <meta itemprop="url" content="/">
-          </span>
-        
-        <time itemprop="dateCreated datePublished" datetime="2025-11-25T00:00:00+08:00">2025-11-25</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/%E5%90%8E%E7%AB%AF/" itemprop="url"><span itemprop="name">后端</span></a>
-            </span>
-          
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2025/11/25/TCP%E6%8F%A1%E6%89%8B%E6%8C%A5%E6%89%8B%E9%97%AE%E9%A2%98/' itemprop="url">
-            阅读全文
-          </a>
-        </div>
+TCP四次挥手为什么需要四次挥手？因为TCP是全双工的协议，连接的两端可以同时发送和接受数据，所以每一端都必...</p>
+        </a>
       
     </div>
   
-
-</div>
-
-          </div>
-        
-      
-    
-  </section>
+  <!-- Custom Files postEnd begin-->
   
-    
+  <!-- Custom Files postEnd end-->
+</article>
+
+
+  
+
   
 
 
-	
+
+
+
 </div>
 <aside id='l_side' itemscope itemtype="http://schema.org/WPSideBar">
   
@@ -2932,9 +2905,19 @@ TCP四次挥手为什么需要四次挥手？因为TCP是全双工的协议，�
   
 
 
-  <div class="">
-    <!-- pjax占位 -->
-  </div>
+  <section class="widget toc-wrapper desktop mobile " id="toc-div" >
+    
+  <header>
+    
+      <i class="fa-solid fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%85%A2%E5%90%AF%E5%8A%A8%EF%BC%88Slow-Start%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">1. 慢启动（Slow Start）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%8B%A5%E5%A1%9E%E9%81%BF%E5%85%8D%EF%BC%88Congestion-Avoidance%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">2.  拥塞避免（Congestion Avoidance）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%EF%B8%8F-%E5%BF%AB%E9%80%9F%E9%87%8D%E4%BC%A0%EF%BC%88Fast-Retransmit%EF%BC%89-%E5%BF%AB%E9%80%9F%E6%81%A2%E5%A4%8D%EF%BC%88Fast-Recovery%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">3️.  快速重传（Fast Retransmit） + 快速恢复（Fast Recovery）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E9%87%8D%E4%BC%A0%EF%BC%9A"><span class="toc-number">3.1.</span> <span class="toc-text">快速重传：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E6%81%A2%E5%A4%8D%EF%BC%9A"><span class="toc-number">3.2.</span> <span class="toc-text">快速恢复：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E8%B6%85%E6%97%B6%E9%87%8D%E4%BC%A0%EF%BC%88Timeout%EF%BC%89"><span class="toc-number">4.</span> <span class="toc-text">4.  超时重传（Timeout）</span></a></li></ol>
+    </div>
+  </section>
 
   
 
@@ -3033,13 +3016,14 @@ TCP四次挥手为什么需要四次挥手？因为TCP是全双工的协议，�
 </aside>
 
 
+
           <!--此文件用来存放一些不方便取值的变量-->
 <!--思路大概是将值藏到重加载的区域内-->
 
 <pjax>
 <script>
   window.pdata={}
-  pdata.ispage=false;
+  pdata.ispage=true;
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   pdata.commentConfig={};
@@ -3048,14 +3032,14 @@ TCP四次挥手为什么需要四次挥手？因为TCP是全双工的协议，�
     // header
     var l_header=document.getElementById("l_header");
     
-    l_header.classList.remove("show");
+    l_header.classList.add("show");
     
     
       // cover
       var cover_wrapper=document.querySelector('#l_cover .cover-wrapper');
       var scroll_down=document.getElementById('scroll-down');
-      cover_wrapper.id="half";
-      cover_wrapper.style.display="";
+      cover_wrapper.id="none";
+      cover_wrapper.style.display="none";
       scroll_down.style.display="none";
     
   
@@ -4017,7 +4001,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
   <script>
-  let imgs = ["https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/054.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/051.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/016.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/056.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/035.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/052.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/033.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/019.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/025.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/005.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/038.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/046.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/006.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/003.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/012.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/002.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/004.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/034.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/001.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/042.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/039.webp"];
+  let imgs = ["https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/002.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/003.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/034.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/019.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/033.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/042.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/039.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/056.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/005.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/051.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/001.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/038.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/012.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/035.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/025.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/046.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/054.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/052.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/016.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/004.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/006.webp"];
   let index = 0;
   let IntervalParallax = null;
 
@@ -4336,7 +4320,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"我的博客","url":"https://hitme.cyou/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"ZhenShuo Zhang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://hitme.cyou/","sameAs":["https://github.com/volantis-x"],"description":"这是我的博客，记录我的学习和生活"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://hitme.cyou/","name":"我的博客"}},{"@type":"ListItem","position":2,"item":{"@id":"https://hitme.cyou/archives/","name":"Archive"}},{"@type":"ListItem","position":3,"item":{"@id":"https://hitme.cyou/archives/2025/","name":"2025年"}},{"@type":"ListItem","position":4,"item":{"@id":"https://hitme.cyou/archives/2025/11/","name":"11月"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"我的博客","url":"https://hitme.cyou/","keywords":["博客","学习","生活"],"description":"这是我的博客，记录我的学习和生活","author":{"@type":"Person","name":"ZhenShuo Zhang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://hitme.cyou/","description":"这是我的博客，记录我的学习和生活"},"publisher":{"@type":"Organization","name":"我的博客","url":"https://hitme.cyou/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://hitme.cyou?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","description":"这是我的博客，记录我的学习和生活","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage"},"author":{"@type":"Person","name":"ZhenShuo Zhang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://hitme.cyou/"},"publisher":{"@type":"Organization","name":"我的博客","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"wordCount":0,"image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"Hexo","url":"https://hitme.cyou/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"ZhenShuo Zhang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://hitme.cyou/","sameAs":["https://github.com/volantis-x"],"description":""},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://hitme.cyou/","name":"Hexo"}},{"@type":"ListItem","position":2,"item":{"@id":"https://hitme.cyou/categories/后端/","name":"后端"}},{"@type":"ListItem","position":3,"item":{"@id":"https://hitme.cyou/2025/03/28/TCP拥塞控制/","name":"TCP拥塞控制"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"Hexo","url":"https://hitme.cyou/","description":"","author":{"@type":"Person","name":"ZhenShuo Zhang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://hitme.cyou/","description":""},"publisher":{"@type":"Organization","name":"Hexo","url":"https://hitme.cyou/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://hitme.cyou?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"TCP拥塞控制","description":"","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://hitme.cyou/2025/03/28/TCP%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6/"},"author":{"@type":"Person","name":"ZhenShuo Zhang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://hitme.cyou/"},"publisher":{"@type":"Organization","name":"Hexo","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://hitme.cyou/2025/03/28/TCP%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6/","wordCount":0,"datePublished":"2025-03-28T09:30:00.000Z","dateModified":"2025-11-25T09:36:00.479Z","articleSection":"后端","keywords":"TCP,拥塞控制","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
