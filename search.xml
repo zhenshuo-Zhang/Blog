@@ -3,7 +3,8 @@
   <entry>
     <title>HTTP 和 HTTPS</title>
     <url>/2025/03/25/HTTP%20%E5%92%8C%20HTTPS/</url>
-    <content><![CDATA[<h1 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h1><p>HTPP：Hyper Text Transfer Protocol，超文本传输协议，定义了客户端与服务器之间说话的规则，是应用层协议。</p>
+    <content><![CDATA[<span id="more"></span>
+<h1 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h1><p>HTPP：Hyper Text Transfer Protocol，超文本传输协议，定义了客户端与服务器之间说话的规则，是应用层协议。</p>
 <ul>
 <li>应用层协议</li>
 <li>基于TCP</li>
@@ -69,9 +70,38 @@
       </tags>
   </entry>
   <entry>
+    <title>TCP握手挥手问题</title>
+    <url>/2025/03/28/TCP%E6%8F%A1%E6%89%8B%E6%8C%A5%E6%89%8B%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<span id="more"></span>
+<h1 id="TCP三次握手"><a href="#TCP三次握手" class="headerlink" title="TCP三次握手"></a>TCP三次握手</h1><div class="story post-story"><h2 id="为什么是三次握手？"><a href="#为什么是三次握手？" class="headerlink" title="为什么是三次握手？"></a>为什么是三次握手？</h2><ul>
+<li>双方都得确认建立连接</li>
+<li>防止历史的连接请求造成混乱</li>
+</ul>
+<h1 id="TCP四次挥手"><a href="#TCP四次挥手" class="headerlink" title="TCP四次挥手"></a>TCP四次挥手</h1></div><div class="story post-story"><h2 id="为什么需要四次挥手？"><a href="#为什么需要四次挥手？" class="headerlink" title="为什么需要四次挥手？"></a>为什么需要四次挥手？</h2><p>因为TCP是全双工的协议，连接的两端可以同时发送和接受数据，所以每一端都必须独立的关闭自己的“发送通道”，这就需要四次交互。<br>服务器刚收到客户端的FIN时，往往还有数据没发完。</p>
+<h4 id="什么时候可以三次挥手？"><a href="#什么时候可以三次挥手？" class="headerlink" title="什么时候可以三次挥手？"></a>什么时候可以三次挥手？</h4><p>有一种特殊情况：如果服务器收到客户端FIN时，已经没有数据要发了，那么可以将ACK和FIN合并。<br>看起来像三次挥手</p>
+<blockquote>
+<p>[!note]</p>
+<ol>
+<li>Client → Server: FIN </li>
+<li>Server → Client: ACK + FIN （合并！） </li>
+<li>Client → Server: ACK</li>
+</ol>
+</blockquote>
+</div><div class="story post-story"><h2 id="为什么会有TIME-WAIT状态，为什么是2MSL时间？"><a href="#为什么会有TIME-WAIT状态，为什么是2MSL时间？" class="headerlink" title="为什么会有TIME WAIT状态，为什么是2MSL时间？"></a>为什么会有TIME WAIT状态，为什么是2MSL时间？</h2><p>只有主动断开连接的一方才有TIME WAIT状态<br>目的：<br>	确保最后一个ACK能到达服务器，如果没有到达服务器的话，服务端会重新发送FIN。<br>MSL：Maximum Segment Lifetime，一个片段在网络中最大的存活时间，2MSL就是一个发送和一个回复所需的最大时间。如果直到2MSL，客户端都没有收到FIN，那么客户端推断ACK成功被接受，则结束TCP连接。</p>
+
+</div>]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>TCP</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>TCP拥塞控制</title>
     <url>/2025/03/28/TCP%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6/</url>
-    <content><![CDATA[<h1 id="什么是网络拥塞？"><a href="#什么是网络拥塞？" class="headerlink" title="什么是网络拥塞？"></a>什么是网络拥塞？</h1><p>当网络中的数据流量超过链路或路由器的处理能力时，就会发生：</p>
+    <content><![CDATA[<span id="more"></span>
+<h1 id="什么是网络拥塞？"><a href="#什么是网络拥塞？" class="headerlink" title="什么是网络拥塞？"></a>什么是网络拥塞？</h1><p>当网络中的数据流量超过链路或路由器的处理能力时，就会发生：</p>
 <ul>
 <li>路由器缓存溢出 -&gt; 丢包</li>
 <li>排队延迟增加 -&gt; 高延迟</li>
@@ -148,33 +178,6 @@
       <tags>
         <tag>TCP</tag>
         <tag>拥塞控制</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>TCP握手挥手问题</title>
-    <url>/2025/03/28/TCP%E6%8F%A1%E6%89%8B%E6%8C%A5%E6%89%8B%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<h1 id="TCP三次握手"><a href="#TCP三次握手" class="headerlink" title="TCP三次握手"></a>TCP三次握手</h1><div class="story post-story"><h2 id="为什么是三次握手？"><a href="#为什么是三次握手？" class="headerlink" title="为什么是三次握手？"></a>为什么是三次握手？</h2><ul>
-<li>双方都得确认建立连接</li>
-<li>防止历史的连接请求造成混乱</li>
-</ul>
-<h1 id="TCP四次挥手"><a href="#TCP四次挥手" class="headerlink" title="TCP四次挥手"></a>TCP四次挥手</h1></div><div class="story post-story"><h2 id="为什么需要四次挥手？"><a href="#为什么需要四次挥手？" class="headerlink" title="为什么需要四次挥手？"></a>为什么需要四次挥手？</h2><p>因为TCP是全双工的协议，连接的两端可以同时发送和接受数据，所以每一端都必须独立的关闭自己的“发送通道”，这就需要四次交互。<br>服务器刚收到客户端的FIN时，往往还有数据没发完。</p>
-<h4 id="什么时候可以三次挥手？"><a href="#什么时候可以三次挥手？" class="headerlink" title="什么时候可以三次挥手？"></a>什么时候可以三次挥手？</h4><p>有一种特殊情况：如果服务器收到客户端FIN时，已经没有数据要发了，那么可以将ACK和FIN合并。<br>看起来像三次挥手</p>
-<blockquote>
-<p>[!note]</p>
-<ol>
-<li>Client → Server: FIN </li>
-<li>Server → Client: ACK + FIN （合并！） </li>
-<li>Client → Server: ACK</li>
-</ol>
-</blockquote>
-</div><div class="story post-story"><h2 id="为什么会有TIME-WAIT状态，为什么是2MSL时间？"><a href="#为什么会有TIME-WAIT状态，为什么是2MSL时间？" class="headerlink" title="为什么会有TIME WAIT状态，为什么是2MSL时间？"></a>为什么会有TIME WAIT状态，为什么是2MSL时间？</h2><p>只有主动断开连接的一方才有TIME WAIT状态<br>目的：<br>	确保最后一个ACK能到达服务器，如果没有到达服务器的话，服务端会重新发送FIN。<br>MSL：Maximum Segment Lifetime，一个片段在网络中最大的存活时间，2MSL就是一个发送和一个回复所需的最大时间。如果直到2MSL，客户端都没有收到FIN，那么客户端推断ACK成功被接受，则结束TCP连接。</p>
-
-</div>]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>TCP</tag>
       </tags>
   </entry>
   <entry>
@@ -268,8 +271,9 @@
   <entry>
     <title>键入网址到网页显示，期间发生了什么？</title>
     <url>/2025/04/25/%E9%94%AE%E5%85%A5%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5%E6%98%BE%E7%A4%BA%EF%BC%8C%E6%9C%9F%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/</url>
-    <content><![CDATA[<p>输入网址到网页显示，这个过程到底发生了什么，我相信这是初学者很想了解地方。明白这个过程，才能将所学的计算机网络的知识串连起来，而不是孤零零的去学一个点。</p>
-<span id="more"></span>
+    <content><![CDATA[<span id="more"></span>
+<h1 id="键入网址到网页显示，期间发生了什么？"><a href="#键入网址到网页显示，期间发生了什么？" class="headerlink" title="键入网址到网页显示，期间发生了什么？"></a>键入网址到网页显示，期间发生了什么？</h1><p>输入网址到网页显示，这个过程到底发生了什么，我相信这是初学者很想了解地方。明白这个过程，才能将所学的计算机网络的知识串连起来，而不是孤零零的去学一个点。</p>
+<!-- more -->
 <p>首先，让我们来了解一下五层模型。</p>
 <h1 id="五层模型"><a href="#五层模型" class="headerlink" title="五层模型"></a>五层模型</h1><ul>
 <li><strong>应用层</strong>：HTTP、DNS、Web socket</li>
@@ -318,6 +322,26 @@
   </entry>
   <entry>
     <title></title>
+    <url>/css/custom.css</url>
+    <content><![CDATA[/* 打字机效果的光标样式 */
+.typewriter-cursor {
+  display: inline-block;
+  color: #000;
+  animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* 暗模式下的光标颜色 */
+.theme-dark .typewriter-cursor {
+  color: #fff;
+}]]></content>
+  </entry>
+  <entry>
+    <title></title>
     <url>/js/typewriter.js</url>
     <content><![CDATA[// 打字机效果脚本
 document.addEventListener('DOMContentLoaded', function() {
@@ -349,25 +373,5 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });]]></content>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/css/custom.css</url>
-    <content><![CDATA[/* 打字机效果的光标样式 */
-.typewriter-cursor {
-  display: inline-block;
-  color: #000;
-  animation: blink 0.7s infinite;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
-/* 暗模式下的光标颜色 */
-.theme-dark .typewriter-cursor {
-  color: #fff;
-}]]></content>
   </entry>
 </search>
