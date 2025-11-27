@@ -285,6 +285,19 @@
       </tags>
   </entry>
   <entry>
+    <title>关于</title>
+    <url>/about/index.html</url>
+    <content><![CDATA[<p>你好，我是 Hitme。</p>
+<p>这里是我的个人博客，用来记录学习与分享：后端开发、操作系统笔记、Netty 等相关主题。</p>
+<p>如果你想交流或合作，可以通过我的邮箱联系我：</p>
+<ul>
+<li>邮箱：<a href="mailto:&#50;&#x35;&#x36;&#57;&#50;&#53;&#x36;&#x33;&#x36;&#57;&#x40;&#113;&#x71;&#46;&#99;&#x6f;&#109;">2569256369@qq.com</a></li>
+</ul>
+<p>感谢来访！</p>
+
+]]></content>
+  </entry>
+  <entry>
     <title></title>
     <url>/css/custom.css</url>
     <content><![CDATA[/* 打字机效果的光标样式 */
@@ -337,18 +350,5 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });]]></content>
-  </entry>
-  <entry>
-    <title>关于</title>
-    <url>/about/index.html</url>
-    <content><![CDATA[<p>你好，我是 Hitme。</p>
-<p>这里是我的个人博客，用来记录学习与分享：后端开发、操作系统笔记、Netty 等相关主题。</p>
-<p>如果你想交流或合作，可以通过我的邮箱联系我：</p>
-<ul>
-<li>邮箱：<a href="mailto:&#50;&#x35;&#54;&#57;&#50;&#53;&#54;&#x33;&#x36;&#x39;&#x40;&#113;&#x71;&#x2e;&#99;&#x6f;&#x6d;">2569256369@qq.com</a></li>
-</ul>
-<p>感谢来访！</p>
-
-]]></content>
   </entry>
 </search>
