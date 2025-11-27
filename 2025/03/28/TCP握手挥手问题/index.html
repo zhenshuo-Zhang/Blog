@@ -49,7 +49,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
 <meta property="article:published_time" content="2025-03-28T02:00:00.000Z">
-<meta property="article:modified_time" content="2025-11-25T10:19:42.597Z">
+<meta property="article:modified_time" content="2025-03-27T16:00:00.000Z">
 <meta property="article:author" content="ZhenShuo Zhang">
 <meta property="article:tag" content="TCP">
 <meta name="twitter:card" content="summary">
@@ -1865,7 +1865,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: false,
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1764068892409),
+    lastupdate: new Date(1764238319927),
     sidebar: {
       for_page: ["toc"],
       for_post: ["toc"],
@@ -2646,13 +2646,23 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
         
           
+            <div class="new-meta-item date" itemprop="dateModified" datetime="2025-03-28T00:00:00+08:00">
+  <a class='notlink'>
+    <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
+    <p>本文最后更新于：2025年3月28日</p>
+  </a>
+</div>
+
+          
+        
+          
             
   <div class='new-meta-item category'>
     <i class="fa-solid fa-folder-open fa-fw" aria-hidden="true"></i>
-    <a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+    <a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
     
       <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-        <a href="/categories/%E5%90%8E%E7%AB%AF/" itemprop="url"><span itemprop="name">后端</span></a>
+        <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url"><span itemprop="name">计算机网络</span></a>
       </span>
     
   </div>
@@ -2679,13 +2689,13 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   <div id="layoutHelper-page-plugins"></div>
   <div id="post-body" itemprop="articleBody">
-    <h1 id="TCP三次握手"><a href="#TCP三次握手" class="headerlink" title="TCP三次握手"></a>TCP三次握手</h1><div class="story post-story"><h2 id="为什么是三次握手？"><a href="#为什么是三次握手？" class="headerlink" title="为什么是三次握手？"></a>为什么是三次握手？</h2><ul>
+    <div class="story post-story"><h2 id="TCP三次握手"><a href="#TCP三次握手" class="headerlink" title="TCP三次握手"></a>TCP三次握手</h2><h3 id="为什么是三次握手？"><a href="#为什么是三次握手？" class="headerlink" title="为什么是三次握手？"></a>为什么是三次握手？</h3><ul>
 <li>双方都得确认建立连接</li>
 <li>防止历史的连接请求造成混乱</li>
 </ul>
 <span id="more"></span>
-<h1 id="TCP四次挥手"><a href="#TCP四次挥手" class="headerlink" title="TCP四次挥手"></a>TCP四次挥手</h1></div><div class="story post-story"><h2 id="为什么需要四次挥手？"><a href="#为什么需要四次挥手？" class="headerlink" title="为什么需要四次挥手？"></a>为什么需要四次挥手？</h2><p>因为TCP是全双工的协议，连接的两端可以同时发送和接受数据，所以每一端都必须独立的关闭自己的“发送通道”，这就需要四次交互。<br>服务器刚收到客户端的FIN时，往往还有数据没发完。</p>
-<h4 id="什么时候可以三次挥手？"><a href="#什么时候可以三次挥手？" class="headerlink" title="什么时候可以三次挥手？"></a>什么时候可以三次挥手？</h4><p>有一种特殊情况：如果服务器收到客户端FIN时，已经没有数据要发了，那么可以将ACK和FIN合并。<br>看起来像三次挥手</p>
+</div><div class="story post-story"><h2 id="TCP四次挥手"><a href="#TCP四次挥手" class="headerlink" title="TCP四次挥手"></a>TCP四次挥手</h2><h3 id="为什么需要四次挥手？"><a href="#为什么需要四次挥手？" class="headerlink" title="为什么需要四次挥手？"></a>为什么需要四次挥手？</h3><p>因为TCP是全双工的协议，连接的两端可以同时发送和接受数据，所以每一端都必须独立的关闭自己的“发送通道”，这就需要四次交互。<br>服务器刚收到客户端的FIN时，往往还有数据没发完。</p>
+<h5 id="什么时候可以三次挥手？"><a href="#什么时候可以三次挥手？" class="headerlink" title="什么时候可以三次挥手？"></a>什么时候可以三次挥手？</h5><p>有一种特殊情况：如果服务器收到客户端FIN时，已经没有数据要发了，那么可以将ACK和FIN合并。<br>看起来像三次挥手</p>
 <blockquote>
 <p>[!note]</p>
 <ol>
@@ -2694,7 +2704,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <li>Client → Server: ACK</li>
 </ol>
 </blockquote>
-</div><div class="story post-story"><h2 id="为什么会有TIME-WAIT状态，为什么是2MSL时间？"><a href="#为什么会有TIME-WAIT状态，为什么是2MSL时间？" class="headerlink" title="为什么会有TIME WAIT状态，为什么是2MSL时间？"></a>为什么会有TIME WAIT状态，为什么是2MSL时间？</h2><p>只有主动断开连接的一方才有TIME WAIT状态<br>目的：<br>	确保最后一个ACK能到达服务器，如果没有到达服务器的话，服务端会重新发送FIN。<br>MSL：Maximum Segment Lifetime，一个片段在网络中最大的存活时间，2MSL就是一个发送和一个回复所需的最大时间。如果直到2MSL，客户端都没有收到FIN，那么客户端推断ACK成功被接受，则结束TCP连接。</p>
+<h3 id="为什么会有TIME-WAIT状态，为什么是2MSL时间？"><a href="#为什么会有TIME-WAIT状态，为什么是2MSL时间？" class="headerlink" title="为什么会有TIME WAIT状态，为什么是2MSL时间？"></a>为什么会有TIME WAIT状态，为什么是2MSL时间？</h3><p>只有主动断开连接的一方才有TIME WAIT状态<br>目的：<br>	确保最后一个ACK能到达服务器，如果没有到达服务器的话，服务端会重新发送FIN。<br>MSL：Maximum Segment Lifetime，一个片段在网络中最大的存活时间，2MSL就是一个发送和一个回复所需的最大时间。如果直到2MSL，客户端都没有收到FIN，那么客户端推断ACK成功被接受，则结束TCP连接。</p>
 
 </div>
   </div>
@@ -2720,10 +2730,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2025-11-25T18:19:42+08:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2025-03-28T00:00:00+08:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
-    <p>本文最后更新于：2025年11月25日</p>
+    <p>本文最后更新于：2025年3月28日</p>
   </a>
 </div>
 
@@ -2886,7 +2896,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">为什么是三次握手？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">为什么需要四次挥手？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E5%8F%AF%E4%BB%A5%E4%B8%89%E6%AC%A1%E6%8C%A5%E6%89%8B%EF%BC%9F"><span class="toc-number">2.0.1.</span> <span class="toc-text">什么时候可以三次挥手？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E6%9C%89TIME-WAIT%E7%8A%B6%E6%80%81%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF2MSL%E6%97%B6%E9%97%B4%EF%BC%9F"><span class="toc-number">3.</span> <span class="toc-text">为什么会有TIME WAIT状态，为什么是2MSL时间？</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B"><span class="toc-number">1.</span> <span class="toc-text">TCP三次握手</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">为什么是三次握手？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B"><span class="toc-number">2.</span> <span class="toc-text">TCP四次挥手</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%EF%BC%9F"><span class="toc-number">2.1.</span> <span class="toc-text">为什么需要四次挥手？</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E5%8F%AF%E4%BB%A5%E4%B8%89%E6%AC%A1%E6%8C%A5%E6%89%8B%EF%BC%9F"><span class="toc-number">2.1.0.1.</span> <span class="toc-text">什么时候可以三次挥手？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E6%9C%89TIME-WAIT%E7%8A%B6%E6%80%81%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF2MSL%E6%97%B6%E9%97%B4%EF%BC%9F"><span class="toc-number">2.2.</span> <span class="toc-text">为什么会有TIME WAIT状态，为什么是2MSL时间？</span></a></li></ol></li></ol>
     </div>
   </section>
 
@@ -4021,7 +4031,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
   <script>
-  let imgs = ["https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/039.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/004.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/052.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/019.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/002.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/001.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/042.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/005.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/012.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/038.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/035.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/025.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/046.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/003.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/033.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/056.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/034.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/006.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/016.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/051.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/054.webp"];
+  let imgs = ["https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/035.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/054.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/052.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/025.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/046.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/038.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/039.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/051.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/001.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/016.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/005.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/004.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/006.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/002.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/033.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/034.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/019.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/056.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/042.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/003.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/012.webp"];
   let index = 0;
   let IntervalParallax = null;
 
@@ -4340,7 +4350,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"我的博客","url":"https://hitme.cyou/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"ZhenShuo Zhang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://hitme.cyou/","sameAs":["https://github.com/volantis-x"],"description":"这是我的博客，记录我的学习和生活"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://hitme.cyou/","name":"我的博客"}},{"@type":"ListItem","position":2,"item":{"@id":"https://hitme.cyou/categories/后端/","name":"后端"}},{"@type":"ListItem","position":3,"item":{"@id":"https://hitme.cyou/2025/03/28/TCP握手挥手问题/","name":"TCP握手挥手问题"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"我的博客","url":"https://hitme.cyou/","keywords":["博客","学习","生活"],"description":"这是我的博客，记录我的学习和生活","author":{"@type":"Person","name":"ZhenShuo Zhang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://hitme.cyou/","description":"这是我的博客，记录我的学习和生活"},"publisher":{"@type":"Organization","name":"我的博客","url":"https://hitme.cyou/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://hitme.cyou?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"TCP握手挥手问题","description":"TCP三次握手为什么是三次握手？\n双方都得确认建立连接\n防止历史的连接请求造成混乱\n","inLanguage":["zh-CN","en","default"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://hitme.cyou/2025/03/28/TCP%E6%8F%A1%E6%89%8B%E6%8C%A5%E6%89%8B%E9%97%AE%E9%A2%98/"},"author":{"@type":"Person","name":"ZhenShuo Zhang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://hitme.cyou/"},"publisher":{"@type":"Organization","name":"我的博客","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://hitme.cyou/2025/03/28/TCP%E6%8F%A1%E6%89%8B%E6%8C%A5%E6%89%8B%E9%97%AE%E9%A2%98/","wordCount":42,"datePublished":"2025-03-28T02:00:00.000Z","dateModified":"2025-11-25T10:19:42.597Z","articleSection":"后端","keywords":"TCP","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"我的博客","url":"https://hitme.cyou/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"ZhenShuo Zhang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://hitme.cyou/","sameAs":["https://github.com/volantis-x"],"description":"这是我的博客，记录我的学习和生活"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://hitme.cyou/","name":"我的博客"}},{"@type":"ListItem","position":2,"item":{"@id":"https://hitme.cyou/categories/计算机网络/","name":"计算机网络"}},{"@type":"ListItem","position":3,"item":{"@id":"https://hitme.cyou/2025/03/28/TCP握手挥手问题/","name":"TCP握手挥手问题"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"我的博客","url":"https://hitme.cyou/","keywords":["博客","学习","生活"],"description":"这是我的博客，记录我的学习和生活","author":{"@type":"Person","name":"ZhenShuo Zhang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://hitme.cyou/","description":"这是我的博客，记录我的学习和生活"},"publisher":{"@type":"Organization","name":"我的博客","url":"https://hitme.cyou/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://hitme.cyou?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"TCP握手挥手问题","description":"TCP三次握手为什么是三次握手？\n双方都得确认建立连接\n防止历史的连接请求造成混乱\n","inLanguage":["zh-CN","en","default"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://hitme.cyou/2025/03/28/TCP%E6%8F%A1%E6%89%8B%E6%8C%A5%E6%89%8B%E9%97%AE%E9%A2%98/"},"author":{"@type":"Person","name":"ZhenShuo Zhang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://hitme.cyou/"},"publisher":{"@type":"Organization","name":"我的博客","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://hitme.cyou/2025/03/28/TCP%E6%8F%A1%E6%89%8B%E6%8C%A5%E6%89%8B%E9%97%AE%E9%A2%98/","wordCount":42,"datePublished":"2025-03-28T02:00:00.000Z","dateModified":"2025-03-27T16:00:00.000Z","articleSection":"计算机网络","keywords":"TCP","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 

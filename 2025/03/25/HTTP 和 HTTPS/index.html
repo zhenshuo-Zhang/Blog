@@ -51,7 +51,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
 <meta property="article:published_time" content="2025-03-25T01:45:00.000Z">
-<meta property="article:modified_time" content="2025-11-25T10:18:44.824Z">
+<meta property="article:modified_time" content="2025-03-24T16:00:00.000Z">
 <meta property="article:author" content="ZhenShuo Zhang">
 <meta property="article:tag" content="HTTP">
 <meta property="article:tag" content="HTTPS">
@@ -1868,7 +1868,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: false,
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1764068892409),
+    lastupdate: new Date(1764238319927),
     sidebar: {
       for_page: ["toc"],
       for_post: ["toc"],
@@ -2649,13 +2649,23 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
         
           
+            <div class="new-meta-item date" itemprop="dateModified" datetime="2025-03-25T00:00:00+08:00">
+  <a class='notlink'>
+    <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
+    <p>本文最后更新于：2025年3月25日</p>
+  </a>
+</div>
+
+          
+        
+          
             
   <div class='new-meta-item category'>
     <i class="fa-solid fa-folder-open fa-fw" aria-hidden="true"></i>
-    <a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+    <a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
     
       <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-        <a href="/categories/%E5%90%8E%E7%AB%AF/" itemprop="url"><span itemprop="name">后端</span></a>
+        <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url"><span itemprop="name">计算机网络</span></a>
       </span>
     
   </div>
@@ -2682,14 +2692,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   <div id="layoutHelper-page-plugins"></div>
   <div id="post-body" itemprop="articleBody">
-    <h1 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h1><p>HTPP：Hyper Text Transfer Protocol，超文本传输协议，定义了客户端与服务器之间说话的规则，是应用层协议。</p>
+    <div class="story post-story"><h2 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h2><p>HTPP：Hyper Text Transfer Protocol，超文本传输协议，定义了客户端与服务器之间说话的规则，是应用层协议。</p>
 <ul>
 <li>应用层协议</li>
 <li>基于TCP</li>
 <li>默认是无状态的（每次请求独立，服务器不记住你）<br>工作原理：客户端发起请求 -&gt; 服务器返回响应</li>
 </ul>
 <span id="more"></span>
-<div class="story post-story"><h2 id="HTTP是无状态的，怎么办？"><a href="#HTTP是无状态的，怎么办？" class="headerlink" title="HTTP是无状态的，怎么办？"></a>HTTP是无状态的，怎么办？</h2><p>HTTP默认不记住用户<br>比如登录后刷新网站，服务器不知道你是谁。</p>
+<h3 id="HTTP是无状态的，怎么办？"><a href="#HTTP是无状态的，怎么办？" class="headerlink" title="HTTP是无状态的，怎么办？"></a>HTTP是无状态的，怎么办？</h3><p>HTTP默认不记住用户<br>比如登录后刷新网站，服务器不知道你是谁。</p>
 <h5 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h5><p>Cookie + Session</p>
 <ul>
 <li>服务器生成 <code>session_id</code>，通过 <code>Set-Cookie</code> 发给浏览器</li>
@@ -2699,7 +2709,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <li>客户端每次请求在 Header 中携带：<code>Authorization: Bearer &lt;token&gt;</code></li>
 <li>服务器验证 Token 合法性</li>
 </ul>
-</div><div class="story post-story"><h2 id="HTTP-1-1-HTTP-2-HTTP3"><a href="#HTTP-1-1-HTTP-2-HTTP3" class="headerlink" title="HTTP&#x2F;1.1 HTTP&#x2F;2 HTTP3"></a>HTTP&#x2F;1.1 HTTP&#x2F;2 HTTP3</h2><table>
+<h3 id="HTTP-1-1-HTTP-2-HTTP3"><a href="#HTTP-1-1-HTTP-2-HTTP3" class="headerlink" title="HTTP&#x2F;1.1 HTTP&#x2F;2 HTTP3"></a>HTTP&#x2F;1.1 HTTP&#x2F;2 HTTP3</h3><table>
 <thead>
 <tr>
 <th></th>
@@ -2719,8 +2729,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <td>基于 <strong>QUIC（UDP）</strong>，解决 TCP 队头阻塞，<strong>更适合移动网络</strong></td>
 </tr>
 </tbody></table>
-<h1 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h1><p>TSL就是新版的SSL</p>
-</div><div class="story post-story"><h2 id="核心：TLS握手过程"><a href="#核心：TLS握手过程" class="headerlink" title="核心：TLS握手过程"></a>核心：TLS握手过程</h2><ol>
+</div><div class="story post-story"><h2 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h2><p>TSL就是新版的SSL</p>
+<h3 id="核心：TLS握手过程"><a href="#核心：TLS握手过程" class="headerlink" title="核心：TLS握手过程"></a>核心：TLS握手过程</h3><ol>
 <li>客户端打招呼，浏览器告诉服务器：我将使用HTTPS协议，支持哪些加密算法</li>
 <li>服务器回应：选择一个加密套件，发送自己的数字证书</li>
 <li>客户端检验服务器的数字证书</li>
@@ -2732,12 +2742,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </li>
 <li>开始加密通信：双方用同一个会话密钥加密&#x2F;解密所有的HTTP数据</li>
 </ol>
-</div><div class="story post-story"><h2 id="为什么需要HTTPS"><a href="#为什么需要HTTPS" class="headerlink" title="为什么需要HTTPS"></a>为什么需要HTTPS</h2><ol>
+<h3 id="为什么需要HTTPS"><a href="#为什么需要HTTPS" class="headerlink" title="为什么需要HTTPS"></a>为什么需要HTTPS</h3><ol>
 <li>http是明文传输</li>
 <li>无法验证服务器身份</li>
 <li>数据可能被篡改</li>
 </ol>
-<h1 id="HTTP和WebSocket有什么区别？"><a href="#HTTP和WebSocket有什么区别？" class="headerlink" title="HTTP和WebSocket有什么区别？"></a>HTTP和WebSocket有什么区别？</h1><p>HTTP是“请求-响应”模式，Web Socket是全双工持久连接。</p>
+</div><div class="story post-story"><h2 id="HTTP和WebSocket有什么区别？"><a href="#HTTP和WebSocket有什么区别？" class="headerlink" title="HTTP和WebSocket有什么区别？"></a>HTTP和WebSocket有什么区别？</h2><p>HTTP是“请求-响应”模式，Web Socket是全双工持久连接。</p>
 
 </div>
   </div>
@@ -2763,10 +2773,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2025-11-25T18:18:44+08:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2025-03-25T00:00:00+08:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
-    <p>本文最后更新于：2025年11月25日</p>
+    <p>本文最后更新于：2025年3月25日</p>
   </a>
 </div>
 
@@ -2935,7 +2945,7 @@ TCP四次挥手为什么需要四次挥手？因为TCP是全双工的协议，�
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP%E6%98%AF%E6%97%A0%E7%8A%B6%E6%80%81%E7%9A%84%EF%BC%8C%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">HTTP是无状态的，怎么办？</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">解决方案</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP-1-1-HTTP-2-HTTP3"><span class="toc-number">2.</span> <span class="toc-text">HTTP&#x2F;1.1 HTTP&#x2F;2 HTTP3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%EF%BC%9ATLS%E6%8F%A1%E6%89%8B%E8%BF%87%E7%A8%8B"><span class="toc-number">3.</span> <span class="toc-text">核心：TLS握手过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81HTTPS"><span class="toc-number">4.</span> <span class="toc-text">为什么需要HTTPS</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP"><span class="toc-number">1.</span> <span class="toc-text">HTTP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP%E6%98%AF%E6%97%A0%E7%8A%B6%E6%80%81%E7%9A%84%EF%BC%8C%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">HTTP是无状态的，怎么办？</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">1.1.0.1.</span> <span class="toc-text">解决方案</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP-1-1-HTTP-2-HTTP3"><span class="toc-number">1.2.</span> <span class="toc-text">HTTP&#x2F;1.1 HTTP&#x2F;2 HTTP3</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTPS"><span class="toc-number">2.</span> <span class="toc-text">HTTPS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%EF%BC%9ATLS%E6%8F%A1%E6%89%8B%E8%BF%87%E7%A8%8B"><span class="toc-number">2.1.</span> <span class="toc-text">核心：TLS握手过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81HTTPS"><span class="toc-number">2.2.</span> <span class="toc-text">为什么需要HTTPS</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP%E5%92%8CWebSocket%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-number">3.</span> <span class="toc-text">HTTP和WebSocket有什么区别？</span></a></li></ol>
     </div>
   </section>
 
@@ -4070,7 +4080,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
   <script>
-  let imgs = ["https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/039.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/004.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/052.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/019.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/002.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/001.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/042.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/005.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/012.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/038.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/035.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/025.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/046.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/003.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/033.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/056.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/034.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/006.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/016.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/051.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/054.webp"];
+  let imgs = ["https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/035.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/054.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/052.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/025.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/046.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/038.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/039.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/051.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/001.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/016.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/005.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/004.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/006.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/002.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/033.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/034.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/019.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/056.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/042.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/003.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/012.webp"];
   let index = 0;
   let IntervalParallax = null;
 
@@ -4389,7 +4399,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"我的博客","url":"https://hitme.cyou/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"ZhenShuo Zhang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://hitme.cyou/","sameAs":["https://github.com/volantis-x"],"description":"这是我的博客，记录我的学习和生活"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://hitme.cyou/","name":"我的博客"}},{"@type":"ListItem","position":2,"item":{"@id":"https://hitme.cyou/categories/后端/","name":"后端"}},{"@type":"ListItem","position":3,"item":{"@id":"https://hitme.cyou/2025/03/25/HTTP 和 HTTPS/","name":"HTTP 和 HTTPS"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"我的博客","url":"https://hitme.cyou/","keywords":["博客","学习","生活"],"description":"这是我的博客，记录我的学习和生活","author":{"@type":"Person","name":"ZhenShuo Zhang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://hitme.cyou/","description":"这是我的博客，记录我的学习和生活"},"publisher":{"@type":"Organization","name":"我的博客","url":"https://hitme.cyou/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://hitme.cyou?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"HTTP 和 HTTPS","description":"HTTPHTPP：Hyper Text Transfer Protocol，超文本传输协议，定义了客户端与服务器之间说话的规则，是应用层协议。\n\n应用层协议\n基于TCP\n默认是无状态的（每次请求独立，服务器不记住你）工作原理：客户端发起请求 -&gt; 服务器返回响应\n","inLanguage":["zh-CN","en","default"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://hitme.cyou/2025/03/25/HTTP%20%E5%92%8C%20HTTPS/"},"author":{"@type":"Person","name":"ZhenShuo Zhang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://hitme.cyou/"},"publisher":{"@type":"Organization","name":"我的博客","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://hitme.cyou/2025/03/25/HTTP%20%E5%92%8C%20HTTPS/","wordCount":135,"datePublished":"2025-03-25T01:45:00.000Z","dateModified":"2025-11-25T10:18:44.824Z","articleSection":"后端","keywords":"HTTP,HTTPS","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"我的博客","url":"https://hitme.cyou/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"ZhenShuo Zhang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://hitme.cyou/","sameAs":["https://github.com/volantis-x"],"description":"这是我的博客，记录我的学习和生活"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://hitme.cyou/","name":"我的博客"}},{"@type":"ListItem","position":2,"item":{"@id":"https://hitme.cyou/categories/计算机网络/","name":"计算机网络"}},{"@type":"ListItem","position":3,"item":{"@id":"https://hitme.cyou/2025/03/25/HTTP 和 HTTPS/","name":"HTTP 和 HTTPS"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"我的博客","url":"https://hitme.cyou/","keywords":["博客","学习","生活"],"description":"这是我的博客，记录我的学习和生活","author":{"@type":"Person","name":"ZhenShuo Zhang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://hitme.cyou/","description":"这是我的博客，记录我的学习和生活"},"publisher":{"@type":"Organization","name":"我的博客","url":"https://hitme.cyou/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://hitme.cyou?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"HTTP 和 HTTPS","description":"HTTPHTPP：Hyper Text Transfer Protocol，超文本传输协议，定义了客户端与服务器之间说话的规则，是应用层协议。\n\n应用层协议\n基于TCP\n默认是无状态的（每次请求独立，服务器不记住你）工作原理：客户端发起请求 -&gt; 服务器返回响应\n","inLanguage":["zh-CN","en","default"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://hitme.cyou/2025/03/25/HTTP%20%E5%92%8C%20HTTPS/"},"author":{"@type":"Person","name":"ZhenShuo Zhang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://hitme.cyou/"},"publisher":{"@type":"Organization","name":"我的博客","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://hitme.cyou/2025/03/25/HTTP%20%E5%92%8C%20HTTPS/","wordCount":135,"datePublished":"2025-03-25T01:45:00.000Z","dateModified":"2025-03-24T16:00:00.000Z","articleSection":"计算机网络","keywords":"HTTP,HTTPS","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
