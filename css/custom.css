@@ -14,3 +14,27 @@
 .theme-dark .typewriter-cursor {
   color: #fff;
 }
+
+/* About 页面并排布局 */
+.about-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap; /* 小屏自动换行 */
+}
+.about-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+.about-content {
+  flex: 1;
+  min-width: 240px;
+}
+@media (max-width: 600px) {
+  .about-avatar {
+    width: 96px;
+    height: 96px;
+  }
+}

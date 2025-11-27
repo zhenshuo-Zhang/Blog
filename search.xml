@@ -181,6 +181,16 @@
       </tags>
   </entry>
   <entry>
+    <title>我的第一篇博客</title>
+    <url>/2024/01/14/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<div class="story post-story"><h2 id="我的第一篇博客"><a href="#我的第一篇博客" class="headerlink" title="我的第一篇博客"></a>我的第一篇博客</h2><p>  这是我的第一篇博客，我想记录一下我学习的过程。</p>
+
+</div>]]></content>
+      <tags>
+        <tag>博客</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>初识Netty</title>
     <url>/2025/01/22/%E5%88%9D%E8%AF%86Netty/</url>
     <content><![CDATA[<div class="story post-story"><h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>本文整理了同步&#x2F;异步、阻塞&#x2F;非阻塞、IO、BIO&#x2F;NIO 等前置概念，并用类比帮助快速理解 Netty 的核心组件与工作机制。</p>
@@ -237,16 +247,6 @@
       </tags>
   </entry>
   <entry>
-    <title>我的第一篇博客</title>
-    <url>/2024/01/14/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<div class="story post-story"><h2 id="我的第一篇博客"><a href="#我的第一篇博客" class="headerlink" title="我的第一篇博客"></a>我的第一篇博客</h2><p>  这是我的第一篇博客，我想记录一下我学习的过程。</p>
-
-</div>]]></content>
-      <tags>
-        <tag>博客</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>键入网址到网页显示，期间发生了什么？</title>
     <url>/2025/04/25/%E9%94%AE%E5%85%A5%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5%E6%98%BE%E7%A4%BA%EF%BC%8C%E6%9C%9F%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/</url>
     <content><![CDATA[<div class="story post-story"><h2 id="键入网址到网页显示，期间发生了什么？"><a href="#键入网址到网页显示，期间发生了什么？" class="headerlink" title="键入网址到网页显示，期间发生了什么？"></a>键入网址到网页显示，期间发生了什么？</h2><p>输入网址到网页显示，这个过程到底发生了什么，我相信这是初学者很想了解地方。明白这个过程，才能将所学的计算机网络的知识串连起来，而不是孤零零的去学一个点。</p>
@@ -285,17 +285,31 @@
       </tags>
   </entry>
   <entry>
-    <title>关于</title>
+    <title></title>
     <url>/about/index.html</url>
-    <content><![CDATA[<p>你好，我是 Hitme。</p>
+    <content><![CDATA[<!-- ![](/images/1.jpeg) -->
+<p>你好，我是 Hitme。</p>
 <p>这里是我的个人博客，用来记录学习与分享：后端开发、操作系统笔记、Netty 等相关主题。</p>
 <p>如果你想交流或合作，可以通过我的邮箱联系我：</p>
 <ul>
-<li>邮箱：<a href="mailto:&#50;&#53;&#54;&#57;&#x32;&#53;&#54;&#x33;&#54;&#57;&#x40;&#113;&#x71;&#46;&#99;&#111;&#x6d;">2569256369@qq.com</a></li>
+<li>邮箱：<a href="mailto:&#x32;&#53;&#x36;&#57;&#x32;&#53;&#x36;&#x33;&#54;&#x39;&#64;&#113;&#113;&#x2e;&#x63;&#111;&#109;">2569256369@qq.com</a></li>
 </ul>
 <p>感谢来访！</p>
 
 ]]></content>
+  </entry>
+  <entry>
+    <title>所有分类</title>
+    <url>/categories/index.html</url>
+    <content><![CDATA[<ul>
+<li><div class="story post-story"><h2 id="常用分类直达："><a href="#常用分类直达：" class="headerlink" title="常用分类直达："></a>常用分类直达：</h2><ul>
+<li><h3 id="后端"><a href="#后端" class="headerlink" title="后端"></a><a href="/categories/%E5%90%8E%E7%AB%AF/">后端</a></h3></li>
+<li><h3 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a><a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></h3></li>
+</ul>
+</li>
+</ul>
+
+</div>]]></content>
   </entry>
   <entry>
     <title></title>
@@ -315,7 +329,32 @@
 /* 暗模式下的光标颜色 */
 .theme-dark .typewriter-cursor {
   color: #fff;
-}]]></content>
+}
+
+/* About 页面并排布局 */
+.about-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap; /* 小屏自动换行 */
+}
+.about-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+.about-content {
+  flex: 1;
+  min-width: 240px;
+}
+@media (max-width: 600px) {
+  .about-avatar {
+    width: 96px;
+    height: 96px;
+  }
+}
+]]></content>
   </entry>
   <entry>
     <title></title>
@@ -350,5 +389,24 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });]]></content>
+  </entry>
+  <entry>
+    <title>所有标签</title>
+    <url>/tags/index.html</url>
+    <content><![CDATA[<ul>
+<li><div class="story post-story"><h2 id="常用标签直达："><a href="#常用标签直达：" class="headerlink" title="常用标签直达："></a>常用标签直达：</h2><ul>
+<li><h3 id="Netty"><a href="#Netty" class="headerlink" title="Netty"></a><a href="/tags/Netty/">Netty</a></h3></li>
+<li><h3 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a><a href="/tags/HTTP/">HTTP</a></h3></li>
+<li><h3 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a><a href="/tags/HTTPS/">HTTPS</a></h3></li>
+<li><h3 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a><a href="/tags/TCP/">TCP</a></h3></li>
+<li><h3 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a><a href="/tags/DNS/">DNS</a></h3></li>
+<li><h3 id="浏览器渲染"><a href="#浏览器渲染" class="headerlink" title="浏览器渲染"></a><a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93/">浏览器渲染</a></h3></li>
+<li><h3 id="拥塞控制"><a href="#拥塞控制" class="headerlink" title="拥塞控制"></a><a href="/tags/%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6/">拥塞控制</a></h3></li>
+<li><h3 id="博客"><a href="#博客" class="headerlink" title="博客"></a><a href="/tags/%E5%8D%9A%E5%AE%A2/">博客</a></h3></li>
+</ul>
+</li>
+</ul>
+
+</div>]]></content>
   </entry>
 </search>
