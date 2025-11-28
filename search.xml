@@ -70,9 +70,32 @@
       </tags>
   </entry>
   <entry>
+    <title>MySQL中的索引</title>
+    <url>/2025/08/28/MySQL%E4%B8%AD%E7%9A%84%E7%B4%A2%E5%BC%95/</url>
+    <content><![CDATA[<div class="story post-story"><h2 id="前置"><a href="#前置" class="headerlink" title="前置"></a>前置</h2><ol>
+<li>InnoDB 存储引擎的每次磁盘IO操作读取或写入的大小是一页（16KB）</li>
+<li>B+树索引结构下的每个节点大小就是一页</li>
+<li>树的高度 &#x3D;&#x3D; 每次查询数据时磁盘IO的次数</li>
+</ol>
+<span id="more"></span>
+
+</div><div class="story post-story"><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>IO操作的耗时远高于CPU计算，而且数据库的大部分数据都存储在磁盘上，因此数据库设计的核心目标之一就是：减少IO次数<br>MySQL 中的索引是提升查询性能的核心机制，本质上是一种<strong>高效查找的数据结构</strong>。在 InnoDB 引擎中，索引底层主要采用 <strong>B+ 树</strong> 实现。</p>
+<p>首先，InnoDB 的表必须有一个<strong>聚集索引（Clustered Index）</strong>，通常是主键。它的特点是：<strong>数据行和索引存储在一起</strong>，叶子节点直接保存完整的用户数据。因此，通过主键查询只需要一次 I&#x2F;O，效率最高。</p>
+<p>除此之外的索引都叫<strong>二级索引（Secondary Index）</strong>，也称为非聚簇索引。它的叶子节点不存完整数据，而是存储<strong>主键值</strong>。当执行非主键查询时，MySQL 先通过二级索引找到主键，再回表到聚集索引中获取完整数据——这个过程叫<strong>回表查询</strong>，会带来额外开销。</p>
+<p>为了优化回表，我们可以设计<strong>覆盖索引</strong>，即让查询所需的所有字段都包含在索引中，这样就无需回表了。比如 <code>SELECT id, name FROM users WHERE name = &#39;Tom&#39;</code>，如果 <code>(name, id)</code> 有联合索引，就能直接返回结果。</p>
+
+</div>]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>索引</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Redis常见的数据类型</title>
     <url>/2025/07/28/Redis%E5%B8%B8%E8%A7%81%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
-    <content><![CDATA[<h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><div class="story post-story"><h2 id="什么是Redis？"><a href="#什么是Redis？" class="headerlink" title="什么是Redis？"></a>什么是Redis？</h2><p>Remote dictionary Server，基于内存的高性能键值（Key-Value）存储系统，常被用作缓存中间件。</p>
+    <content><![CDATA[<div class="story post-story"><h2 id="什么是Redis？"><a href="#什么是Redis？" class="headerlink" title="什么是Redis？"></a>什么是Redis？</h2><p>Remote dictionary Server，基于内存的高性能键值（Key-Value）存储系统，常被用作缓存中间件。</p>
 <span id="more"></span>
 
 </div><div class="story post-story"><h2 id="常见数据结构"><a href="#常见数据结构" class="headerlink" title="常见数据结构"></a>常见数据结构</h2><h3 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h3><table>
@@ -280,16 +303,6 @@
       </tags>
   </entry>
   <entry>
-    <title>我的第一篇博客</title>
-    <url>/2024/01/14/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<div class="story post-story"><h2 id="我的第一篇博客"><a href="#我的第一篇博客" class="headerlink" title="我的第一篇博客"></a>我的第一篇博客</h2><p>  这是我的第一篇博客，我想记录一下我学习的过程。</p>
-
-</div>]]></content>
-      <tags>
-        <tag>博客</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>初识Netty</title>
     <url>/2025/01/22/%E5%88%9D%E8%AF%86Netty/</url>
     <content><![CDATA[<div class="story post-story"><h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>本文整理了同步&#x2F;异步、阻塞&#x2F;非阻塞、IO、BIO&#x2F;NIO 等前置概念，并用类比帮助快速理解 Netty 的核心组件与工作机制。</p>
@@ -346,6 +359,44 @@
       </tags>
   </entry>
   <entry>
+    <title>TCP握手挥手问题</title>
+    <url>/2025/03/28/TCP%E6%8F%A1%E6%89%8B%E6%8C%A5%E6%89%8B%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<div class="story post-story"><h2 id="TCP三次握手"><a href="#TCP三次握手" class="headerlink" title="TCP三次握手"></a>TCP三次握手</h2><h3 id="为什么是三次握手？"><a href="#为什么是三次握手？" class="headerlink" title="为什么是三次握手？"></a>为什么是三次握手？</h3><ul>
+<li>双方都得确认建立连接</li>
+<li>防止历史的连接请求造成混乱</li>
+</ul>
+<span id="more"></span>
+</div><div class="story post-story"><h2 id="TCP四次挥手"><a href="#TCP四次挥手" class="headerlink" title="TCP四次挥手"></a>TCP四次挥手</h2><h3 id="为什么需要四次挥手？"><a href="#为什么需要四次挥手？" class="headerlink" title="为什么需要四次挥手？"></a>为什么需要四次挥手？</h3><p>因为TCP是全双工的协议，连接的两端可以同时发送和接受数据，所以每一端都必须独立的关闭自己的“发送通道”，这就需要四次交互。<br>服务器刚收到客户端的FIN时，往往还有数据没发完。</p>
+<h5 id="什么时候可以三次挥手？"><a href="#什么时候可以三次挥手？" class="headerlink" title="什么时候可以三次挥手？"></a>什么时候可以三次挥手？</h5><p>有一种特殊情况：如果服务器收到客户端FIN时，已经没有数据要发了，那么可以将ACK和FIN合并。<br>看起来像三次挥手</p>
+<blockquote>
+<p>[!note]</p>
+<ol>
+<li>Client → Server: FIN </li>
+<li>Server → Client: ACK + FIN （合并！） </li>
+<li>Client → Server: ACK</li>
+</ol>
+</blockquote>
+<h3 id="为什么会有TIME-WAIT状态，为什么是2MSL时间？"><a href="#为什么会有TIME-WAIT状态，为什么是2MSL时间？" class="headerlink" title="为什么会有TIME WAIT状态，为什么是2MSL时间？"></a>为什么会有TIME WAIT状态，为什么是2MSL时间？</h3><p>只有主动断开连接的一方才有TIME WAIT状态<br>目的：<br>	确保最后一个ACK能到达服务器，如果没有到达服务器的话，服务端会重新发送FIN。<br>MSL：Maximum Segment Lifetime，一个片段在网络中最大的存活时间，2MSL就是一个发送和一个回复所需的最大时间。如果直到2MSL，客户端都没有收到FIN，那么客户端推断ACK成功被接受，则结束TCP连接。</p>
+
+</div>]]></content>
+      <categories>
+        <category>计算机网络</category>
+      </categories>
+      <tags>
+        <tag>TCP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>我的第一篇博客</title>
+    <url>/2024/01/14/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<div class="story post-story"><h2 id="我的第一篇博客"><a href="#我的第一篇博客" class="headerlink" title="我的第一篇博客"></a>我的第一篇博客</h2><p>  这是我的第一篇博客，我想记录一下我学习的过程。</p>
+
+</div>]]></content>
+      <tags>
+        <tag>博客</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>键入网址到网页显示，期间发生了什么？</title>
     <url>/2025/04/25/%E9%94%AE%E5%85%A5%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5%E6%98%BE%E7%A4%BA%EF%BC%8C%E6%9C%9F%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/</url>
     <content><![CDATA[<div class="story post-story"><h2 id="键入网址到网页显示，期间发生了什么？"><a href="#键入网址到网页显示，期间发生了什么？" class="headerlink" title="键入网址到网页显示，期间发生了什么？"></a>键入网址到网页显示，期间发生了什么？</h2><p>输入网址到网页显示，这个过程到底发生了什么，我相信这是初学者很想了解地方。明白这个过程，才能将所学的计算机网络的知识串连起来，而不是孤零零的去学一个点。</p>
@@ -384,57 +435,6 @@
       </tags>
   </entry>
   <entry>
-    <title>TCP握手挥手问题</title>
-    <url>/2025/03/28/TCP%E6%8F%A1%E6%89%8B%E6%8C%A5%E6%89%8B%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<div class="story post-story"><h2 id="TCP三次握手"><a href="#TCP三次握手" class="headerlink" title="TCP三次握手"></a>TCP三次握手</h2><h3 id="为什么是三次握手？"><a href="#为什么是三次握手？" class="headerlink" title="为什么是三次握手？"></a>为什么是三次握手？</h3><ul>
-<li>双方都得确认建立连接</li>
-<li>防止历史的连接请求造成混乱</li>
-</ul>
-<span id="more"></span>
-</div><div class="story post-story"><h2 id="TCP四次挥手"><a href="#TCP四次挥手" class="headerlink" title="TCP四次挥手"></a>TCP四次挥手</h2><h3 id="为什么需要四次挥手？"><a href="#为什么需要四次挥手？" class="headerlink" title="为什么需要四次挥手？"></a>为什么需要四次挥手？</h3><p>因为TCP是全双工的协议，连接的两端可以同时发送和接受数据，所以每一端都必须独立的关闭自己的“发送通道”，这就需要四次交互。<br>服务器刚收到客户端的FIN时，往往还有数据没发完。</p>
-<h5 id="什么时候可以三次挥手？"><a href="#什么时候可以三次挥手？" class="headerlink" title="什么时候可以三次挥手？"></a>什么时候可以三次挥手？</h5><p>有一种特殊情况：如果服务器收到客户端FIN时，已经没有数据要发了，那么可以将ACK和FIN合并。<br>看起来像三次挥手</p>
-<blockquote>
-<p>[!note]</p>
-<ol>
-<li>Client → Server: FIN </li>
-<li>Server → Client: ACK + FIN （合并！） </li>
-<li>Client → Server: ACK</li>
-</ol>
-</blockquote>
-<h3 id="为什么会有TIME-WAIT状态，为什么是2MSL时间？"><a href="#为什么会有TIME-WAIT状态，为什么是2MSL时间？" class="headerlink" title="为什么会有TIME WAIT状态，为什么是2MSL时间？"></a>为什么会有TIME WAIT状态，为什么是2MSL时间？</h3><p>只有主动断开连接的一方才有TIME WAIT状态<br>目的：<br>	确保最后一个ACK能到达服务器，如果没有到达服务器的话，服务端会重新发送FIN。<br>MSL：Maximum Segment Lifetime，一个片段在网络中最大的存活时间，2MSL就是一个发送和一个回复所需的最大时间。如果直到2MSL，客户端都没有收到FIN，那么客户端推断ACK成功被接受，则结束TCP连接。</p>
-
-</div>]]></content>
-      <categories>
-        <category>计算机网络</category>
-      </categories>
-      <tags>
-        <tag>TCP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MySQL中的索引</title>
-    <url>/2025/08/28/MySQL%E4%B8%AD%E7%9A%84%E7%B4%A2%E5%BC%95/</url>
-    <content><![CDATA[<h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><div class="story post-story"><h2 id="前置"><a href="#前置" class="headerlink" title="前置"></a>前置</h2><ol>
-<li>InnoDB 存储引擎的每次磁盘IO操作读取或写入的大小是一页（16KB）</li>
-<li>B+树索引结构下的每个节点大小就是一页</li>
-<li>树的高度 &#x3D;&#x3D; 每次查询数据时磁盘IO的次数</li>
-</ol>
-<span id="more"></span>
-
-</div><div class="story post-story"><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>IO操作的耗时远高于CPU计算，而且数据库的大部分数据都存储在磁盘上，因此数据库设计的核心目标之一就是：减少IO次数<br>MySQL 中的索引是提升查询性能的核心机制，本质上是一种<strong>高效查找的数据结构</strong>。在 InnoDB 引擎中，索引底层主要采用 <strong>B+ 树</strong> 实现。</p>
-<p>首先，InnoDB 的表必须有一个<strong>聚集索引（Clustered Index）</strong>，通常是主键。它的特点是：<strong>数据行和索引存储在一起</strong>，叶子节点直接保存完整的用户数据。因此，通过主键查询只需要一次 I&#x2F;O，效率最高。</p>
-<p>除此之外的索引都叫<strong>二级索引（Secondary Index）</strong>，也称为非聚簇索引。它的叶子节点不存完整数据，而是存储<strong>主键值</strong>。当执行非主键查询时，MySQL 先通过二级索引找到主键，再回表到聚集索引中获取完整数据——这个过程叫<strong>回表查询</strong>，会带来额外开销。</p>
-<p>为了优化回表，我们可以设计<strong>覆盖索引</strong>，即让查询所需的所有字段都包含在索引中，这样就无需回表了。比如 <code>SELECT id, name FROM users WHERE name = &#39;Tom&#39;</code>，如果 <code>(name, id)</code> 有联合索引，就能直接返回结果。</p>
-
-</div>]]></content>
-      <categories>
-        <category>MySQL</category>
-      </categories>
-      <tags>
-        <tag>索引</tag>
-      </tags>
-  </entry>
-  <entry>
     <title></title>
     <url>/about/index.html</url>
     <content><![CDATA[<!-- ![](/images/1.jpeg) -->
@@ -442,10 +442,16 @@
 <p>这里是我的个人博客，用来记录学习与分享：后端开发、操作系统笔记、Netty 等相关主题。</p>
 <p>如果你想交流或合作，可以通过我的邮箱联系我：</p>
 <ul>
-<li>邮箱：<a href="mailto:&#x32;&#53;&#x36;&#57;&#50;&#53;&#54;&#x33;&#x36;&#57;&#64;&#113;&#x71;&#x2e;&#x63;&#x6f;&#x6d;">2569256369@qq.com</a></li>
+<li>邮箱：<a href="mailto:&#50;&#x35;&#x36;&#57;&#x32;&#53;&#54;&#51;&#54;&#57;&#64;&#113;&#x71;&#46;&#99;&#x6f;&#109;">2569256369@qq.com</a></li>
 </ul>
 <p>感谢来访！</p>
 
+]]></content>
+  </entry>
+  <entry>
+    <title>所有分类</title>
+    <url>/categories/index.html</url>
+    <content><![CDATA[
 ]]></content>
   </entry>
   <entry>
@@ -494,12 +500,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>所有标签</title>
-    <url>/tags/index.html</url>
-    <content><![CDATA[
-]]></content>
-  </entry>
-  <entry>
     <title></title>
     <url>/js/typewriter.js</url>
     <content><![CDATA[// 打字机效果脚本
@@ -534,8 +534,8 @@ document.addEventListener('DOMContentLoaded', function() {
 });]]></content>
   </entry>
   <entry>
-    <title>所有分类</title>
-    <url>/categories/index.html</url>
+    <title>所有标签</title>
+    <url>/tags/index.html</url>
     <content><![CDATA[
 ]]></content>
   </entry>
