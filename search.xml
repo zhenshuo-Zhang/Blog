@@ -331,13 +331,73 @@
       </tags>
   </entry>
   <entry>
-    <title>我的第一篇博客</title>
-    <url>/2024/01/14/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<div class="story post-story"><h2 id="我的第一篇博客"><a href="#我的第一篇博客" class="headerlink" title="我的第一篇博客"></a>我的第一篇博客</h2><p>  这是我的第一篇博客，我想记录一下我学习的过程。</p>
+    <title>事务隔离</title>
+    <url>/2025/08/13/%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB/</url>
+    <content><![CDATA[<div class="story post-story"><h2 id="一、什么是事务隔离？"><a href="#一、什么是事务隔离？" class="headerlink" title="一、什么是事务隔离？"></a>一、什么是事务隔离？</h2><p>事务隔离是指在并发环境下，多个事务之间的操作互不干扰，每个事务都能看到一致的数据状态。</p>
+</div><div class="story post-story"><h2 id="二、四种标准隔离级别（由低到高）"><a href="#二、四种标准隔离级别（由低到高）" class="headerlink" title="二、四种标准隔离级别（由低到高）"></a>二、四种标准隔离级别（由低到高）</h2><table>
+<thead>
+<tr>
+<th>隔离级别</th>
+<th>脏读</th>
+<th>不可重复读</th>
+<th>幻读</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>READ UNCOMMITTED</td>
+<td>✅ 允许</td>
+<td>✅ 允许</td>
+<td>✅ 允许</td>
+<td>最低隔离，性能最好，但问题最多</td>
+</tr>
+<tr>
+<td>READ COMMITTED</td>
+<td>❌ 禁止</td>
+<td>✅ 允许</td>
+<td>✅ 允许</td>
+<td>每次读取都获取最新已提交的数据</td>
+</tr>
+<tr>
+<td>REPEATABLE READ</td>
+<td>❌ 禁止</td>
+<td>❌ 禁止</td>
+<td>⚠️ MySQL 特殊处理（通常禁止）</td>
+<td>默认级别，保证同一事务内多次读一致</td>
+</tr>
+<tr>
+<td>SERIALIZABLE</td>
+<td>❌ 禁止</td>
+<td>❌ 禁止</td>
+<td>❌ 禁止</td>
+<td>最高隔离，完全串行化执行</td>
+</tr>
+</tbody></table>
+<h3 id="1-RU：能读到别人未提交的事务"><a href="#1-RU：能读到别人未提交的事务" class="headerlink" title="1. RU：能读到别人未提交的事务"></a>1. RU：能读到别人未提交的事务</h3><p>几乎没有隔离。</p>
+<h3 id="2-RC：只读别人已经提交的"><a href="#2-RC：只读别人已经提交的" class="headerlink" title="2. RC：只读别人已经提交的"></a>2. RC：只读别人已经提交的</h3><p>解决了脏读问题。RC每次SELECT都会重新生成一个快照，所以两次查询能查询到不同的数据。</p>
+<h3 id="3-RR"><a href="#3-RR" class="headerlink" title="3. RR"></a>3. RR</h3><p>RR每次SELECT，在整个事务期间共享同一个快照。因此整个事务期间看到的数据都是一样的。<br>解决了脏读、不可重复读，但幻读没有解决，MySQL有自己的解决方案。</p>
+<h4 id="RR不是整个事务期间共享一个快照吗？为什么会出现幻读？"><a href="#RR不是整个事务期间共享一个快照吗？为什么会出现幻读？" class="headerlink" title="RR不是整个事务期间共享一个快照吗？为什么会出现幻读？"></a>RR不是整个事务期间共享一个快照吗？为什么会出现幻读？</h4><p>RR 下普通 SELECT 使用同一快照，不会幻读；幻读发生在当前读（加锁读）中，因为它需要访问最新记录而不使用快照，于是可能看到其他事务新插入的行，所以 InnoDB 使用 Next-Key Lock 防止幻读。</p>
+<h3 id="4-串行化"><a href="#4-串行化" class="headerlink" title="4. 串行化"></a>4. 串行化</h3><p>读写都加锁，所有事务都串行。效率最低</p>
+</div><div class="story post-story"><h2 id="三、三种并发问题详解"><a href="#三、三种并发问题详解" class="headerlink" title="三、三种并发问题详解"></a>三、三种并发问题详解</h2><h3 id="1-脏读（Dirty-Read）"><a href="#1-脏读（Dirty-Read）" class="headerlink" title="1. 脏读（Dirty Read）"></a>1. 脏读（Dirty Read）</h3><ul>
+<li>事务 A 读取了事务 B <strong>尚未提交</strong>的数据。</li>
+<li>如果 B 回滚，A 读到的就是“脏数据”。</li>
+</ul>
+<h3 id="2-不可重复读（Non-repeatable-Read）"><a href="#2-不可重复读（Non-repeatable-Read）" class="headerlink" title="2. 不可重复读（Non-repeatable Read）"></a>2. 不可重复读（Non-repeatable Read）</h3><ul>
+<li>事务 A 在同一事务中<strong>两次读取同一行</strong>，但结果不同。</li>
+<li>原因：事务 B 在 A 两次读之间<strong>修改并提交</strong>了该行。</li>
+</ul>
+<h3 id="3-幻读（Phantom-Read）"><a href="#3-幻读（Phantom-Read）" class="headerlink" title="3. 幻读（Phantom Read）"></a>3. 幻读（Phantom Read）</h3><ul>
+<li>事务 A 在同一事务中<strong>两次执行相同查询</strong>（如 <code>SELECT * FROM t WHERE id &gt; 10</code>），但第二次结果集多出&#x2F;少了行。</li>
+<li>原因：事务 B 在 A 两次查询之间<strong>插入或删除</strong>了满足条件的行并提交。</li>
+</ul>
 
 </div>]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
       <tags>
-        <tag>博客</tag>
+        <tag>事务</tag>
+        <tag>隔离级别</tag>
       </tags>
   </entry>
   <entry>
@@ -397,6 +457,16 @@
       </tags>
   </entry>
   <entry>
+    <title>我的第一篇博客</title>
+    <url>/2024/01/14/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<div class="story post-story"><h2 id="我的第一篇博客"><a href="#我的第一篇博客" class="headerlink" title="我的第一篇博客"></a>我的第一篇博客</h2><p>  这是我的第一篇博客，我想记录一下我学习的过程。</p>
+
+</div>]]></content>
+      <tags>
+        <tag>博客</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>键入网址到网页显示，期间发生了什么？</title>
     <url>/2025/04/25/%E9%94%AE%E5%85%A5%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5%E6%98%BE%E7%A4%BA%EF%BC%8C%E6%9C%9F%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/</url>
     <content><![CDATA[<div class="story post-story"><h2 id="键入网址到网页显示，期间发生了什么？"><a href="#键入网址到网页显示，期间发生了什么？" class="headerlink" title="键入网址到网页显示，期间发生了什么？"></a>键入网址到网页显示，期间发生了什么？</h2><p>输入网址到网页显示，这个过程到底发生了什么，我相信这是初学者很想了解地方。明白这个过程，才能将所学的计算机网络的知识串连起来，而不是孤零零的去学一个点。</p>
@@ -433,6 +503,20 @@
         <tag>DNS</tag>
         <tag>浏览器渲染</tag>
       </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/about/index.html</url>
+    <content><![CDATA[<!-- ![](/images/1.jpeg) -->
+<p>你好，我是 Hitme。</p>
+<p>这里是我的个人博客，用来记录学习与分享：后端开发、操作系统笔记、Netty 等相关主题。</p>
+<p>如果你想交流或合作，可以通过我的邮箱联系我：</p>
+<ul>
+<li>邮箱：<a href="mailto:&#50;&#x35;&#x36;&#57;&#50;&#53;&#x36;&#51;&#54;&#57;&#x40;&#113;&#x71;&#x2e;&#x63;&#111;&#109;">2569256369@qq.com</a></li>
+</ul>
+<p>感谢来访！</p>
+
+]]></content>
   </entry>
   <entry>
     <title>所有分类</title>
@@ -523,20 +607,6 @@ document.addEventListener('DOMContentLoaded', function() {
     <title>所有标签</title>
     <url>/tags/index.html</url>
     <content><![CDATA[
-]]></content>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/about/index.html</url>
-    <content><![CDATA[<!-- ![](/images/1.jpeg) -->
-<p>你好，我是 Hitme。</p>
-<p>这里是我的个人博客，用来记录学习与分享：后端开发、操作系统笔记、Netty 等相关主题。</p>
-<p>如果你想交流或合作，可以通过我的邮箱联系我：</p>
-<ul>
-<li>邮箱：<a href="mailto:&#50;&#53;&#x36;&#x39;&#50;&#53;&#x36;&#51;&#x36;&#57;&#64;&#113;&#113;&#x2e;&#99;&#x6f;&#x6d;">2569256369@qq.com</a></li>
-</ul>
-<p>感谢来访！</p>
-
 ]]></content>
   </entry>
 </search>
