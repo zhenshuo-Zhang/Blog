@@ -70,7 +70,7 @@
       </tags>
   </entry>
   <entry>
-    <title>MySQL中的索引</title>
+    <title>总结-MySQL中的索引</title>
     <url>/2025/08/28/MySQL%E4%B8%AD%E7%9A%84%E7%B4%A2%E5%BC%95/</url>
     <content><![CDATA[<div class="story post-story"><h2 id="前置"><a href="#前置" class="headerlink" title="前置"></a>前置</h2><ol>
 <li>InnoDB 存储引擎的每次磁盘IO操作读取或写入的大小是一页（16KB）</li>
@@ -79,7 +79,7 @@
 </ol>
 <span id="more"></span>
 
-</div><div class="story post-story"><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>IO操作的耗时远高于CPU计算，而且数据库的大部分数据都存储在磁盘上，因此数据库设计的核心目标之一就是：减少IO次数<br>MySQL 中的索引是提升查询性能的核心机制，本质上是一种<strong>高效查找的数据结构</strong>。在 InnoDB 引擎中，索引底层主要采用 <strong>B+ 树</strong> 实现。</p>
+</div><div class="story post-story"><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>IO操作的耗时远高于CPU计算，而且数据库的大部分数据都存储在磁盘上，因此数据库设计的核心目标之一就是：减少IO次数<br>MySQL 中的索引是提升查询性能的核心机制，本质上是一种<strong>高效查找的数据结构</strong>。在 InnoDB 引擎中，索引底层主要采用 <strong>B+ 树</strong> 实现。</p>
 <p>首先，InnoDB 的表必须有一个<strong>聚集索引（Clustered Index）</strong>，通常是主键。它的特点是：<strong>数据行和索引存储在一起</strong>，叶子节点直接保存完整的用户数据。因此，通过主键查询只需要一次 I&#x2F;O，效率最高。</p>
 <p>除此之外的索引都叫<strong>二级索引（Secondary Index）</strong>，也称为非聚簇索引。它的叶子节点不存完整数据，而是存储<strong>主键值</strong>。当执行非主键查询时，MySQL 先通过二级索引找到主键，再回表到聚集索引中获取完整数据——这个过程叫<strong>回表查询</strong>，会带来额外开销。</p>
 <p>为了优化回表，我们可以设计<strong>覆盖索引</strong>，即让查询所需的所有字段都包含在索引中，这样就无需回表了。比如 <code>SELECT id, name FROM users WHERE name = &#39;Tom&#39;</code>，如果 <code>(name, id)</code> 有联合索引，就能直接返回结果。</p>
@@ -331,6 +331,16 @@
       </tags>
   </entry>
   <entry>
+    <title>我的第一篇博客</title>
+    <url>/2024/01/14/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<div class="story post-story"><h2 id="我的第一篇博客"><a href="#我的第一篇博客" class="headerlink" title="我的第一篇博客"></a>我的第一篇博客</h2><p>  这是我的第一篇博客，我想记录一下我学习的过程。</p>
+
+</div>]]></content>
+      <tags>
+        <tag>博客</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>初识Netty</title>
     <url>/2025/01/22/%E5%88%9D%E8%AF%86Netty/</url>
     <content><![CDATA[<div class="story post-story"><h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>本文整理了同步&#x2F;异步、阻塞&#x2F;非阻塞、IO、BIO&#x2F;NIO 等前置概念，并用类比帮助快速理解 Netty 的核心组件与工作机制。</p>
@@ -387,16 +397,6 @@
       </tags>
   </entry>
   <entry>
-    <title>我的第一篇博客</title>
-    <url>/2024/01/14/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<div class="story post-story"><h2 id="我的第一篇博客"><a href="#我的第一篇博客" class="headerlink" title="我的第一篇博客"></a>我的第一篇博客</h2><p>  这是我的第一篇博客，我想记录一下我学习的过程。</p>
-
-</div>]]></content>
-      <tags>
-        <tag>博客</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>键入网址到网页显示，期间发生了什么？</title>
     <url>/2025/04/25/%E9%94%AE%E5%85%A5%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5%E6%98%BE%E7%A4%BA%EF%BC%8C%E6%9C%9F%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/</url>
     <content><![CDATA[<div class="story post-story"><h2 id="键入网址到网页显示，期间发生了什么？"><a href="#键入网址到网页显示，期间发生了什么？" class="headerlink" title="键入网址到网页显示，期间发生了什么？"></a>键入网址到网页显示，期间发生了什么？</h2><p>输入网址到网页显示，这个过程到底发生了什么，我相信这是初学者很想了解地方。明白这个过程，才能将所学的计算机网络的知识串连起来，而不是孤零零的去学一个点。</p>
@@ -435,17 +435,9 @@
       </tags>
   </entry>
   <entry>
-    <title></title>
-    <url>/about/index.html</url>
-    <content><![CDATA[<!-- ![](/images/1.jpeg) -->
-<p>你好，我是 Hitme。</p>
-<p>这里是我的个人博客，用来记录学习与分享：后端开发、操作系统笔记、Netty 等相关主题。</p>
-<p>如果你想交流或合作，可以通过我的邮箱联系我：</p>
-<ul>
-<li>邮箱：<a href="mailto:&#50;&#x35;&#x36;&#x39;&#x32;&#53;&#x36;&#x33;&#x36;&#57;&#64;&#x71;&#113;&#46;&#x63;&#111;&#109;">2569256369@qq.com</a></li>
-</ul>
-<p>感谢来访！</p>
-
+    <title>所有分类</title>
+    <url>/categories/index.html</url>
+    <content><![CDATA[
 ]]></content>
   </entry>
   <entry>
@@ -494,12 +486,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>所有分类</title>
-    <url>/categories/index.html</url>
-    <content><![CDATA[
-]]></content>
-  </entry>
-  <entry>
     <title></title>
     <url>/js/typewriter.js</url>
     <content><![CDATA[// 打字机效果脚本
@@ -537,6 +523,20 @@ document.addEventListener('DOMContentLoaded', function() {
     <title>所有标签</title>
     <url>/tags/index.html</url>
     <content><![CDATA[
+]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/about/index.html</url>
+    <content><![CDATA[<!-- ![](/images/1.jpeg) -->
+<p>你好，我是 Hitme。</p>
+<p>这里是我的个人博客，用来记录学习与分享：后端开发、操作系统笔记、Netty 等相关主题。</p>
+<p>如果你想交流或合作，可以通过我的邮箱联系我：</p>
+<ul>
+<li>邮箱：<a href="mailto:&#50;&#53;&#x36;&#x39;&#50;&#53;&#x36;&#51;&#x36;&#57;&#64;&#113;&#113;&#x2e;&#99;&#x6f;&#x6d;">2569256369@qq.com</a></li>
+</ul>
+<p>感谢来访！</p>
+
 ]]></content>
   </entry>
 </search>
