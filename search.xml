@@ -70,6 +70,29 @@
       </tags>
   </entry>
   <entry>
+    <title>总结-MySQL中的索引</title>
+    <url>/2025/08/28/MySQL%E4%B8%AD%E7%9A%84%E7%B4%A2%E5%BC%95/</url>
+    <content><![CDATA[<div class="story post-story"><h2 id="前置"><a href="#前置" class="headerlink" title="前置"></a>前置</h2><ol>
+<li>InnoDB 存储引擎的每次磁盘IO操作读取或写入的大小是一页（16KB）</li>
+<li>B+树索引结构下的每个节点大小就是一页</li>
+<li>树的高度 &#x3D;&#x3D; 每次查询数据时磁盘IO的次数</li>
+</ol>
+<span id="more"></span>
+
+</div><div class="story post-story"><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>IO操作的耗时远高于CPU计算，而且数据库的大部分数据都存储在磁盘上，因此数据库设计的核心目标之一就是：减少IO次数<br>MySQL 中的索引是提升查询性能的核心机制，本质上是一种<strong>高效查找的数据结构</strong>。在 InnoDB 引擎中，索引底层主要采用 <strong>B+ 树</strong> 实现。</p>
+<p>首先，InnoDB 的表必须有一个<strong>聚集索引（Clustered Index）</strong>，通常是主键。它的特点是：<strong>数据行和索引存储在一起</strong>，叶子节点直接保存完整的用户数据。因此，通过主键查询只需要一次 I&#x2F;O，效率最高。</p>
+<p>除此之外的索引都叫<strong>二级索引（Secondary Index）</strong>，也称为非聚簇索引。它的叶子节点不存完整数据，而是存储<strong>主键值</strong>。当执行非主键查询时，MySQL 先通过二级索引找到主键，再回表到聚集索引中获取完整数据——这个过程叫<strong>回表查询</strong>，会带来额外开销。</p>
+<p>为了优化回表，我们可以设计<strong>覆盖索引</strong>，即让查询所需的所有字段都包含在索引中，这样就无需回表了。比如 <code>SELECT id, name FROM users WHERE name = &#39;Tom&#39;</code>，如果 <code>(name, id)</code> 有联合索引，就能直接返回结果。</p>
+
+</div>]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>索引</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Redis常见的数据类型</title>
     <url>/2025/07/28/Redis%E5%B8%B8%E8%A7%81%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
     <content><![CDATA[<div class="story post-story"><h2 id="什么是Redis？"><a href="#什么是Redis？" class="headerlink" title="什么是Redis？"></a>什么是Redis？</h2><p>Remote dictionary Server，基于内存的高性能键值（Key-Value）存储系统，常被用作缓存中间件。</p>
@@ -194,29 +217,6 @@
       </categories>
       <tags>
         <tag>Redis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>总结-MySQL中的索引</title>
-    <url>/2025/08/28/MySQL%E4%B8%AD%E7%9A%84%E7%B4%A2%E5%BC%95/</url>
-    <content><![CDATA[<div class="story post-story"><h2 id="前置"><a href="#前置" class="headerlink" title="前置"></a>前置</h2><ol>
-<li>InnoDB 存储引擎的每次磁盘IO操作读取或写入的大小是一页（16KB）</li>
-<li>B+树索引结构下的每个节点大小就是一页</li>
-<li>树的高度 &#x3D;&#x3D; 每次查询数据时磁盘IO的次数</li>
-</ol>
-<span id="more"></span>
-
-</div><div class="story post-story"><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>IO操作的耗时远高于CPU计算，而且数据库的大部分数据都存储在磁盘上，因此数据库设计的核心目标之一就是：减少IO次数<br>MySQL 中的索引是提升查询性能的核心机制，本质上是一种<strong>高效查找的数据结构</strong>。在 InnoDB 引擎中，索引底层主要采用 <strong>B+ 树</strong> 实现。</p>
-<p>首先，InnoDB 的表必须有一个<strong>聚集索引（Clustered Index）</strong>，通常是主键。它的特点是：<strong>数据行和索引存储在一起</strong>，叶子节点直接保存完整的用户数据。因此，通过主键查询只需要一次 I&#x2F;O，效率最高。</p>
-<p>除此之外的索引都叫<strong>二级索引（Secondary Index）</strong>，也称为非聚簇索引。它的叶子节点不存完整数据，而是存储<strong>主键值</strong>。当执行非主键查询时，MySQL 先通过二级索引找到主键，再回表到聚集索引中获取完整数据——这个过程叫<strong>回表查询</strong>，会带来额外开销。</p>
-<p>为了优化回表，我们可以设计<strong>覆盖索引</strong>，即让查询所需的所有字段都包含在索引中，这样就无需回表了。比如 <code>SELECT id, name FROM users WHERE name = &#39;Tom&#39;</code>，如果 <code>(name, id)</code> 有联合索引，就能直接返回结果。</p>
-
-</div>]]></content>
-      <categories>
-        <category>MySQL</category>
-      </categories>
-      <tags>
-        <tag>索引</tag>
       </tags>
   </entry>
   <entry>
@@ -508,14 +508,21 @@
   <entry>
     <title></title>
     <url>/about/index.html</url>
-    <content><![CDATA[<!-- ![](/images/1.jpeg) -->
-<p>你好，我是 Hitme。</p>
-<p>这里是我的个人博客，用来记录学习与分享：后端开发、操作系统笔记、Netty 等相关主题。</p>
-<p>如果你想交流或合作，可以通过我的邮箱联系我：</p>
-<ul>
-<li>邮箱：<a href="mailto:&#50;&#53;&#54;&#57;&#50;&#x35;&#x36;&#51;&#54;&#x39;&#64;&#113;&#x71;&#46;&#99;&#111;&#109;">2569256369@qq.com</a></li>
-</ul>
-<p>感谢来访！</p>
+    <content><![CDATA[<div class="about-card">
+ 
+  <div class="about-content">
+    <p>你好，我是 HyperZhang；</p>
+    <p>热爱篮球与编程；</p>
+    <p>这里是我的个人博客，用来记录学习与分享：后端开发、学习笔记等相关主题。</p>
+    <p>如果你想交流或合作，可以通过我的邮箱联系我：</p>
+    <ul>
+      <li>邮箱：<a href="mailto:2569256369@qq.com">2569256369@qq.com</a></li>
+    </ul>
+    <p>感谢来访！</p>
+  </div>
+   <img class="about-avatar lazyload" src="/images/1.jpeg" class="lazyload" data-srcset="/images/1.jpeg" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="我的照片">
+  
+</div>
 
 ]]></content>
   </entry>
