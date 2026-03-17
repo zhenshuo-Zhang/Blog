@@ -712,12 +712,6 @@
       </tags>
   </entry>
   <entry>
-    <title>所有分类</title>
-    <url>/categories/index.html</url>
-    <content><![CDATA[
-]]></content>
-  </entry>
-  <entry>
     <title></title>
     <url>/about/index.html</url>
     <content><![CDATA[<div class="about-card">
@@ -736,6 +730,12 @@
   
 </div>
 
+]]></content>
+  </entry>
+  <entry>
+    <title>所有分类</title>
+    <url>/categories/index.html</url>
+    <content><![CDATA[
 ]]></content>
   </entry>
   <entry>
