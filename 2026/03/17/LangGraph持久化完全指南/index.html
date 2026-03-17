@@ -5,8 +5,8 @@
   <meta name="Volantis" content="5.8.1">
   <meta charset="utf-8">
   <!-- SEO相关 -->
-  <meta name="robots" content="noindex,follow">
-  <link rel="canonical" href="https://hitme.cyou/tags/post-trianing/"/>
+  
+  <link rel="canonical" href="https://hitme.cyou/2026/03/17/langgraph持久化完全指南/"/>
   <!-- 渲染优化 -->
     <meta http-equiv='x-dns-prefetch-control' content='on' />
       <link rel='dns-prefetch' href='https://unpkg.com'>
@@ -34,21 +34,39 @@
 
   <!-- feed -->
   <!-- 页面元数据 -->
-  <title>标签：Post trianing - 我的博客</title>
-  <meta name="keywords" content="博客,学习,生活">
-  <meta desc name="description" content="这是我的博客，记录我的学习和生活 - ZhenShuo Zhang - 我的博客">
+  <title>LangGraph 持久化（Persistence）完全指南 - 我的博客</title>
+  <meta name="keywords" content="LangGraph,Persistence,博客,学习,生活">
+  <meta desc name="description" content="一、为什么需要持久化？LangGraph 把图的每一步执行状态保存成 checkpoint（检查点），解锁了四个核心能力：
+
+
+
+能力
+说明
+
+
+
+Human-in-the-loop
+人类可以在任意步骤查看、暂停、修改状态后继续执行
+
+
+Memory
+同一个 thread 内的多轮对话自动保留上下文
+
+
+Time... - ZhenShuo Zhang - 我的博客">
   
-<meta property="og:type" content="website">
-<meta property="og:title" content="我的博客">
-<meta property="og:url" content="https://hitme.cyou/tags/Post-trianing/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LangGraph 持久化（Persistence）完全指南">
+<meta property="og:url" content="https://hitme.cyou/2026/03/17/LangGraph%E6%8C%81%E4%B9%85%E5%8C%96%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/">
 <meta property="og:site_name" content="我的博客">
-<meta property="og:description" content="这是我的博客，记录我的学习和生活">
+<meta property="og:description" content="一、为什么需要持久化？LangGraph 把图的每一步执行状态保存成 checkpoint（检查点），解锁了四个核心能力：    能力 说明    Human-in-the-loop 人类可以在任意步骤查看、暂停、修改状态后继续执行   Memory 同一个 thread 内的多轮对话自动保留上下文   Time travel 可以回放历史执行，也可以从任意检查点分叉探索不同路径   Fault-">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+<meta property="article:published_time" content="2026-03-16T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-16T16:00:00.000Z">
 <meta property="article:author" content="ZhenShuo Zhang">
-<meta property="article:tag" content="博客">
-<meta property="article:tag" content="学习">
-<meta property="article:tag" content="生活">
+<meta property="article:tag" content="LangGraph">
+<meta property="article:tag" content="Persistence">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
   <style>
@@ -1862,7 +1880,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: false,
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1773385034376),
+    lastupdate: new Date(1773756047682),
     sidebar: {
       for_page: ["toc"],
       for_post: ["toc"],
@@ -2532,7 +2550,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
       <!-- see: /layout/_partial/scripts/_ctrl/coverCtrl.ejs -->
-      <div id="none" class='cover-wrapper  focus' style="display: none;">
+      <div id="none" class='cover-wrapper post focus' style="display: none;">
         
   <div id="parallax-window"></div>
 
@@ -2601,25 +2619,9 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="safearea">
         <div class="body-wrapper">
           
-
 <div id="l_main" class=''>
-  
-    
-      
-  <section class="post-list">
-    
-      
-        
-          
-        
-      
-    
-    
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://hitme.cyou/2026/02/11/一文读懂LLM后训练过程/">
+  <article itemscope itemtype="http://schema.org/Article" class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
+  <link itemprop="mainEntityOfPage" href="https://hitme.cyou/2026/03/17/LangGraph持久化完全指南/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="我的博客">
   </span>
@@ -2628,75 +2630,441 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <meta itemprop="description" content="这是我的博客，记录我的学习和生活">
   </span>
   
-  
+
+
   
     <span hidden>
       <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
     </span>
   
-  
+  <div class="article-meta" id="top">
     
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/2026/02/11/%E4%B8%80%E6%96%87%E8%AF%BB%E6%87%82LLM%E5%90%8E%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B/"  itemprop="url">
-        一文读懂LLM后训练过程
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
     
-      
+    
+      <h1 class="title" itemprop="name headline">
+        LangGraph 持久化（Persistence）完全指南
+      </h1>
+      <div class='new-meta-box'>
         
+          
+            
+<div class='new-meta-item author' itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <a itemprop="url" class='author' href="/about/" rel="nofollow">
+    <img itemprop="image" src="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+    <p itemprop="name">ZhenShuo Zhang</p>
+  </a>
+</div>
 
-      
+          
+        
+          
+            <div class="new-meta-item date" itemprop="dateCreated datePublished" datetime="2026-03-17T00:00:00+08:00">
+  <a class='notlink'>
+    <i class="fa-solid fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2026年3月17日</p>
+  </a>
+</div>
+
+          
+        
+          
+            <div class="new-meta-item date" itemprop="dateModified" datetime="2026-03-17T00:00:00+08:00">
+  <a class='notlink'>
+    <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
+    <p>本文最后更新于：2026年3月17日</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class='new-meta-item category'>
+    <i class="fa-solid fa-folder-open fa-fw" aria-hidden="true"></i>
+    <a class="category-link" href="/categories/Agent/">Agent</a>
+    
+      <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+        <a href="/categories/Agent/" itemprop="url"><span itemprop="name">Agent</span></a>
+      </span>
     
   </div>
+
+
+          
+        
+          
+            
   
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/about/'><img src='https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png'></a>
-          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-            <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png">
-            <meta itemprop="name" content="ZhenShuo Zhang">
-            <meta itemprop="url" content="/about/">
-          </span>
-        
-        <time itemprop="dateCreated datePublished" datetime="2026-02-11T00:00:00+08:00">2026-02-11</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/LLM/">LLM</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/LLM/" itemprop="url"><span itemprop="name">LLM</span></a>
-            </span>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/LangGraph/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>LangGraph</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Persistence/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>Persistence</p></a></div>
+  <span hidden itemprop="keywords">LangGraph Persistence</span>
+
+
           
         
+        <!-- Custom Files topMeta begin-->
+        
+        <!-- Custom Files topMeta end-->
       </div>
+    
+  </div>
+
+
+  <div id="layoutHelper-page-plugins"></div>
+  <div id="post-body" itemprop="articleBody">
+    <div class="story post-story"><h2 id="一、为什么需要持久化？"><a href="#一、为什么需要持久化？" class="headerlink" title="一、为什么需要持久化？"></a>一、为什么需要持久化？</h2><p>LangGraph 把图的每一步执行状态保存成 <strong>checkpoint（检查点）</strong>，解锁了四个核心能力：</p>
+<table>
+<thead>
+<tr>
+<th>能力</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Human-in-the-loop</strong></td>
+<td>人类可以在任意步骤查看、暂停、修改状态后继续执行</td>
+</tr>
+<tr>
+<td><strong>Memory</strong></td>
+<td>同一个 thread 内的多轮对话自动保留上下文</td>
+</tr>
+<tr>
+<td><strong>Time travel</strong></td>
+<td>可以回放历史执行，也可以从任意检查点分叉探索不同路径</td>
+</tr>
+<tr>
+<td><strong>Fault-tolerance</strong></td>
+<td>节点失败时从上一个成功的 checkpoint 恢复，不重跑已成功的节点</td>
+</tr>
+</tbody></table>
+<span id="more"></span>
+
+<hr>
+</div><div class="story post-story"><h2 id="二、核心概念"><a href="#二、核心概念" class="headerlink" title="二、核心概念"></a>二、核心概念</h2><h3 id="Thread（线程）"><a href="#Thread（线程）" class="headerlink" title="Thread（线程）"></a>Thread（线程）</h3><p>每次对话或任务运行对应一个 <code>thread_id</code>，所有 checkpoint 都挂在这个 ID 下。调用图时必须传：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">config = &#123;<span class="string">&quot;configurable&quot;</span>: &#123;<span class="string">&quot;thread_id&quot;</span>: <span class="string">&quot;1&quot;</span>&#125;&#125;</span><br><span class="line">graph.invoke(<span class="built_in">input</span>, config)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Super-step-与-Checkpoint"><a href="#Super-step-与-Checkpoint" class="headerlink" title="Super-step 与 Checkpoint"></a>Super-step 与 Checkpoint</h3><p>每个 super-step 是图的一次”滴答”——所有当前调度的节点（可并行）执行完毕后，保存一次 checkpoint。</p>
+<p>对于 <code>START → A → B → END</code> 这样的线性图，会产生 4 个 checkpoint：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">checkpoint 0: 空状态，        next = START</span><br><span class="line">checkpoint 1: 用户输入，      next = node_a</span><br><span class="line">checkpoint 2: node_a 输出后，next = node_b</span><br><span class="line">checkpoint 3: node_b 输出后，next = ()   ← 完成</span><br></pre></td></tr></table></figure>
+
+<h3 id="完整示例"><a href="#完整示例" class="headerlink" title="完整示例"></a>完整示例</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langgraph.graph <span class="keyword">import</span> StateGraph, START, END</span><br><span class="line"><span class="keyword">from</span> langgraph.checkpoint.memory <span class="keyword">import</span> InMemorySaver</span><br><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> Annotated</span><br><span class="line"><span class="keyword">from</span> typing_extensions <span class="keyword">import</span> TypedDict</span><br><span class="line"><span class="keyword">from</span> operator <span class="keyword">import</span> add</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">State</span>(<span class="title class_ inherited__">TypedDict</span>):</span><br><span class="line">    foo: <span class="built_in">str</span></span><br><span class="line">    bar: Annotated[<span class="built_in">list</span>[<span class="built_in">str</span>], add]  <span class="comment"># add 是 reducer，bar 会累积而非覆盖</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">node_a</span>(<span class="params">state: State</span>):</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;foo&quot;</span>: <span class="string">&quot;a&quot;</span>, <span class="string">&quot;bar&quot;</span>: [<span class="string">&quot;a&quot;</span>]&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">node_b</span>(<span class="params">state: State</span>):</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;foo&quot;</span>: <span class="string">&quot;b&quot;</span>, <span class="string">&quot;bar&quot;</span>: [<span class="string">&quot;b&quot;</span>]&#125;</span><br><span class="line"></span><br><span class="line">workflow = StateGraph(State)</span><br><span class="line">workflow.add_node(node_a)</span><br><span class="line">workflow.add_node(node_b)</span><br><span class="line">workflow.add_edge(START, <span class="string">&quot;node_a&quot;</span>)</span><br><span class="line">workflow.add_edge(<span class="string">&quot;node_a&quot;</span>, <span class="string">&quot;node_b&quot;</span>)</span><br><span class="line">workflow.add_edge(<span class="string">&quot;node_b&quot;</span>, END)</span><br><span class="line"></span><br><span class="line">checkpointer = InMemorySaver()</span><br><span class="line">graph = workflow.<span class="built_in">compile</span>(checkpointer=checkpointer)</span><br><span class="line"></span><br><span class="line">config = &#123;<span class="string">&quot;configurable&quot;</span>: &#123;<span class="string">&quot;thread_id&quot;</span>: <span class="string">&quot;1&quot;</span>&#125;&#125;</span><br><span class="line">graph.invoke(&#123;<span class="string">&quot;foo&quot;</span>: <span class="string">&quot;&quot;</span>, <span class="string">&quot;bar&quot;</span>: []&#125;, config)</span><br></pre></td></tr></table></figure>
+
+<hr>
+</div><div class="story post-story"><h2 id="三、读写状态"><a href="#三、读写状态" class="headerlink" title="三、读写状态"></a>三、读写状态</h2><h3 id="获取最新状态"><a href="#获取最新状态" class="headerlink" title="获取最新状态"></a>获取最新状态</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">config = &#123;<span class="string">&quot;configurable&quot;</span>: &#123;<span class="string">&quot;thread_id&quot;</span>: <span class="string">&quot;1&quot;</span>&#125;&#125;</span><br><span class="line">snapshot = graph.get_state(config)</span><br></pre></td></tr></table></figure>
+
+<h3 id="获取完整历史（最新的在最前面）"><a href="#获取完整历史（最新的在最前面）" class="headerlink" title="获取完整历史（最新的在最前面）"></a>获取完整历史（最新的在最前面）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">history = <span class="built_in">list</span>(graph.get_state_history(config))</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改状态"><a href="#修改状态" class="headerlink" title="修改状态"></a>修改状态</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建新 checkpoint，不覆盖原来的</span></span><br><span class="line">graph.update_state(config, &#123;<span class="string">&quot;foo&quot;</span>: <span class="string">&quot;new_value&quot;</span>&#125;, as_node=<span class="string">&quot;node_a&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="StateSnapshot-关键字段"><a href="#StateSnapshot-关键字段" class="headerlink" title="StateSnapshot 关键字段"></a>StateSnapshot 关键字段</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>values</code></td>
+<td><code>dict</code></td>
+<td>当前状态值</td>
+</tr>
+<tr>
+<td><code>next</code></td>
+<td><code>tuple</code></td>
+<td>下一步要执行的节点，空元组表示已完成</td>
+</tr>
+<tr>
+<td><code>config</code></td>
+<td><code>dict</code></td>
+<td>包含 <code>thread_id</code>、<code>checkpoint_ns</code>、<code>checkpoint_id</code></td>
+</tr>
+<tr>
+<td><code>metadata.step</code></td>
+<td><code>int</code></td>
+<td>当前是第几个 super-step</td>
+</tr>
+<tr>
+<td><code>tasks</code></td>
+<td><code>tuple</code></td>
+<td>如果有中断，这里包含中断信息</td>
+</tr>
+<tr>
+<td><code>parent_config</code></td>
+<td><code>dict</code></td>
+<td>上一个 checkpoint 的 config，第一个为 None</td>
+</tr>
+</tbody></table>
+<h3 id="查找特定-checkpoint"><a href="#查找特定-checkpoint" class="headerlink" title="查找特定 checkpoint"></a>查找特定 checkpoint</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">history = <span class="built_in">list</span>(graph.get_state_history(config))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 找 node_b 执行前的状态</span></span><br><span class="line">before_node_b = <span class="built_in">next</span>(s <span class="keyword">for</span> s <span class="keyword">in</span> history <span class="keyword">if</span> s.<span class="built_in">next</span> == (<span class="string">&quot;node_b&quot;</span>,))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 按步骤号查找</span></span><br><span class="line">step_2 = <span class="built_in">next</span>(s <span class="keyword">for</span> s <span class="keyword">in</span> history <span class="keyword">if</span> s.metadata[<span class="string">&quot;step&quot;</span>] == <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 找所有通过 update_state 创建的 checkpoint</span></span><br><span class="line">forks = [s <span class="keyword">for</span> s <span class="keyword">in</span> history <span class="keyword">if</span> s.metadata[<span class="string">&quot;source&quot;</span>] == <span class="string">&quot;update&quot;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 找发生中断的 checkpoint</span></span><br><span class="line">interrupted = <span class="built_in">next</span>(</span><br><span class="line">    s <span class="keyword">for</span> s <span class="keyword">in</span> history</span><br><span class="line">    <span class="keyword">if</span> s.tasks <span class="keyword">and</span> <span class="built_in">any</span>(t.interrupts <span class="keyword">for</span> t <span class="keyword">in</span> s.tasks)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<hr>
+</div><div class="story post-story"><h2 id="四、两种存储的区别（重要）"><a href="#四、两种存储的区别（重要）" class="headerlink" title="四、两种存储的区别（重要）"></a>四、两种存储的区别（重要）</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Checkpointer（线程内记忆）        Store（跨线程记忆）</span><br><span class="line">─────────────────────             ──────────────────────</span><br><span class="line">保存每步的图状态快照               保存任意自定义数据</span><br><span class="line">作用域：单个 thread               作用域：跨所有 thread</span><br><span class="line">用途：对话上下文、中断恢复          用途：用户偏好、长期记忆</span><br><span class="line">key：thread_id + checkpoint_id    key：namespace tuple + memory_id</span><br></pre></td></tr></table></figure>
+
+<h3 id="Store-基本用法"><a href="#Store-基本用法" class="headerlink" title="Store 基本用法"></a>Store 基本用法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langgraph.store.memory <span class="keyword">import</span> InMemoryStore</span><br><span class="line"><span class="keyword">import</span> uuid</span><br><span class="line"></span><br><span class="line">store = InMemoryStore()</span><br><span class="line"></span><br><span class="line">user_id = <span class="string">&quot;1&quot;</span></span><br><span class="line">namespace = (user_id, <span class="string">&quot;memories&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 写入记忆</span></span><br><span class="line">memory_id = <span class="built_in">str</span>(uuid.uuid4())</span><br><span class="line">store.put(namespace, memory_id, &#123;<span class="string">&quot;food_preference&quot;</span>: <span class="string">&quot;I like pizza&quot;</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 读取记忆</span></span><br><span class="line">memories = store.search(namespace)</span><br><span class="line">memories[-<span class="number">1</span>].<span class="built_in">dict</span>()</span><br><span class="line"><span class="comment"># &#123;&#x27;value&#x27;: &#123;&#x27;food_preference&#x27;: &#x27;I like pizza&#x27;&#125;, &#x27;key&#x27;: &#x27;...&#x27;, &#x27;namespace&#x27;: [&#x27;1&#x27;, &#x27;memories&#x27;], ...&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="语义搜索"><a href="#语义搜索" class="headerlink" title="语义搜索"></a>语义搜索</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.embeddings <span class="keyword">import</span> init_embeddings</span><br><span class="line"></span><br><span class="line">store = InMemoryStore(</span><br><span class="line">    index=&#123;</span><br><span class="line">        <span class="string">&quot;embed&quot;</span>: init_embeddings(<span class="string">&quot;openai:text-embedding-3-small&quot;</span>),</span><br><span class="line">        <span class="string">&quot;dims&quot;</span>: <span class="number">1536</span>,</span><br><span class="line">        <span class="string">&quot;fields&quot;</span>: [<span class="string">&quot;food_preference&quot;</span>, <span class="string">&quot;$&quot;</span>]</span><br><span class="line">    &#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 用自然语言查找</span></span><br><span class="line">memories = store.search(namespace, query=<span class="string">&quot;用户喜欢吃什么？&quot;</span>, limit=<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="在节点中使用-Store（通过-Runtime-注入）"><a href="#在节点中使用-Store（通过-Runtime-注入）" class="headerlink" title="在节点中使用 Store（通过 Runtime 注入）"></a>在节点中使用 Store（通过 Runtime 注入）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langgraph.runtime <span class="keyword">import</span> Runtime</span><br><span class="line"><span class="keyword">from</span> dataclasses <span class="keyword">import</span> dataclass</span><br><span class="line"></span><br><span class="line"><span class="meta">@dataclass</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Context</span>:</span><br><span class="line">    user_id: <span class="built_in">str</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 写入记忆</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">update_memory</span>(<span class="params">state: MessagesState, runtime: Runtime[Context]</span>):</span><br><span class="line">    user_id = runtime.context.user_id</span><br><span class="line">    namespace = (user_id, <span class="string">&quot;memories&quot;</span>)</span><br><span class="line">    memory_id = <span class="built_in">str</span>(uuid.uuid4())</span><br><span class="line">    <span class="keyword">await</span> runtime.store.aput(namespace, memory_id, &#123;<span class="string">&quot;memory&quot;</span>: <span class="string">&quot;用户喜欢披萨&quot;</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 读取记忆</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">call_model</span>(<span class="params">state: MessagesState, runtime: Runtime[Context]</span>):</span><br><span class="line">    user_id = runtime.context.user_id</span><br><span class="line">    namespace = (user_id, <span class="string">&quot;memories&quot;</span>)</span><br><span class="line">    memories = <span class="keyword">await</span> runtime.store.asearch(</span><br><span class="line">        namespace,</span><br><span class="line">        query=state[<span class="string">&quot;messages&quot;</span>][-<span class="number">1</span>].content,</span><br><span class="line">        limit=<span class="number">3</span></span><br><span class="line">    )</span><br><span class="line">    info = <span class="string">&quot;\n&quot;</span>.join([d.value[<span class="string">&quot;memory&quot;</span>] <span class="keyword">for</span> d <span class="keyword">in</span> memories])</span><br><span class="line">    <span class="comment"># ... 将 info 注入到模型 prompt 中</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="编译图时同时挂载两者"><a href="#编译图时同时挂载两者" class="headerlink" title="编译图时同时挂载两者"></a>编译图时同时挂载两者</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langgraph.checkpoint.memory <span class="keyword">import</span> InMemorySaver</span><br><span class="line"></span><br><span class="line">checkpointer = InMemorySaver()</span><br><span class="line">graph = builder.<span class="built_in">compile</span>(checkpointer=checkpointer, store=store)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 调用时传 thread_id 和 context</span></span><br><span class="line">config = &#123;<span class="string">&quot;configurable&quot;</span>: &#123;<span class="string">&quot;thread_id&quot;</span>: <span class="string">&quot;1&quot;</span>&#125;&#125;</span><br><span class="line">graph.stream(</span><br><span class="line">    &#123;<span class="string">&quot;messages&quot;</span>: [&#123;<span class="string">&quot;role&quot;</span>: <span class="string">&quot;user&quot;</span>, <span class="string">&quot;content&quot;</span>: <span class="string">&quot;hi&quot;</span>&#125;]&#125;,</span><br><span class="line">    config,</span><br><span class="line">    context=Context(user_id=<span class="string">&quot;1&quot;</span>),</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<hr>
+</div><div class="story post-story"><h2 id="五、Checkpointer-选型"><a href="#五、Checkpointer-选型" class="headerlink" title="五、Checkpointer 选型"></a>五、Checkpointer 选型</h2><table>
+<thead>
+<tr>
+<th>实现</th>
+<th>适用场景</th>
+<th>是否内置</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>InMemorySaver</code></td>
+<td>开发调试，进程退出数据丢失</td>
+<td>是</td>
+</tr>
+<tr>
+<td><code>SqliteSaver</code></td>
+<td>本地工作流，单机持久化</td>
+<td>需单独安装</td>
+</tr>
+<tr>
+<td><code>PostgresSaver</code></td>
+<td>生产环境，支持并发和持久化</td>
+<td>需单独安装</td>
+</tr>
+<tr>
+<td><code>CosmosDBSaver</code></td>
+<td>Azure 生产环境</td>
+<td>需单独安装</td>
+</tr>
+</tbody></table>
+<h3 id="加密存储（生产环境推荐）"><a href="#加密存储（生产环境推荐）" class="headerlink" title="加密存储（生产环境推荐）"></a>加密存储（生产环境推荐）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langgraph.checkpoint.serde.encrypted <span class="keyword">import</span> EncryptedSerializer</span><br><span class="line"><span class="keyword">from</span> langgraph.checkpoint.postgres <span class="keyword">import</span> PostgresSaver</span><br><span class="line"></span><br><span class="line"><span class="comment"># 读取环境变量 LANGGRAPH_AES_KEY</span></span><br><span class="line">serde = EncryptedSerializer.from_pycryptodome_aes()</span><br><span class="line">checkpointer = PostgresSaver.from_conn_string(<span class="string">&quot;postgresql://...&quot;</span>, serde=serde)</span><br><span class="line">checkpointer.setup()</span><br></pre></td></tr></table></figure>
+
+<h3 id="Pickle-回退（处理特殊类型如-Pandas-DataFrame）"><a href="#Pickle-回退（处理特殊类型如-Pandas-DataFrame）" class="headerlink" title="Pickle 回退（处理特殊类型如 Pandas DataFrame）"></a>Pickle 回退（处理特殊类型如 Pandas DataFrame）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langgraph.checkpoint.serde.jsonplus <span class="keyword">import</span> JsonPlusSerializer</span><br><span class="line"></span><br><span class="line">graph.<span class="built_in">compile</span>(</span><br><span class="line">    checkpointer=InMemorySaver(serde=JsonPlusSerializer(pickle_fallback=<span class="literal">True</span>))</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<hr>
+</div><div class="story post-story"><h2 id="六、总结"><a href="#六、总结" class="headerlink" title="六、总结"></a>六、总结</h2><blockquote>
+<p><strong>Checkpointer</strong> 是图的”自动存档”，<strong>Store</strong> 是图的”跨存档共享背包”。两者配合使用，才能构建真正有记忆、可恢复、支持人类干预的 agent 系统。</p>
+</blockquote>
+
+</div>
+  </div>
+  
+  
+    
+    <div class='footer'>
+       <!-- 参考资料、相关资料等 -->
       
-        <div>
-          <a class='readmore' href='/2026/02/11/%E4%B8%80%E6%96%87%E8%AF%BB%E6%87%82LLM%E5%90%8E%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B/' itemprop="url">
-            阅读全文
-          </a>
-        </div>
+       <!-- 相关文章 -->
+      
+      <!-- 版权声明组件 -->
+      
+      <!-- 打赏组件 -->
       
     </div>
   
+  
+    
 
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2026-03-17T00:00:00+08:00">
+  <a class='notlink'>
+    <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
+    <p>本文最后更新于：2026年3月17日</p>
+  </a>
 </div>
 
-          </div>
         
       
-    
-  </section>
+        
+          
   
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/LangGraph/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>LangGraph</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Persistence/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>Persistence</p></a></div>
+  <span hidden itemprop="keywords">LangGraph Persistence</span>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
     
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://hitme.cyou/2026/03/17/LangGraph%E6%8C%81%E4%B9%85%E5%8C%96%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/&title=LangGraph 持久化（Persistence）完全指南 - 我的博客&summary=一、为什么需要持久化？LangGraph 把图的每一步执行状态保存成 checkpoint（检查点），解锁了四个核心能力：
+
+
+
+能力
+说明
+
+
+
+Human-in-the-loop
+人类可以在任意步骤查看、暂停、修改状态后继续执行
+
+
+Memory
+同一个 thread 内的多轮对话自动保留上下文
+
+
+Time travel
+可以回放历史执行，也可以从任意检查点分叉探索不同路径
+
+
+Fault-tolerance
+节点失败时从上一个成功的 checkpoint 恢复，不重跑已成功的节点
+
+"
+          
+          >
+          
+            <img src="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/qq.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/qq.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://hitme.cyou/2026/03/17/LangGraph%E6%8C%81%E4%B9%85%E5%8C%96%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/&title=LangGraph 持久化（Persistence）完全指南 - 我的博客&summary=一、为什么需要持久化？LangGraph 把图的每一步执行状态保存成 checkpoint（检查点），解锁了四个核心能力：
+
+
+
+能力
+说明
+
+
+
+Human-in-the-loop
+人类可以在任意步骤查看、暂停、修改状态后继续执行
+
+
+Memory
+同一个 thread 内的多轮对话自动保留上下文
+
+
+Time travel
+可以回放历史执行，也可以从任意检查点分叉探索不同路径
+
+
+Fault-tolerance
+节点失败时从上一个成功的 checkpoint 恢复，不重跑已成功的节点
+
+"
+          
+          >
+          
+            <img src="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/qzone.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/qzone.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://hitme.cyou/2026/03/17/LangGraph%E6%8C%81%E4%B9%85%E5%8C%96%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/&title=LangGraph 持久化（Persistence）完全指南 - 我的博客&summary=一、为什么需要持久化？LangGraph 把图的每一步执行状态保存成 checkpoint（检查点），解锁了四个核心能力：
+
+
+
+能力
+说明
+
+
+
+Human-in-the-loop
+人类可以在任意步骤查看、暂停、修改状态后继续执行
+
+
+Memory
+同一个 thread 内的多轮对话自动保留上下文
+
+
+Time travel
+可以回放历史执行，也可以从任意检查点分叉探索不同路径
+
+
+Fault-tolerance
+节点失败时从上一个成功的 checkpoint 恢复，不重跑已成功的节点
+
+"
+          
+          >
+          
+            <img src="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/weibo.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/weibo.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+          
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+    <!-- Custom Files bottomMeta begin -->
+    
+    <!-- Custom Files bottomMeta end -->
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+      
+        <a class='next' href='/2025/08/28/MySQL%E4%B8%AD%E7%9A%84%E7%B4%A2%E5%BC%95/'>
+          <p class='title'>总结-MySQL中的索引<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>前置
+InnoDB 存储引擎的每次磁盘IO操作读取或写入的大小是一页（16KB）
+B+树索引结构下的每个节点大小就是一页
+树的高度 &#x3D;&#x3D; 每次查询数据时磁盘IO的次数
+
+
+
+...</p>
+        </a>
+      
+    </div>
+  
+  <!-- Custom Files postEnd begin-->
+  
+  <!-- Custom Files postEnd end-->
+</article>
+
+
   
 
 
+  <article class="post white-box shadow" id="comments">
+    <span hidden>
+      <meta itemprop="discussionUrl" content="/2026/03/17/LangGraph%E6%8C%81%E4%B9%85%E5%8C%96%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/#comments">
+    </span>
+    <p ct><i class='fas fa-comments'></i> 评论</p>
     
-  
+
+    <div id="layoutHelper-comments"></div>
+
+  </article>
+
+
+
+
+
+
 </div>
 <aside id='l_side' itemscope itemtype="http://schema.org/WPSideBar">
   
@@ -2715,9 +3083,19 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
 
 
-  <div class="">
-    <!-- pjax占位 -->
-  </div>
+  <section class="widget toc-wrapper desktop mobile " id="toc-div" >
+    
+  <header>
+    
+      <i class="fa-solid fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">一、为什么需要持久化？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="toc-number">2.</span> <span class="toc-text">二、核心概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Thread%EF%BC%88%E7%BA%BF%E7%A8%8B%EF%BC%89"><span class="toc-number">2.1.</span> <span class="toc-text">Thread（线程）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Super-step-%E4%B8%8E-Checkpoint"><span class="toc-number">2.2.</span> <span class="toc-text">Super-step 与 Checkpoint</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E7%A4%BA%E4%BE%8B"><span class="toc-number">2.3.</span> <span class="toc-text">完整示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E8%AF%BB%E5%86%99%E7%8A%B6%E6%80%81"><span class="toc-number">3.</span> <span class="toc-text">三、读写状态</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E6%9C%80%E6%96%B0%E7%8A%B6%E6%80%81"><span class="toc-number">3.1.</span> <span class="toc-text">获取最新状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%AE%8C%E6%95%B4%E5%8E%86%E5%8F%B2%EF%BC%88%E6%9C%80%E6%96%B0%E7%9A%84%E5%9C%A8%E6%9C%80%E5%89%8D%E9%9D%A2%EF%BC%89"><span class="toc-number">3.2.</span> <span class="toc-text">获取完整历史（最新的在最前面）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E7%8A%B6%E6%80%81"><span class="toc-number">3.3.</span> <span class="toc-text">修改状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#StateSnapshot-%E5%85%B3%E9%94%AE%E5%AD%97%E6%AE%B5"><span class="toc-number">3.4.</span> <span class="toc-text">StateSnapshot 关键字段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E7%89%B9%E5%AE%9A-checkpoint"><span class="toc-number">3.5.</span> <span class="toc-text">查找特定 checkpoint</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E4%B8%A4%E7%A7%8D%E5%AD%98%E5%82%A8%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89"><span class="toc-number">4.</span> <span class="toc-text">四、两种存储的区别（重要）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Store-%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95"><span class="toc-number">4.1.</span> <span class="toc-text">Store 基本用法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AD%E4%B9%89%E6%90%9C%E7%B4%A2"><span class="toc-number">4.2.</span> <span class="toc-text">语义搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8%E8%8A%82%E7%82%B9%E4%B8%AD%E4%BD%BF%E7%94%A8-Store%EF%BC%88%E9%80%9A%E8%BF%87-Runtime-%E6%B3%A8%E5%85%A5%EF%BC%89"><span class="toc-number">4.3.</span> <span class="toc-text">在节点中使用 Store（通过 Runtime 注入）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E5%9B%BE%E6%97%B6%E5%90%8C%E6%97%B6%E6%8C%82%E8%BD%BD%E4%B8%A4%E8%80%85"><span class="toc-number">4.4.</span> <span class="toc-text">编译图时同时挂载两者</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81Checkpointer-%E9%80%89%E5%9E%8B"><span class="toc-number">5.</span> <span class="toc-text">五、Checkpointer 选型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A0%E5%AF%86%E5%AD%98%E5%82%A8%EF%BC%88%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-number">5.1.</span> <span class="toc-text">加密存储（生产环境推荐）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Pickle-%E5%9B%9E%E9%80%80%EF%BC%88%E5%A4%84%E7%90%86%E7%89%B9%E6%AE%8A%E7%B1%BB%E5%9E%8B%E5%A6%82-Pandas-DataFrame%EF%BC%89"><span class="toc-number">5.2.</span> <span class="toc-text">Pickle 回退（处理特殊类型如 Pandas DataFrame）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%80%BB%E7%BB%93"><span class="toc-number">6.</span> <span class="toc-text">六、总结</span></a></li></ol>
+    </div>
+  </section>
 
   
 
@@ -2816,13 +3194,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </aside>
 
 
+
           <!--此文件用来存放一些不方便取值的变量-->
 <!--思路大概是将值藏到重加载的区域内-->
 
 <pjax>
 <script>
   window.pdata={}
-  pdata.ispage=false;
+  pdata.ispage=true;
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   pdata.commentConfig={};
@@ -3764,7 +4143,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
   <script>
-  let imgs = ["https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/006.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/039.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/012.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/038.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/052.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/033.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/046.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/051.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/016.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/056.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/025.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/054.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/004.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/001.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/005.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/035.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/042.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/003.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/019.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/002.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/034.webp"];
+  let imgs = ["https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/012.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/006.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/025.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/039.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/054.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/052.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/051.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/034.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/002.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/046.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/042.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/035.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/019.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/016.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/005.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/004.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/056.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/033.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/003.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/038.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/001.webp"];
   let index = 0;
   let IntervalParallax = null;
 
@@ -4083,7 +4462,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"我的博客","url":"https://hitme.cyou/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"ZhenShuo Zhang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://hitme.cyou/","sameAs":["https://github.com/volantis-x"],"description":"这是我的博客，记录我的学习和生活"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://hitme.cyou/","name":"我的博客"}},{"@type":"ListItem","position":2,"item":{"@id":"https://hitme.cyou/tags/Post trianing/","name":"Post trianing"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"我的博客","url":"https://hitme.cyou/","keywords":["博客","学习","生活"],"description":"这是我的博客，记录我的学习和生活","author":{"@type":"Person","name":"ZhenShuo Zhang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://hitme.cyou/","description":"这是我的博客，记录我的学习和生活"},"publisher":{"@type":"Organization","name":"我的博客","url":"https://hitme.cyou/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://hitme.cyou?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","description":"这是我的博客，记录我的学习和生活","inLanguage":["zh-CN","en","default"],"mainEntityOfPage":{"@type":"WebPage"},"author":{"@type":"Person","name":"ZhenShuo Zhang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://hitme.cyou/"},"publisher":{"@type":"Organization","name":"我的博客","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"wordCount":0,"image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"我的博客","url":"https://hitme.cyou/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"ZhenShuo Zhang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://hitme.cyou/","sameAs":["https://github.com/volantis-x"],"description":"这是我的博客，记录我的学习和生活"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://hitme.cyou/","name":"我的博客"}},{"@type":"ListItem","position":2,"item":{"@id":"https://hitme.cyou/categories/Agent/","name":"Agent"}},{"@type":"ListItem","position":3,"item":{"@id":"https://hitme.cyou/2026/03/17/LangGraph持久化完全指南/","name":"LangGraph 持久化（Persistence）完全指南"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"我的博客","url":"https://hitme.cyou/","keywords":["博客","学习","生活"],"description":"这是我的博客，记录我的学习和生活","author":{"@type":"Person","name":"ZhenShuo Zhang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://hitme.cyou/","description":"这是我的博客，记录我的学习和生活"},"publisher":{"@type":"Organization","name":"我的博客","url":"https://hitme.cyou/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://hitme.cyou?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"LangGraph 持久化（Persistence）完全指南","description":"一、为什么需要持久化？LangGraph 把图的每一步执行状态保存成 checkpoint（检查点），解锁了四个核心能力：\n\n\n\n能力\n说明\n\n\n\nHuman-in-the-loop\n人类可以在任意步骤查看、暂停、修改状态后继续执行\n\n\nMemory\n同一个 thread 内的多轮对话自动保留上下文\n\n\nTime travel\n可以回放历史执行，也可以从任意检查点分叉探索不同路径\n\n\nFault-tolerance\n节点失败时从上一个成功的 checkpoint 恢复，不重跑已成功的节点\n\n","inLanguage":["zh-CN","en","default"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://hitme.cyou/2026/03/17/LangGraph%E6%8C%81%E4%B9%85%E5%8C%96%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/"},"author":{"@type":"Person","name":"ZhenShuo Zhang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://hitme.cyou/"},"publisher":{"@type":"Organization","name":"我的博客","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://hitme.cyou/2026/03/17/LangGraph%E6%8C%81%E4%B9%85%E5%8C%96%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/","wordCount":248,"datePublished":"2026-03-16T16:00:00.000Z","dateModified":"2026-03-16T16:00:00.000Z","articleSection":"Agent","keywords":"LangGraph,Persistence","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 

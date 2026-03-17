@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <!-- SEO相关 -->
   <meta name="robots" content="noindex,follow">
-  <link rel="canonical" href="https://hitme.cyou/tags/https/"/>
+  <link rel="canonical" href="https://hitme.cyou/tags/langgraph/"/>
   <!-- 渲染优化 -->
     <meta http-equiv='x-dns-prefetch-control' content='on' />
       <link rel='dns-prefetch' href='https://unpkg.com'>
@@ -34,13 +34,13 @@
 
   <!-- feed -->
   <!-- 页面元数据 -->
-  <title>标签：HTTPS - 我的博客</title>
+  <title>标签：LangGraph - 我的博客</title>
   <meta name="keywords" content="博客,学习,生活">
   <meta desc name="description" content="这是我的博客，记录我的学习和生活 - ZhenShuo Zhang - 我的博客">
   
 <meta property="og:type" content="website">
 <meta property="og:title" content="我的博客">
-<meta property="og:url" content="https://hitme.cyou/tags/HTTPS/">
+<meta property="og:url" content="https://hitme.cyou/tags/LangGraph/">
 <meta property="og:site_name" content="我的博客">
 <meta property="og:description" content="这是我的博客，记录我的学习和生活">
 <meta property="og:locale" content="zh_CN">
@@ -2619,7 +2619,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           <div class='post-wrapper'>
             <div class="post post-v3 white-box reveal shadow"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://hitme.cyou/2025/03/25/HTTP 和 HTTPS/">
+  <link itemprop="mainEntityOfPage" href="https://hitme.cyou/2026/03/17/LangGraph持久化完全指南/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="我的博客">
   </span>
@@ -2637,19 +2637,38 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title"  itemprop="name headline">
-      <a href="/2025/03/25/HTTP%20%E5%92%8C%20HTTPS/"  itemprop="url">
-        HTTP 和 HTTPS
+      <a href="/2026/03/17/LangGraph%E6%8C%81%E4%B9%85%E5%8C%96%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/"  itemprop="url">
+        LangGraph 持久化（Persistence）完全指南
       </a>
     </h2>
   
   <div class='md article-desc' itemprop="articleBody">
     
-      <h2 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h2><p>HTPP：Hyper Text Transfer Protocol，超文本传输协议，定义了客户端与服务器之间说话的规则，是应用层协议。</p>
-<ul>
-<li>应用层协议</li>
-<li>基于TCP</li>
-<li>默认是无状态的（每次请求独立，服务器不记住你）<br>工作原理：客户端发起请求 -&gt; 服务器返回响应</li>
-</ul>
+      <h2 id="一、为什么需要持久化？"><a href="#一、为什么需要持久化？" class="headerlink" title="一、为什么需要持久化？"></a>一、为什么需要持久化？</h2><p>LangGraph 把图的每一步执行状态保存成 <strong>checkpoint（检查点）</strong>，解锁了四个核心能力：</p>
+<table>
+<thead>
+<tr>
+<th>能力</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Human-in-the-loop</strong></td>
+<td>人类可以在任意步骤查看、暂停、修改状态后继续执行</td>
+</tr>
+<tr>
+<td><strong>Memory</strong></td>
+<td>同一个 thread 内的多轮对话自动保留上下文</td>
+</tr>
+<tr>
+<td><strong>Time travel</strong></td>
+<td>可以回放历史执行，也可以从任意检查点分叉探索不同路径</td>
+</tr>
+<tr>
+<td><strong>Fault-tolerance</strong></td>
+<td>节点失败时从上一个成功的 checkpoint 恢复，不重跑已成功的节点</td>
+</tr>
+</tbody></table>
     
   </div>
   
@@ -2664,20 +2683,20 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             <meta itemprop="url" content="/about/">
           </span>
         
-        <time itemprop="dateCreated datePublished" datetime="2025-03-25T09:45:00+08:00">2025-03-25</time>
+        <time itemprop="dateCreated datePublished" datetime="2026-03-17T00:00:00+08:00">2026-03-17</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+          <a class="category-link" href="/categories/Agent/">Agent</a>
           
             <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url"><span itemprop="name">计算机网络</span></a>
+              <a href="/categories/Agent/" itemprop="url"><span itemprop="name">Agent</span></a>
             </span>
           
         
       </div>
       
         <div>
-          <a class='readmore' href='/2025/03/25/HTTP%20%E5%92%8C%20HTTPS/' itemprop="url">
+          <a class='readmore' href='/2026/03/17/LangGraph%E6%8C%81%E4%B9%85%E5%8C%96%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/' itemprop="url">
             阅读全文
           </a>
         </div>
@@ -4085,7 +4104,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"我的博客","url":"https://hitme.cyou/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"ZhenShuo Zhang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://hitme.cyou/","sameAs":["https://github.com/volantis-x"],"description":"这是我的博客，记录我的学习和生活"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://hitme.cyou/","name":"我的博客"}},{"@type":"ListItem","position":2,"item":{"@id":"https://hitme.cyou/tags/HTTPS/","name":"HTTPS"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"我的博客","url":"https://hitme.cyou/","keywords":["博客","学习","生活"],"description":"这是我的博客，记录我的学习和生活","author":{"@type":"Person","name":"ZhenShuo Zhang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://hitme.cyou/","description":"这是我的博客，记录我的学习和生活"},"publisher":{"@type":"Organization","name":"我的博客","url":"https://hitme.cyou/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://hitme.cyou?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","description":"这是我的博客，记录我的学习和生活","inLanguage":["zh-CN","en","default"],"mainEntityOfPage":{"@type":"WebPage"},"author":{"@type":"Person","name":"ZhenShuo Zhang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://hitme.cyou/"},"publisher":{"@type":"Organization","name":"我的博客","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"wordCount":0,"image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"我的博客","url":"https://hitme.cyou/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"ZhenShuo Zhang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://hitme.cyou/","sameAs":["https://github.com/volantis-x"],"description":"这是我的博客，记录我的学习和生活"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://hitme.cyou/","name":"我的博客"}},{"@type":"ListItem","position":2,"item":{"@id":"https://hitme.cyou/tags/LangGraph/","name":"LangGraph"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"我的博客","url":"https://hitme.cyou/","keywords":["博客","学习","生活"],"description":"这是我的博客，记录我的学习和生活","author":{"@type":"Person","name":"ZhenShuo Zhang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://hitme.cyou/","description":"这是我的博客，记录我的学习和生活"},"publisher":{"@type":"Organization","name":"我的博客","url":"https://hitme.cyou/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://hitme.cyou?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","description":"这是我的博客，记录我的学习和生活","inLanguage":["zh-CN","en","default"],"mainEntityOfPage":{"@type":"WebPage"},"author":{"@type":"Person","name":"ZhenShuo Zhang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://hitme.cyou/"},"publisher":{"@type":"Organization","name":"我的博客","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"wordCount":0,"image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
