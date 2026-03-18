@@ -615,7 +615,7 @@
       </tags>
   </entry>
   <entry>
-    <title>JVM 简介</title>
+    <title>JVM</title>
     <url>/2025/02/11/%E8%AF%A6%E8%A7%A3JVM/</url>
     <content><![CDATA[<div class="story post-story"><h2 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h2><p>JVM（Java Virtual Machine）是Java虚拟机的缩写，它是一个虚构出来的计算机，充当着Java代码与底层操作系统之间的桥梁。 <mcreference link="https://blog.csdn.net/sinat_35512245/article/details/54744815" index="4">4</mcreference> JVM使得Java程序能够实现“一次编译，到处运行”的跨平台特性。 <mcreference link="https://blog.csdn.net/sinat_35512245/article/details/54744815" index="4">4</mcreference></p>
 <h3 id="JVM、JRE和JDK的关系"><a href="#JVM、JRE和JDK的关系" class="headerlink" title="JVM、JRE和JDK的关系"></a>JVM、JRE和JDK的关系</h3><ul>
@@ -717,9 +717,9 @@
     <content><![CDATA[<div class="about-card">
  
   <div class="about-content">
-    <p>你好，我是 HyperZhang；</p>
-    <p>热爱篮球与编程；</p>
-    <p>这里是我的个人博客，用来记录学习与分享：后端开发、学习笔记等相关主题。</p>
+    <p>Hello，我是 HyperZhang；</p>
+    <p>一个爱打篮球的程序猿；</p>
+    <p>希望有天也能成为一个技术大牛；</p>
     <p>如果你想交流或合作，可以通过我的邮箱联系我：</p>
     <ul>
       <li>邮箱：<a href="mailto:2569256369@qq.com">2569256369@qq.com</a></li>
@@ -730,12 +730,6 @@
   
 </div>
 
-]]></content>
-  </entry>
-  <entry>
-    <title>所有分类</title>
-    <url>/categories/index.html</url>
-    <content><![CDATA[
 ]]></content>
   </entry>
   <entry>
@@ -784,6 +778,18 @@
 ]]></content>
   </entry>
   <entry>
+    <title>所有分类</title>
+    <url>/categories/index.html</url>
+    <content><![CDATA[
+]]></content>
+  </entry>
+  <entry>
+    <title>所有标签</title>
+    <url>/tags/index.html</url>
+    <content><![CDATA[
+]]></content>
+  </entry>
+  <entry>
     <title></title>
     <url>/js/typewriter.js</url>
     <content><![CDATA[// 打字机效果脚本
@@ -816,11 +822,5 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });]]></content>
-  </entry>
-  <entry>
-    <title>所有标签</title>
-    <url>/tags/index.html</url>
-    <content><![CDATA[
-]]></content>
   </entry>
 </search>
