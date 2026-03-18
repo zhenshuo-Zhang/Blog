@@ -70,6 +70,29 @@
       </tags>
   </entry>
   <entry>
+    <title>总结-MySQL中的索引</title>
+    <url>/2025/08/28/MySQL%E4%B8%AD%E7%9A%84%E7%B4%A2%E5%BC%95/</url>
+    <content><![CDATA[<div class="story post-story"><h2 id="前置"><a href="#前置" class="headerlink" title="前置"></a>前置</h2><ol>
+<li>InnoDB 存储引擎的每次磁盘IO操作读取或写入的大小是一页（16KB）</li>
+<li>B+树索引结构下的每个节点大小就是一页</li>
+<li>树的高度 &#x3D;&#x3D; 每次查询数据时磁盘IO的次数</li>
+</ol>
+<span id="more"></span>
+
+</div><div class="story post-story"><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>IO操作的耗时远高于CPU计算，而且数据库的大部分数据都存储在磁盘上，因此数据库设计的核心目标之一就是：减少IO次数<br>MySQL 中的索引是提升查询性能的核心机制，本质上是一种<strong>高效查找的数据结构</strong>。在 InnoDB 引擎中，索引底层主要采用 <strong>B+ 树</strong> 实现。</p>
+<p>首先，InnoDB 的表必须有一个<strong>聚集索引（Clustered Index）</strong>，通常是主键。它的特点是：<strong>数据行和索引存储在一起</strong>，叶子节点直接保存完整的用户数据。因此，通过主键查询只需要一次 I&#x2F;O，效率最高。</p>
+<p>除此之外的索引都叫<strong>二级索引（Secondary Index）</strong>，也称为非聚簇索引。它的叶子节点不存完整数据，而是存储<strong>主键值</strong>。当执行非主键查询时，MySQL 先通过二级索引找到主键，再回表到聚集索引中获取完整数据——这个过程叫<strong>回表查询</strong>，会带来额外开销。</p>
+<p>为了优化回表，我们可以设计<strong>覆盖索引</strong>，即让查询所需的所有字段都包含在索引中，这样就无需回表了。比如 <code>SELECT id, name FROM users WHERE name = &#39;Tom&#39;</code>，如果 <code>(name, id)</code> 有联合索引，就能直接返回结果。</p>
+
+</div>]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>索引</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>LangGraph 持久化（Persistence）完全指南</title>
     <url>/2026/03/17/LangGraph%E6%8C%81%E4%B9%85%E5%8C%96%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/</url>
     <content><![CDATA[<div class="story post-story"><h2 id="一、为什么需要持久化？"><a href="#一、为什么需要持久化？" class="headerlink" title="一、为什么需要持久化？"></a>一、为什么需要持久化？</h2><p>LangGraph 把图的每一步执行状态保存成 <strong>checkpoint（检查点）</strong>，解锁了四个核心能力：</p>
@@ -214,29 +237,6 @@
       <tags>
         <tag>LangGraph</tag>
         <tag>Persistence</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>总结-MySQL中的索引</title>
-    <url>/2025/08/28/MySQL%E4%B8%AD%E7%9A%84%E7%B4%A2%E5%BC%95/</url>
-    <content><![CDATA[<div class="story post-story"><h2 id="前置"><a href="#前置" class="headerlink" title="前置"></a>前置</h2><ol>
-<li>InnoDB 存储引擎的每次磁盘IO操作读取或写入的大小是一页（16KB）</li>
-<li>B+树索引结构下的每个节点大小就是一页</li>
-<li>树的高度 &#x3D;&#x3D; 每次查询数据时磁盘IO的次数</li>
-</ol>
-<span id="more"></span>
-
-</div><div class="story post-story"><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>IO操作的耗时远高于CPU计算，而且数据库的大部分数据都存储在磁盘上，因此数据库设计的核心目标之一就是：减少IO次数<br>MySQL 中的索引是提升查询性能的核心机制，本质上是一种<strong>高效查找的数据结构</strong>。在 InnoDB 引擎中，索引底层主要采用 <strong>B+ 树</strong> 实现。</p>
-<p>首先，InnoDB 的表必须有一个<strong>聚集索引（Clustered Index）</strong>，通常是主键。它的特点是：<strong>数据行和索引存储在一起</strong>，叶子节点直接保存完整的用户数据。因此，通过主键查询只需要一次 I&#x2F;O，效率最高。</p>
-<p>除此之外的索引都叫<strong>二级索引（Secondary Index）</strong>，也称为非聚簇索引。它的叶子节点不存完整数据，而是存储<strong>主键值</strong>。当执行非主键查询时，MySQL 先通过二级索引找到主键，再回表到聚集索引中获取完整数据——这个过程叫<strong>回表查询</strong>，会带来额外开销。</p>
-<p>为了优化回表，我们可以设计<strong>覆盖索引</strong>，即让查询所需的所有字段都包含在索引中，这样就无需回表了。比如 <code>SELECT id, name FROM users WHERE name = &#39;Tom&#39;</code>，如果 <code>(name, id)</code> 有联合索引，就能直接返回结果。</p>
-
-</div>]]></content>
-      <categories>
-        <category>MySQL</category>
-      </categories>
-      <tags>
-        <tag>索引</tag>
       </tags>
   </entry>
   <entry>
@@ -478,6 +478,348 @@
       </tags>
   </entry>
   <entry>
+    <title>LLM Post-Training</title>
+    <url>/2026/02/17/llm_post_training/</url>
+    <content><![CDATA[<h1 id="一文读懂大模型后训练（Post-Training）"><a href="#一文读懂大模型后训练（Post-Training）" class="headerlink" title="一文读懂大模型后训练（Post-Training）"></a>一文读懂大模型后训练（Post-Training）</h1><blockquote>
+<p>预训练给了模型”知识”，后训练给了模型”灵魂”。</p>
+</blockquote>
+<hr>
+<div class="story post-story"><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ol>
+<li><a href="#%E4%B8%80%E4%BB%80%E4%B9%88%E6%98%AF%E5%90%8E%E8%AE%AD%E7%BB%83">什么是后训练？</a></li>
+<li><a href="#%E4%BA%8C%E5%90%8E%E8%AE%AD%E7%BB%83%E7%9A%84%E6%95%B4%E4%BD%93%E6%B5%81%E7%A8%8B">后训练的整体流程</a></li>
+<li><a href="#%E4%B8%89%E7%9B%91%E7%9D%A3%E5%BE%AE%E8%B0%83sft">监督微调（SFT）</a></li>
+<li><a href="#%E5%9B%9B%E5%A5%96%E5%8A%B1%E6%A8%A1%E5%9E%8Breward-model">奖励模型（Reward Model）</a></li>
+<li><a href="#%E4%BA%94%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AF%B9%E9%BD%90rlhf--ppo">强化学习对齐（RLHF &#x2F; PPO）</a></li>
+<li><a href="#%E5%85%AD%E7%9B%B4%E6%8E%A5%E5%81%8F%E5%A5%BD%E4%BC%98%E5%8C%96dpo">直接偏好优化（DPO）</a></li>
+<li><a href="#%E4%B8%83%E6%8B%92%E7%BB%9D%E9%87%87%E6%A0%B7%E5%BE%AE%E8%B0%83rft">拒绝采样微调（RFT）</a></li>
+<li><a href="#%E5%85%ABgrpo-%E4%B8%8E%E6%8E%A8%E7%90%86%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83">GRPO 与推理模型训练</a></li>
+<li><a href="#%E4%B9%9D%E5%90%84%E6%96%B9%E6%B3%95%E6%A8%AA%E5%90%91%E5%AF%B9%E6%AF%94">各方法横向对比</a></li>
+<li><a href="#%E5%8D%81%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5%E8%A6%81%E7%82%B9">工程实践要点</a></li>
+<li><a href="#%E5%8D%81%E4%B8%80%E5%89%8D%E6%B2%BF%E8%B6%8B%E5%8A%BF">前沿趋势</a></li>
+</ol>
+<hr>
+</div><div class="story post-story"><h2 id="一、什么是后训练？"><a href="#一、什么是后训练？" class="headerlink" title="一、什么是后训练？"></a>一、什么是后训练？</h2><p>大模型的训练分为两个阶段：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">预训练（Pre-training）          后训练（Post-training）</span><br><span class="line">────────────────────           ──────────────────────────</span><br><span class="line">海量无标注文本                  人工标注 + 偏好数据 + 规则信号</span><br><span class="line">学习语言规律和世界知识            学习&quot;怎么回答才是好答案&quot;</span><br><span class="line">目标：预测下一个 token           目标：对齐人类意图和价值观</span><br><span class="line">成本：数百万美元                 成本：数万～数十万美元</span><br><span class="line">产出：Base Model                产出：Chat / Instruct Model</span><br></pre></td></tr></table></figure>
+
+<p><strong>一句话理解：</strong> 预训练让模型”博览群书”，后训练让模型”知道怎么说话”。</p>
+<p>没有后训练的 Base Model 会续写任何输入——包括有害内容、胡乱补全指令等。后训练的核心目标是让模型做到：</p>
+<ul>
+<li><strong>有用（Helpful）</strong>：能准确理解并完成用户指令</li>
+<li><strong>无害（Harmless）</strong>：拒绝有害、违法、不道德的请求</li>
+<li><strong>诚实（Honest）</strong>：不编造事实，承认不确定性</li>
+</ul>
+<p>这三个目标合称 <strong>3H 对齐原则</strong>，是 Anthropic、OpenAI 等公司的核心研究方向。</p>
+<hr>
+</div><div class="story post-story"><h2 id="二、后训练的整体流程"><a href="#二、后训练的整体流程" class="headerlink" title="二、后训练的整体流程"></a>二、后训练的整体流程</h2><p>现代大模型后训练通常分三步走：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Base Model</span><br><span class="line">    │</span><br><span class="line">    ▼</span><br><span class="line">┌─────────────────────────────┐</span><br><span class="line">│   Step 1: 监督微调 (SFT)     │  ← 教模型&quot;格式&quot;和&quot;风格&quot;</span><br><span class="line">│   用高质量问答对微调           │</span><br><span class="line">└─────────────┬───────────────┘</span><br><span class="line">              │</span><br><span class="line">              ▼</span><br><span class="line">┌─────────────────────────────┐</span><br><span class="line">│   Step 2: 奖励建模 (RM)      │  ← 训练一个&quot;打分官&quot;</span><br><span class="line">│   学习人类的偏好排序           │</span><br><span class="line">└─────────────┬───────────────┘</span><br><span class="line">              │</span><br><span class="line">              ▼</span><br><span class="line">┌─────────────────────────────┐</span><br><span class="line">│   Step 3: 强化学习 (RLHF)    │  ← 用分数反复优化模型</span><br><span class="line">│   最大化奖励模型的分数          │</span><br><span class="line">└─────────────┬───────────────┘</span><br><span class="line">              │</span><br><span class="line">              ▼</span><br><span class="line">        Chat Model ✓</span><br></pre></td></tr></table></figure>
+
+<p>不同公司&#x2F;项目的具体路线有所差异，但大体遵循这一框架。后文会逐一拆解每个步骤。</p>
+<hr>
+</div><div class="story post-story"><h2 id="三、监督微调（SFT）"><a href="#三、监督微调（SFT）" class="headerlink" title="三、监督微调（SFT）"></a>三、监督微调（SFT）</h2><h3 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h3><p>Supervised Fine-Tuning，用人工标注的高质量（指令, 回答）对，对 Base Model 进行有监督训练。</p>
+<h3 id="数据长什么样"><a href="#数据长什么样" class="headerlink" title="数据长什么样"></a>数据长什么样</h3><figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;instruction&quot;</span><span class="punctuation">:</span> <span class="string">&quot;用简单的语言解释什么是黑洞&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;input&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;output&quot;</span><span class="punctuation">:</span> <span class="string">&quot;黑洞是宇宙中一种引力极强的天体，强到连光都无法逃脱。</span></span><br><span class="line"><span class="string">             它由大质量恒星死亡后坍缩形成。黑洞的边界叫做「事件视界」，</span></span><br><span class="line"><span class="string">             一旦越过这条线，任何物质都会被永久吸入...&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>数据集通常包含：</p>
+<ul>
+<li><strong>指令跟随</strong>：翻译、总结、改写、分类</li>
+<li><strong>知识问答</strong>：事实性问题</li>
+<li><strong>代码生成</strong>：写代码、调试、解释代码</li>
+<li><strong>多轮对话</strong>：角色扮演、聊天</li>
+<li><strong>安全拒绝</strong>：对有害请求给出正确的拒绝回复</li>
+</ul>
+<h3 id="训练目标"><a href="#训练目标" class="headerlink" title="训练目标"></a>训练目标</h3><p>和预训练一样是语言模型的 <strong>Next Token Prediction（NTP）</strong>，但只计算 output 部分的 loss：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Loss = -Σ log P(output_token_i | instruction, output_token_1...i-1)</span><br></pre></td></tr></table></figure>
+
+<p>instruction 部分的 token <strong>不参与梯度计算</strong>，只作为上下文。</p>
+<h3 id="关键超参数"><a href="#关键超参数" class="headerlink" title="关键超参数"></a>关键超参数</h3><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>典型值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Learning Rate</td>
+<td>1e-5 ~ 5e-5</td>
+<td>远小于预训练，防止遗忘</td>
+</tr>
+<tr>
+<td>Epochs</td>
+<td>1 ~ 3</td>
+<td>太多容易过拟合</td>
+</tr>
+<tr>
+<td>Batch Size</td>
+<td>64 ~ 256</td>
+<td>视显存而定</td>
+</tr>
+<tr>
+<td>Max Length</td>
+<td>2048 ~ 8192</td>
+<td>覆盖长对话</td>
+</tr>
+</tbody></table>
+<h3 id="SFT-的局限"><a href="#SFT-的局限" class="headerlink" title="SFT 的局限"></a>SFT 的局限</h3><p>SFT 教会了模型”格式”，但<strong>不能区分哪个回答更好</strong>。如果给定同一问题有两个答案 A 和 B，SFT 无法让模型偏好更好的那个。这就需要引入奖励模型。</p>
+<hr>
+</div><div class="story post-story"><h2 id="四、奖励模型（Reward-Model）"><a href="#四、奖励模型（Reward-Model）" class="headerlink" title="四、奖励模型（Reward Model）"></a>四、奖励模型（Reward Model）</h2><h3 id="为什么需要奖励模型"><a href="#为什么需要奖励模型" class="headerlink" title="为什么需要奖励模型"></a>为什么需要奖励模型</h3><p>人类无法对每一条模型输出打分，但可以比较两个回答哪个更好。奖励模型（RM）就是学习这种<strong>相对偏好</strong>的裁判。</p>
+<h3 id="数据构造"><a href="#数据构造" class="headerlink" title="数据构造"></a>数据构造</h3><p>收集人类偏好数据的流程：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">同一个 prompt</span><br><span class="line">    │</span><br><span class="line">    ├──► 模型回答 A：&quot;地球是宇宙的中心...&quot;      ← 标注员选择：B 更好</span><br><span class="line">    │</span><br><span class="line">    └──► 模型回答 B：&quot;地球是太阳系中的一颗行星...&quot; ✓</span><br></pre></td></tr></table></figure>
+
+<p>最终得到三元组：<code>(prompt, chosen, rejected)</code></p>
+<h3 id="训练目标-1"><a href="#训练目标-1" class="headerlink" title="训练目标"></a>训练目标</h3><p>使用 <strong>Bradley-Terry 模型</strong>，最大化”好回答得分高于差回答”的概率：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Loss = -E[log σ(r(x, y_w) - r(x, y_l))]</span><br><span class="line"></span><br><span class="line">其中：</span><br><span class="line">  r(x, y)  = 奖励模型对 prompt x、回答 y 的打分</span><br><span class="line">  y_w      = 人类偏好的回答（winner）</span><br><span class="line">  y_l      = 人类不偏好的回答（loser）</span><br><span class="line">  σ        = sigmoid 函数</span><br></pre></td></tr></table></figure>
+
+<h3 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h3><p>奖励模型通常基于 SFT 模型，去掉语言模型头，换成一个<strong>线性层</strong>输出单个标量分数：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[SFT Model Backbone]</span><br><span class="line">        │</span><br><span class="line">   最后一层 hidden state</span><br><span class="line">        │</span><br><span class="line">   Linear(d_model → 1)</span><br><span class="line">        │</span><br><span class="line">   标量分数 r ∈ (-∞, +∞)</span><br></pre></td></tr></table></figure>
+
+<h3 id="奖励黑客（Reward-Hacking）"><a href="#奖励黑客（Reward-Hacking）" class="headerlink" title="奖励黑客（Reward Hacking）"></a>奖励黑客（Reward Hacking）</h3><p>奖励模型并不完美，策略模型可能会学会”欺骗”它——生成能得高分但实际质量差的回答（比如：回答特别长、充斥恭维语气等）。</p>
+<p>这是 RLHF 最核心的挑战之一，后文的 KL 惩罚项就是为了缓解这个问题。</p>
+<hr>
+</div><div class="story post-story"><h2 id="五、强化学习对齐（RLHF-PPO）"><a href="#五、强化学习对齐（RLHF-PPO）" class="headerlink" title="五、强化学习对齐（RLHF &#x2F; PPO）"></a>五、强化学习对齐（RLHF &#x2F; PPO）</h2><h3 id="整体框架"><a href="#整体框架" class="headerlink" title="整体框架"></a>整体框架</h3><p>RLHF（Reinforcement Learning from Human Feedback）是将强化学习引入大模型对齐的关键技术，由 OpenAI 在 InstructGPT 论文中系统提出。</p>
+<p>系统中有四个模型同时运行：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">┌──────────────────────────────────────────────────────┐</span><br><span class="line">│                   RLHF 训练系统                        │</span><br><span class="line">│                                                      │</span><br><span class="line">│  Actor Model      ← 被优化的主模型（SFT 初始化）         │</span><br><span class="line">│  Critic Model     ← 预测期望奖励（价值函数）              │</span><br><span class="line">│  Reward Model     ← 给回答打分（固定，不更新）            │</span><br><span class="line">│  Reference Model  ← SFT 模型副本（固定，提供 KL 基准）   │</span><br><span class="line">└──────────────────────────────────────────────────────┘</span><br></pre></td></tr></table></figure>
+
+<h3 id="PPO-训练目标"><a href="#PPO-训练目标" class="headerlink" title="PPO 训练目标"></a>PPO 训练目标</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">maximize  E[r_θ(x, y)] - β · KL[π_θ(y|x) || π_ref(y|x)]</span><br><span class="line"></span><br><span class="line">其中：</span><br><span class="line">  r_θ(x, y)   = 奖励模型给出的分数</span><br><span class="line">  KL(...)     = 当前策略与参考策略的 KL 散度（距离惩罚）</span><br><span class="line">  β           = KL 惩罚系数（通常 0.01 ~ 0.1）</span><br></pre></td></tr></table></figure>
+
+<p><strong>KL 惩罚的作用</strong>：防止模型为了追求高奖励而偏离 SFT 模型太远，变成奇怪的分布（奖励黑客）。</p>
+<h3 id="训练流程（每次迭代）"><a href="#训练流程（每次迭代）" class="headerlink" title="训练流程（每次迭代）"></a>训练流程（每次迭代）</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. Actor 对 prompt 采样生成回答</span><br><span class="line">       │</span><br><span class="line">2. Reward Model 对回答打分</span><br><span class="line">       │</span><br><span class="line">3. Reference Model 计算 KL 散度</span><br><span class="line">       │</span><br><span class="line">4. Critic 估计每个 token 的优势函数（Advantage）</span><br><span class="line">       │</span><br><span class="line">5. PPO-clip 更新 Actor 和 Critic 的参数</span><br><span class="line">       │</span><br><span class="line">6. 重复</span><br></pre></td></tr></table></figure>
+
+<h3 id="PPO-的痛点"><a href="#PPO-的痛点" class="headerlink" title="PPO 的痛点"></a>PPO 的痛点</h3><p>PPO 虽然效果好，但工程复杂度极高：</p>
+<ul>
+<li>需要同时维护 4 个模型，显存压力大</li>
+<li>超参数敏感，调参困难</li>
+<li>训练不稳定，容易崩溃</li>
+<li>采样效率低</li>
+</ul>
+<p>这些问题催生了更简洁的替代方案——DPO。</p>
+<hr>
+</div><div class="story post-story"><h2 id="六、直接偏好优化（DPO）"><a href="#六、直接偏好优化（DPO）" class="headerlink" title="六、直接偏好优化（DPO）"></a>六、直接偏好优化（DPO）</h2><h3 id="核心思想"><a href="#核心思想" class="headerlink" title="核心思想"></a>核心思想</h3><p>DPO（Direct Preference Optimization，2023）是斯坦福大学提出的方法，<strong>绕过了奖励模型和强化学习</strong>，直接从偏好数据中优化策略。</p>
+<p>它证明了：RLHF 的最优解可以用一个封闭形式表达，进而将 RL 问题转化为一个普通的<strong>分类损失</strong>。</p>
+<h3 id="训练目标-2"><a href="#训练目标-2" class="headerlink" title="训练目标"></a>训练目标</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Loss_DPO = -E[log σ(β · log(π_θ(y_w|x)/π_ref(y_w|x))</span><br><span class="line">                   - β · log(π_θ(y_l|x)/π_ref(y_l|x)))]</span><br><span class="line"></span><br><span class="line">直觉理解：</span><br><span class="line">  增大 好回答(y_w) 相对于参考模型的概率</span><br><span class="line">  减小 差回答(y_l) 相对于参考模型的概率</span><br></pre></td></tr></table></figure>
+
+<h3 id="DPO-vs-RLHF-对比"><a href="#DPO-vs-RLHF-对比" class="headerlink" title="DPO vs RLHF 对比"></a>DPO vs RLHF 对比</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">RLHF/PPO                          DPO</span><br><span class="line">────────────────────              ──────────────────────</span><br><span class="line">需要奖励模型                        不需要奖励模型</span><br><span class="line">需要 4 个模型并行                   只需要 2 个模型（policy + reference）</span><br><span class="line">强化学习优化（复杂）                 监督学习优化（简单）</span><br><span class="line">超参敏感、不稳定                     训练稳定</span><br><span class="line">计算成本高                          计算成本低</span><br><span class="line">效果上限高                          效果略低于精调的 PPO</span><br></pre></td></tr></table></figure>
+
+<h3 id="数据格式"><a href="#数据格式" class="headerlink" title="数据格式"></a>数据格式</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;prompt&quot;</span>: <span class="string">&quot;如何学习机器学习？&quot;</span>,</span><br><span class="line">    <span class="string">&quot;chosen&quot;</span>: <span class="string">&quot;建议从数学基础开始，学习线性代数、概率统计，</span></span><br><span class="line"><span class="string">               然后学习 Python，再学 sklearn、PyTorch...&quot;</span>,</span><br><span class="line">    <span class="string">&quot;rejected&quot;</span>: <span class="string">&quot;你可以去 B 站搜索视频，随便看看就行了。&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="DPO-的局限"><a href="#DPO-的局限" class="headerlink" title="DPO 的局限"></a>DPO 的局限</h3><ul>
+<li>对参考模型（<code>π_ref</code>）依赖强，参考模型质量差则效果有限</li>
+<li>难以进行在线学习（需要固定的偏好对）</li>
+<li>在极复杂推理任务上效果不如 PPO</li>
+</ul>
+<hr>
+</div><div class="story post-story"><h2 id="七、拒绝采样微调（RFT）"><a href="#七、拒绝采样微调（RFT）" class="headerlink" title="七、拒绝采样微调（RFT）"></a>七、拒绝采样微调（RFT）</h2><h3 id="是什么-1"><a href="#是什么-1" class="headerlink" title="是什么"></a>是什么</h3><p>Rejection Sampling Fine-Tuning，又称 <strong>Best-of-N</strong> 微调，是一种简单而有效的方法：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">对每个 prompt：</span><br><span class="line">  1. 让模型采样生成 N 个回答（N = 10 ~ 100）</span><br><span class="line">  2. 用奖励模型对 N 个回答打分</span><br><span class="line">  3. 只保留分数最高的那个</span><br><span class="line">  4. 用这些&quot;精选回答&quot;做 SFT</span><br></pre></td></tr></table></figure>
+
+<h3 id="为什么有效"><a href="#为什么有效" class="headerlink" title="为什么有效"></a>为什么有效</h3><p>模型自己已经具备生成好答案的能力，只是概率不高。RFT 通过”精选”把高质量样本的权重放大，相当于<strong>提纯训练数据</strong>。</p>
+<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><p>RFT 特别适合有明确正确答案的任务：</p>
+<ul>
+<li>数学题（答案对错可验证）</li>
+<li>代码（能运行且通过测试用例）</li>
+<li>结构化输出（格式是否符合 schema）</li>
+</ul>
+<p>Meta 在 Llama 系列、DeepSeek 在数学推理模型中都大量使用了 RFT。</p>
+<hr>
+</div><div class="story post-story"><h2 id="八、GRPO-与推理模型训练"><a href="#八、GRPO-与推理模型训练" class="headerlink" title="八、GRPO 与推理模型训练"></a>八、GRPO 与推理模型训练</h2><h3 id="推理模型的新范式"><a href="#推理模型的新范式" class="headerlink" title="推理模型的新范式"></a>推理模型的新范式</h3><p>以 OpenAI o1、DeepSeek-R1 为代表的推理模型，引入了 <strong>Chain-of-Thought（思维链）</strong> 强化学习训练：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">普通模型：                推理模型：</span><br><span class="line">prompt → answer          prompt → &lt;think&gt;长思考过程&lt;/think&gt; → answer</span><br></pre></td></tr></table></figure>
+
+<p>模型在回答前先进行”内部推理”，显著提升了数学、代码、逻辑推理能力。</p>
+<h3 id="GRPO-算法"><a href="#GRPO-算法" class="headerlink" title="GRPO 算法"></a>GRPO 算法</h3><p>Group Relative Policy Optimization（DeepSeek 提出）是专门为推理模型设计的 RL 算法，简化了 PPO 中的 Critic 模型：</p>
+<p><strong>PPO 的优势函数估计</strong>：需要单独训练一个 Critic 网络</p>
+<p><strong>GRPO 的做法</strong>：对同一 prompt 采样一组回答（Group），用组内相对排名代替 Critic：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 对同一 prompt 采样 G 个回答</span></span><br><span class="line">responses = [model.generate(prompt) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(G)]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 用规则/奖励模型打分</span></span><br><span class="line">scores = [reward_fn(r) <span class="keyword">for</span> r <span class="keyword">in</span> responses]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 组内归一化得到优势值</span></span><br><span class="line">mean_score = <span class="built_in">sum</span>(scores) / G</span><br><span class="line">advantages = [(s - mean_score) / std(scores) <span class="keyword">for</span> s <span class="keyword">in</span> scores]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 用归一化后的优势值更新策略</span></span><br><span class="line"><span class="comment"># 不再需要 Critic 网络！</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="奖励函数设计"><a href="#奖励函数设计" class="headerlink" title="奖励函数设计"></a>奖励函数设计</h3><p>推理模型的奖励函数通常是<strong>可验证的规则</strong>，而非神经网络：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">reward_fn</span>(<span class="params">response, ground_truth</span>):</span><br><span class="line">    rewards = []</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 格式奖励：是否有思考标签</span></span><br><span class="line">    <span class="keyword">if</span> <span class="string">&quot;&lt;think&gt;&quot;</span> <span class="keyword">in</span> response <span class="keyword">and</span> <span class="string">&quot;&lt;/think&gt;&quot;</span> <span class="keyword">in</span> response:</span><br><span class="line">        rewards.append(<span class="number">0.1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 正确性奖励：答案是否正确</span></span><br><span class="line">    extracted_answer = extract_answer(response)</span><br><span class="line">    <span class="keyword">if</span> extracted_answer == ground_truth:</span><br><span class="line">        rewards.append(<span class="number">1.0</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        rewards.append(<span class="number">0.0</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">sum</span>(rewards)</span><br></pre></td></tr></table></figure>
+
+<p>这种<strong>基于规则的验证奖励</strong>完全绕开了奖励模型，避免了奖励黑客问题。</p>
+<hr>
+</div><div class="story post-story"><h2 id="九、各方法横向对比"><a href="#九、各方法横向对比" class="headerlink" title="九、各方法横向对比"></a>九、各方法横向对比</h2><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>SFT</th>
+<th>RLHF&#x2F;PPO</th>
+<th>DPO</th>
+<th>RFT</th>
+<th>GRPO</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>数据类型</td>
+<td>(指令, 回答)</td>
+<td>(prompt, chosen, rejected)</td>
+<td>(prompt, chosen, rejected)</td>
+<td>prompt + 验证器</td>
+<td>prompt + 验证器</td>
+</tr>
+<tr>
+<td>是否需要奖励模型</td>
+<td>否</td>
+<td>是</td>
+<td>否</td>
+<td>是（或规则）</td>
+<td>否（或规则）</td>
+</tr>
+<tr>
+<td>训练复杂度</td>
+<td>低</td>
+<td>高</td>
+<td>中</td>
+<td>低</td>
+<td>中</td>
+</tr>
+<tr>
+<td>计算成本</td>
+<td>低</td>
+<td>高</td>
+<td>低</td>
+<td>中</td>
+<td>中</td>
+</tr>
+<tr>
+<td>训练稳定性</td>
+<td>高</td>
+<td>低</td>
+<td>高</td>
+<td>高</td>
+<td>中</td>
+</tr>
+<tr>
+<td>效果上限</td>
+<td>中</td>
+<td>高</td>
+<td>中高</td>
+<td>中高</td>
+<td>高（推理任务）</td>
+</tr>
+<tr>
+<td>适用场景</td>
+<td>通用能力</td>
+<td>通用对齐</td>
+<td>通用对齐</td>
+<td>可验证任务</td>
+<td>推理&#x2F;数学&#x2F;代码</td>
+</tr>
+<tr>
+<td>代表模型</td>
+<td>所有模型必经</td>
+<td>InstructGPT</td>
+<td>Zephyr、Llama3</td>
+<td>Llama2、DeepSeek</td>
+<td>DeepSeek-R1</td>
+</tr>
+</tbody></table>
+<p><strong>实际工程中往往组合使用</strong>，典型流程：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Base Model → SFT → DPO/RLHF → RFT（数学/代码） → Chat Model</span><br></pre></td></tr></table></figure>
+
+<hr>
+</div><div class="story post-story"><h2 id="十、工程实践要点"><a href="#十、工程实践要点" class="headerlink" title="十、工程实践要点"></a>十、工程实践要点</h2><h3 id="数据质量-数据数量"><a href="#数据质量-数据数量" class="headerlink" title="数据质量 &gt; 数据数量"></a>数据质量 &gt; 数据数量</h3><p>后训练对数据质量极度敏感。业界经验：</p>
+<ul>
+<li>1000 条高质量数据 &gt;&gt; 100000 条低质量数据</li>
+<li>数据去重、清洗比扩充数量更重要</li>
+<li>需要人工抽检，防止标注错误污染模型</li>
+</ul>
+<h3 id="防止灾难性遗忘"><a href="#防止灾难性遗忘" class="headerlink" title="防止灾难性遗忘"></a>防止灾难性遗忘</h3><p>微调时模型可能”忘记”预训练的知识，常见对策：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 小学习率</span></span><br><span class="line">optimizer = AdamW(lr=<span class="number">1e-5</span>)  <span class="comment"># 远小于预训练的 1e-4</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 混入预训练数据（通常占 5%~10%）</span></span><br><span class="line">dataset = mix(sft_data, pretrain_data, ratio=<span class="number">0.1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. LoRA 微调（只更新少量参数）</span></span><br><span class="line"><span class="keyword">from</span> peft <span class="keyword">import</span> LoraConfig</span><br><span class="line">lora_config = LoraConfig(r=<span class="number">16</span>, lora_alpha=<span class="number">32</span>, target_modules=[<span class="string">&quot;q_proj&quot;</span>, <span class="string">&quot;v_proj&quot;</span>])</span><br></pre></td></tr></table></figure>
+
+<h3 id="LoRA-微调"><a href="#LoRA-微调" class="headerlink" title="LoRA 微调"></a>LoRA 微调</h3><p>对于资源有限的场景，LoRA（Low-Rank Adaptation）是主流选择：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">全量微调：更新所有参数（7B 模型 = 280GB 梯度显存）</span><br><span class="line">LoRA：只更新低秩矩阵（额外参数量 &lt; 1%）</span><br><span class="line"></span><br><span class="line">原始权重 W(d×d) → W + ΔW = W + A(d×r) × B(r×d)</span><br><span class="line">其中 r &lt;&lt; d，A B 是可训练的低秩矩阵</span><br></pre></td></tr></table></figure>
+
+<h3 id="评估体系"><a href="#评估体系" class="headerlink" title="评估体系"></a>评估体系</h3><p>后训练效果评估需要多维度：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">自动评估：</span><br><span class="line">  - MT-Bench：多轮对话能力（GPT-4 打分）</span><br><span class="line">  - MMLU、HumanEval：知识和代码能力</span><br><span class="line">  - TruthfulQA：诚实性评估</span><br><span class="line">  - BBH：复杂推理能力</span><br><span class="line"></span><br><span class="line">人工评估：</span><br><span class="line">  - 胜率（Win Rate）：A/B 对比两个模型</span><br><span class="line">  - 绝对质量打分（1~5 分）</span><br><span class="line">  - 安全性红队测试（Red Teaming）</span><br></pre></td></tr></table></figure>
+
+<h3 id="安全对齐（Constitutional-AI）"><a href="#安全对齐（Constitutional-AI）" class="headerlink" title="安全对齐（Constitutional AI）"></a>安全对齐（Constitutional AI）</h3><p>Anthropic 提出的 **CAI（Constitutional AI）**方法：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 定义一套&quot;宪法&quot;（一组原则，如&quot;不能帮助制作武器&quot;）</span><br><span class="line">2. 让模型先生成回答</span><br><span class="line">3. 让模型用宪法批判自己的回答</span><br><span class="line">4. 让模型修改回答</span><br><span class="line">5. 用修改后的数据做 SFT 和 RL</span><br></pre></td></tr></table></figure>
+
+<p>这种方法减少了对大量人工标注的依赖，Claude 系列模型使用了这一方法。</p>
+<hr>
+</div><div class="story post-story"><h2 id="十一、前沿趋势"><a href="#十一、前沿趋势" class="headerlink" title="十一、前沿趋势"></a>十一、前沿趋势</h2><h3 id="合成数据崛起"><a href="#合成数据崛起" class="headerlink" title="合成数据崛起"></a>合成数据崛起</h3><p>人工标注成本高、速度慢。2024 年起，业界大量使用更强的模型（如 GPT-4、Claude）生成训练数据：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">强教师模型生成高质量回答</span><br><span class="line">        │</span><br><span class="line">弱学生模型学习（蒸馏/SFT）</span><br><span class="line">        │</span><br><span class="line">学生模型能力提升后再生成数据</span><br><span class="line">        │</span><br><span class="line">自我迭代提升（Self-Play / Self-Improvement）</span><br></pre></td></tr></table></figure>
+
+<p>Meta 的 Llama3、阿里的 Qwen 系列都大量使用了合成数据。</p>
+<h3 id="长思维链训练（Long-CoT）"><a href="#长思维链训练（Long-CoT）" class="headerlink" title="长思维链训练（Long CoT）"></a>长思维链训练（Long CoT）</h3><p>DeepSeek-R1、Kimi k1.5 等模型证明：通过 RL 训练更长的思维链可以显著提升推理能力，且<strong>涌现出类人的”顿悟”行为</strong>（自我反思、回溯、验证）。</p>
+<h3 id="多模态后训练"><a href="#多模态后训练" class="headerlink" title="多模态后训练"></a>多模态后训练</h3><p>视觉语言模型（VLM）的后训练逐渐成熟，图文理解、图文生成的对齐方法正在快速发展。</p>
+<h3 id="过程奖励模型（PRM）"><a href="#过程奖励模型（PRM）" class="headerlink" title="过程奖励模型（PRM）"></a>过程奖励模型（PRM）</h3><p>传统的结果奖励（ORM）只看最终答案对不对，过程奖励模型（PRM）对推理的每一步打分：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ORM：最终答案正确 → +1，错误 → 0</span><br><span class="line">PRM：每一步推理正确 → +0.1，错误 → -0.2</span><br><span class="line"></span><br><span class="line">PRM 提供更密集的学习信号，对复杂推理任务效果更好</span><br></pre></td></tr></table></figure>
+
+<hr>
+</div><div class="story post-story"><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">后训练技术演进路线：</span><br><span class="line"></span><br><span class="line">SFT（2020）</span><br><span class="line">  └─► RLHF/PPO（InstructGPT, 2022）</span><br><span class="line">        └─► DPO（2023）──► 工程简化，效果接近</span><br><span class="line">        └─► RFT（2023）──► 可验证任务的利器</span><br><span class="line">              └─► GRPO + Long CoT（DeepSeek-R1, 2025）──► 推理能力突破</span><br></pre></td></tr></table></figure>
+
+<p>后训练是让大模型从”会说话”到”会做事”、从”知识库”到”智能助手”的关键一跳。随着合成数据、过程奖励、推理时计算扩展等方向的发展，后训练仍是当前大模型研究中最活跃的领域之一。</p>
+<hr>
+</div><div class="story post-story"><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://arxiv.org/abs/2203.02155">InstructGPT: Training language models to follow instructions with human feedback</a> — OpenAI, 2022</li>
+<li><a href="https://arxiv.org/abs/2305.18290">Direct Preference Optimization: Your Language Model is Secretly a Reward Model</a> — Stanford, 2023</li>
+<li><a href="https://arxiv.org/abs/2212.08073">Constitutional AI: Harmlessness from AI Feedback</a> — Anthropic, 2022</li>
+<li><a href="https://arxiv.org/abs/2501.12948">DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning</a> — DeepSeek, 2025</li>
+<li><a href="https://arxiv.org/abs/2307.09288">Llama 2: Open Foundation and Fine-Tuned Chat Models</a> — Meta, 2023</li>
+</ul>
+
+</div>]]></content>
+      <categories>
+        <category>LLM</category>
+      </categories>
+      <tags>
+        <tag>Post</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>初识Netty</title>
+    <url>/2025/01/22/%E5%88%9D%E8%AF%86Netty/</url>
+    <content><![CDATA[<div class="story post-story"><h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>本文整理了同步&#x2F;异步、阻塞&#x2F;非阻塞、IO、BIO&#x2F;NIO 等前置概念，并用类比帮助快速理解 Netty 的核心组件与工作机制。</p>
+<span id="more"></span>
+
+</div><div class="story post-story"><h2 id="前置概念"><a href="#前置概念" class="headerlink" title="前置概念"></a>前置概念</h2><h3 id="同步和异步"><a href="#同步和异步" class="headerlink" title="同步和异步"></a>同步和异步</h3><p>同步：多个事物不能同时进行<br>异步：多个事物可以同时进行</p>
+<h3 id="阻塞和非阻塞"><a href="#阻塞和非阻塞" class="headerlink" title="阻塞和非阻塞"></a>阻塞和非阻塞</h3><p>阻塞：遇到障碍从而无法继续运行，等待是阻塞的副作用，等待指的是等待某些相关事物，而不是整个线程都在等待。<br>非阻塞：没有障碍畅行无阻</p>
+<p>同步&#x2F;异步：指的是能不能同时进行<br>阻塞&#x2F;非阻塞：指的是能不能进行</p>
+<h4 id="同步阻塞：不能同时进行且等待，相当于单线程等待"><a href="#同步阻塞：不能同时进行且等待，相当于单线程等待" class="headerlink" title="同步阻塞：不能同时进行且等待，相当于单线程等待"></a>同步阻塞：不能同时进行且等待，相当于单线程等待</h4><h4 id="同步非阻塞：单线程运行"><a href="#同步非阻塞：单线程运行" class="headerlink" title="同步非阻塞：单线程运行"></a>同步非阻塞：单线程运行</h4><h4 id="异步阻塞：同时进行且等待，相当于多线程都在等待"><a href="#异步阻塞：同时进行且等待，相当于多线程都在等待" class="headerlink" title="异步阻塞：同时进行且等待，相当于多线程都在等待"></a>异步阻塞：同时进行且等待，相当于多线程都在等待</h4><h4 id="异步非阻塞：同时进行且正常运行，相当于多线程运行"><a href="#异步非阻塞：同时进行且正常运行，相当于多线程运行" class="headerlink" title="异步非阻塞：同时进行且正常运行，相当于多线程运行"></a>异步非阻塞：同时进行且正常运行，相当于多线程运行</h4><h3 id="IO"><a href="#IO" class="headerlink" title="IO"></a>IO</h3><p>IO指的是读&#x2F;写数据的过程，和等待读入&#x2F;写出的过程。一旦拿到数据就变成数据操作了，不是IO。<br>拿网络IO举例子：等待的过程就是数据从网络到网卡再到内核空间，读写的过程就是内核空间和用户空间相互拷贝。</p>
+<p><img src="/images/netty-io.png" class="lazyload" data-srcset="/images/netty-io.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Netty IO示意图"></p>
+<h4 id="阻塞IO和非阻塞IO"><a href="#阻塞IO和非阻塞IO" class="headerlink" title="阻塞IO和非阻塞IO"></a>阻塞IO和非阻塞IO</h4><p>应用程序都是运行在用户空间的，数据没有到用户空间时应用程序是操作不了的。<br>阻塞IO：数据没有到达用户空间时，用户线程会阻塞并等待<br>非阻塞IO：不阻塞用户线程，而是数据到达后才通知用户线程</p>
+<h4 id="同步IO和同步阻塞IO"><a href="#同步IO和同步阻塞IO" class="headerlink" title="同步IO和同步阻塞IO"></a>同步IO和同步阻塞IO</h4><p>同步IO：发起请求的IO线程，必须等待IO操作完成后才能继续执行该线程的后续代码<br>有一点需要注意：在等待数据的过程中，线程采用死循环的方式轮询，在读写数据的过程中，线程在堵塞，这依然是同步阻塞IO。<br>所以，同步IO就是同步阻塞IO</p>
+<h4 id="异步IO和异步非阻塞IO"><a href="#异步IO和异步非阻塞IO" class="headerlink" title="异步IO和异步非阻塞IO"></a>异步IO和异步非阻塞IO</h4><p>异步IO：发起IO请求的线程无需等待IO完成仍可继续运行<br>只有异步非阻塞IO</p>
+<h3 id="BIO"><a href="#BIO" class="headerlink" title="BIO"></a>BIO</h3><p>阻塞IO(Blocking IO)<br>一个线程管理一个连接</p>
+<h3 id="NIO"><a href="#NIO" class="headerlink" title="NIO"></a>NIO</h3><p>非阻塞IO(New IO)<br>单线程可以管理大量连接</p>
+</div><div class="story post-story"><h2 id="一段简单的类比"><a href="#一段简单的类比" class="headerlink" title="一段简单的类比"></a>一段简单的类比</h2><p>想象一个很大的快递中心：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Socket/连接 = 每个包裹的收发窗口（channel）</span><br><span class="line">Eventloop = 一个工作人员（单线程），负责检查窗口有没有新的包裹以及处理包裹（IO事件）</span><br><span class="line">Eventloop Group = 工作人员的队伍（线程池）， 有的负责接收新客户（ boss 线程），有的负责处理包裹（worker 线程）</span><br><span class="line">Pipeline = 处理流程的传送带， 包裹依次经过打包、分拣、编码、发货</span><br><span class="line">ByteBuf = 专用的 可复用的搬运箱，比普通箱子更灵活</span><br></pre></td></tr></table></figure>
+
+<p>Netty 将网络编程的复杂性，全都封装到这些角色里面，开发者只需要专注写“处理逻辑”，即收到包裹后需要做什么。<br>最重要的一点就是：<font color="#ffff00">一个线程监听多个channel，一个channel 只属于一个线程</font></p>
+</div><div class="story post-story"><h2 id="核心组件"><a href="#核心组件" class="headerlink" title="核心组件"></a>核心组件</h2><h4 id="channel"><a href="#channel" class="headerlink" title="channel:"></a>channel:</h4><ul>
+<li>表示一个IO对象，比如一条TCP连接</li>
+</ul>
+<h4 id="Eventloop-Eventloop-Group"><a href="#Eventloop-Eventloop-Group" class="headerlink" title="Eventloop &amp; Eventloop Group"></a>Eventloop &amp; Eventloop Group</h4><ul>
+<li>Eventloop : 单线程+selector 循环。一个Eventloop（线程）管理一组channel的IO事件并执行对应的handler</li>
+<li>Eventloop Group：一组Eventloop。常见 bossGroup （accept，即接收连接） 和 workerGroup（读写）</li>
+</ul>
+<h5 id="什么是selector？"><a href="#什么是selector？" class="headerlink" title="什么是selector？"></a>什么是selector？</h5><p>其实就相当于一个叫号系统，哪个桌子有事件，屏幕就响起对应号码。</p>
+<ol>
+<li>调用select阻塞等待事件</li>
+<li>有事件后遍历处理</li>
+<li>执行普通任务</li>
+<li>再次select<br>selector带来了多路复用，一个线程处理大量连接，避免线程上下文切换，事件驱动，无需轮询。<br>总结<br>selector是NIO中的多路复用器，使得一个线程同时监听多个Channel的就绪状态。允许一个线程管理大量连接，通过select返回所有就绪事件，从而实现多路复用。</li>
+</ol>
+<h4 id="为什么要分boss-和-worker？"><a href="#为什么要分boss-和-worker？" class="headerlink" title="为什么要分boss 和 worker？"></a>为什么要分boss 和 worker？</h4><p>首先类比一下：<br>想象你开了一家餐厅<br>进门接待员 &#x3D; boss，负责安排客人进门、座位<br>服务员 &#x3D; worker， 负责点单、上菜<br>如果你让一个人同时：接待、点菜、送菜<br>一旦桌子很多，新的连接无法建立，系统会卡死 </p>
+<p>网络事件分两类：<br>一是建立连接，属于轻量操作；二是处理业务IO（read&#x2F;write），属于重量操作；如果让一个线程组去处理者两个业务，会导致accept被阻塞，无法接受新的连接，导致服务器吞吐量急剧下降。</p>
+<h3 id="ChannelPipeline-ChannelHandler"><a href="#ChannelPipeline-ChannelHandler" class="headerlink" title="ChannelPipeline &amp; ChannelHandler"></a>ChannelPipeline &amp; ChannelHandler</h3><ul>
+<li>Pipeline：每个 Channel 有一个 pipeline（责任链），把入站&#x2F;出站事件串联处理。</li>
+<li>Handler : 实现具体逻辑（编码&#x2F;解码&#x2F;业务）。分入站（Inbound）和出站（Outbound）。</li>
+</ul>
+<h3 id="ByteBuf"><a href="#ByteBuf" class="headerlink" title="ByteBuf"></a>ByteBuf</h3><ul>
+<li>Netty自己的缓冲区</li>
+</ul>
+<h3 id="Channel-Future"><a href="#Channel-Future" class="headerlink" title="Channel Future"></a>Channel Future</h3><ul>
+<li>承载绑定端口的的异步执行状态：成功、失败等，阻塞当前线程直到绑定成功</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>Netty就是用事件驱动 + 单线程监听循环 + 高效的内存管理 + 可组合的Pipeline， 把高并发网络编的复杂性封装起来，用极少的线程处理海量的连接。</p>
+
+</div>]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>Netty</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>事务隔离</title>
     <url>/2025/08/13/%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB/</url>
     <content><![CDATA[<div class="story post-story"><h2 id="一、什么是事务隔离？"><a href="#一、什么是事务隔离？" class="headerlink" title="一、什么是事务隔离？"></a>一、什么是事务隔离？</h2><p>事务隔离是指在并发环境下，多个事务之间的操作互不干扰，每个事务都能看到一致的数据状态。</p>
@@ -549,62 +891,6 @@
       </tags>
   </entry>
   <entry>
-    <title>初识Netty</title>
-    <url>/2025/01/22/%E5%88%9D%E8%AF%86Netty/</url>
-    <content><![CDATA[<div class="story post-story"><h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>本文整理了同步&#x2F;异步、阻塞&#x2F;非阻塞、IO、BIO&#x2F;NIO 等前置概念，并用类比帮助快速理解 Netty 的核心组件与工作机制。</p>
-<span id="more"></span>
-
-</div><div class="story post-story"><h2 id="前置概念"><a href="#前置概念" class="headerlink" title="前置概念"></a>前置概念</h2><h3 id="同步和异步"><a href="#同步和异步" class="headerlink" title="同步和异步"></a>同步和异步</h3><p>同步：多个事物不能同时进行<br>异步：多个事物可以同时进行</p>
-<h3 id="阻塞和非阻塞"><a href="#阻塞和非阻塞" class="headerlink" title="阻塞和非阻塞"></a>阻塞和非阻塞</h3><p>阻塞：遇到障碍从而无法继续运行，等待是阻塞的副作用，等待指的是等待某些相关事物，而不是整个线程都在等待。<br>非阻塞：没有障碍畅行无阻</p>
-<p>同步&#x2F;异步：指的是能不能同时进行<br>阻塞&#x2F;非阻塞：指的是能不能进行</p>
-<h4 id="同步阻塞：不能同时进行且等待，相当于单线程等待"><a href="#同步阻塞：不能同时进行且等待，相当于单线程等待" class="headerlink" title="同步阻塞：不能同时进行且等待，相当于单线程等待"></a>同步阻塞：不能同时进行且等待，相当于单线程等待</h4><h4 id="同步非阻塞：单线程运行"><a href="#同步非阻塞：单线程运行" class="headerlink" title="同步非阻塞：单线程运行"></a>同步非阻塞：单线程运行</h4><h4 id="异步阻塞：同时进行且等待，相当于多线程都在等待"><a href="#异步阻塞：同时进行且等待，相当于多线程都在等待" class="headerlink" title="异步阻塞：同时进行且等待，相当于多线程都在等待"></a>异步阻塞：同时进行且等待，相当于多线程都在等待</h4><h4 id="异步非阻塞：同时进行且正常运行，相当于多线程运行"><a href="#异步非阻塞：同时进行且正常运行，相当于多线程运行" class="headerlink" title="异步非阻塞：同时进行且正常运行，相当于多线程运行"></a>异步非阻塞：同时进行且正常运行，相当于多线程运行</h4><h3 id="IO"><a href="#IO" class="headerlink" title="IO"></a>IO</h3><p>IO指的是读&#x2F;写数据的过程，和等待读入&#x2F;写出的过程。一旦拿到数据就变成数据操作了，不是IO。<br>拿网络IO举例子：等待的过程就是数据从网络到网卡再到内核空间，读写的过程就是内核空间和用户空间相互拷贝。</p>
-<p><img src="/images/netty-io.png" class="lazyload" data-srcset="/images/netty-io.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Netty IO示意图"></p>
-<h4 id="阻塞IO和非阻塞IO"><a href="#阻塞IO和非阻塞IO" class="headerlink" title="阻塞IO和非阻塞IO"></a>阻塞IO和非阻塞IO</h4><p>应用程序都是运行在用户空间的，数据没有到用户空间时应用程序是操作不了的。<br>阻塞IO：数据没有到达用户空间时，用户线程会阻塞并等待<br>非阻塞IO：不阻塞用户线程，而是数据到达后才通知用户线程</p>
-<h4 id="同步IO和同步阻塞IO"><a href="#同步IO和同步阻塞IO" class="headerlink" title="同步IO和同步阻塞IO"></a>同步IO和同步阻塞IO</h4><p>同步IO：发起请求的IO线程，必须等待IO操作完成后才能继续执行该线程的后续代码<br>有一点需要注意：在等待数据的过程中，线程采用死循环的方式轮询，在读写数据的过程中，线程在堵塞，这依然是同步阻塞IO。<br>所以，同步IO就是同步阻塞IO</p>
-<h4 id="异步IO和异步非阻塞IO"><a href="#异步IO和异步非阻塞IO" class="headerlink" title="异步IO和异步非阻塞IO"></a>异步IO和异步非阻塞IO</h4><p>异步IO：发起IO请求的线程无需等待IO完成仍可继续运行<br>只有异步非阻塞IO</p>
-<h3 id="BIO"><a href="#BIO" class="headerlink" title="BIO"></a>BIO</h3><p>阻塞IO(Blocking IO)<br>一个线程管理一个连接</p>
-<h3 id="NIO"><a href="#NIO" class="headerlink" title="NIO"></a>NIO</h3><p>非阻塞IO(New IO)<br>单线程可以管理大量连接</p>
-</div><div class="story post-story"><h2 id="一段简单的类比"><a href="#一段简单的类比" class="headerlink" title="一段简单的类比"></a>一段简单的类比</h2><p>想象一个很大的快递中心：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Socket/连接 = 每个包裹的收发窗口（channel）</span><br><span class="line">Eventloop = 一个工作人员（单线程），负责检查窗口有没有新的包裹以及处理包裹（IO事件）</span><br><span class="line">Eventloop Group = 工作人员的队伍（线程池）， 有的负责接收新客户（ boss 线程），有的负责处理包裹（worker 线程）</span><br><span class="line">Pipeline = 处理流程的传送带， 包裹依次经过打包、分拣、编码、发货</span><br><span class="line">ByteBuf = 专用的 可复用的搬运箱，比普通箱子更灵活</span><br></pre></td></tr></table></figure>
-
-<p>Netty 将网络编程的复杂性，全都封装到这些角色里面，开发者只需要专注写“处理逻辑”，即收到包裹后需要做什么。<br>最重要的一点就是：<font color="#ffff00">一个线程监听多个channel，一个channel 只属于一个线程</font></p>
-</div><div class="story post-story"><h2 id="核心组件"><a href="#核心组件" class="headerlink" title="核心组件"></a>核心组件</h2><h4 id="channel"><a href="#channel" class="headerlink" title="channel:"></a>channel:</h4><ul>
-<li>表示一个IO对象，比如一条TCP连接</li>
-</ul>
-<h4 id="Eventloop-Eventloop-Group"><a href="#Eventloop-Eventloop-Group" class="headerlink" title="Eventloop &amp; Eventloop Group"></a>Eventloop &amp; Eventloop Group</h4><ul>
-<li>Eventloop : 单线程+selector 循环。一个Eventloop（线程）管理一组channel的IO事件并执行对应的handler</li>
-<li>Eventloop Group：一组Eventloop。常见 bossGroup （accept，即接收连接） 和 workerGroup（读写）</li>
-</ul>
-<h5 id="什么是selector？"><a href="#什么是selector？" class="headerlink" title="什么是selector？"></a>什么是selector？</h5><p>其实就相当于一个叫号系统，哪个桌子有事件，屏幕就响起对应号码。</p>
-<ol>
-<li>调用select阻塞等待事件</li>
-<li>有事件后遍历处理</li>
-<li>执行普通任务</li>
-<li>再次select<br>selector带来了多路复用，一个线程处理大量连接，避免线程上下文切换，事件驱动，无需轮询。<br>总结<br>selector是NIO中的多路复用器，使得一个线程同时监听多个Channel的就绪状态。允许一个线程管理大量连接，通过select返回所有就绪事件，从而实现多路复用。</li>
-</ol>
-<h4 id="为什么要分boss-和-worker？"><a href="#为什么要分boss-和-worker？" class="headerlink" title="为什么要分boss 和 worker？"></a>为什么要分boss 和 worker？</h4><p>首先类比一下：<br>想象你开了一家餐厅<br>进门接待员 &#x3D; boss，负责安排客人进门、座位<br>服务员 &#x3D; worker， 负责点单、上菜<br>如果你让一个人同时：接待、点菜、送菜<br>一旦桌子很多，新的连接无法建立，系统会卡死 </p>
-<p>网络事件分两类：<br>一是建立连接，属于轻量操作；二是处理业务IO（read&#x2F;write），属于重量操作；如果让一个线程组去处理者两个业务，会导致accept被阻塞，无法接受新的连接，导致服务器吞吐量急剧下降。</p>
-<h3 id="ChannelPipeline-ChannelHandler"><a href="#ChannelPipeline-ChannelHandler" class="headerlink" title="ChannelPipeline &amp; ChannelHandler"></a>ChannelPipeline &amp; ChannelHandler</h3><ul>
-<li>Pipeline：每个 Channel 有一个 pipeline（责任链），把入站&#x2F;出站事件串联处理。</li>
-<li>Handler : 实现具体逻辑（编码&#x2F;解码&#x2F;业务）。分入站（Inbound）和出站（Outbound）。</li>
-</ul>
-<h3 id="ByteBuf"><a href="#ByteBuf" class="headerlink" title="ByteBuf"></a>ByteBuf</h3><ul>
-<li>Netty自己的缓冲区</li>
-</ul>
-<h3 id="Channel-Future"><a href="#Channel-Future" class="headerlink" title="Channel Future"></a>Channel Future</h3><ul>
-<li>承载绑定端口的的异步执行状态：成功、失败等，阻塞当前线程直到绑定成功</li>
-</ul>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>Netty就是用事件驱动 + 单线程监听循环 + 高效的内存管理 + 可组合的Pipeline， 把高并发网络编的复杂性封装起来，用极少的线程处理海量的连接。</p>
-
-</div>]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>Netty</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>我的第一篇博客</title>
     <url>/2024/01/14/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<div class="story post-story"><h2 id="我的第一篇博客"><a href="#我的第一篇博客" class="headerlink" title="我的第一篇博客"></a>我的第一篇博客</h2><p>  这是我的第一篇博客，我想记录一下我学习的过程。</p>
@@ -612,6 +898,54 @@
 </div>]]></content>
       <tags>
         <tag>博客</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>过程比结果更重要</title>
+    <url>/2026/03/12/%E7%94%9F%E5%91%BD%E7%9A%84%E6%80%9D%E8%80%83/</url>
+    <content><![CDATA[<h1 id="过程比结果更重要"><a href="#过程比结果更重要" class="headerlink" title="过程比结果更重要"></a>过程比结果更重要</h1><p>如果这个宇宙的结局是注定的，是消亡是归于死寂，那或许说明，只有过程才是最重要的，这是我们能够改变的唯一的事。当你看人类所有的历史，悲欢离合、英雄小人、爱恨情仇，你会不会有这种感觉，似乎我们做什么事其实它都没有意义。人生，从来没有正确的选择，每种选择背后本身就是一场豪赌。我们能够做的或者说应该做的，是享受晴朗的天气，享受路边的风景，享受每一个转瞬即逝的瞬间。</p>
+
+]]></content>
+      <categories>
+        <category>人生的思考</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>键入网址到网页显示，期间发生了什么？</title>
+    <url>/2025/04/25/%E9%94%AE%E5%85%A5%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5%E6%98%BE%E7%A4%BA%EF%BC%8C%E6%9C%9F%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/</url>
+    <content><![CDATA[<div class="story post-story"><h2 id="键入网址到网页显示，期间发生了什么？"><a href="#键入网址到网页显示，期间发生了什么？" class="headerlink" title="键入网址到网页显示，期间发生了什么？"></a>键入网址到网页显示，期间发生了什么？</h2><p>输入网址到网页显示，这个过程到底发生了什么，我相信这是初学者很想了解地方。明白这个过程，才能将所学的计算机网络的知识串连起来，而不是孤零零的去学一个点。</p>
+<span id="more"></span>
+<p>首先，让我们来了解一下五层模型。</p>
+</div><div class="story post-story"><h2 id="五层模型"><a href="#五层模型" class="headerlink" title="五层模型"></a>五层模型</h2><ul>
+<li><strong>应用层</strong>：HTTP、DNS、Web socket</li>
+<li><strong>传输层</strong>：TCP、UDP</li>
+<li><strong>网络层</strong>：IP、路由器</li>
+<li><strong>数据链路层</strong>：网桥、交换机</li>
+<li><strong>物理层</strong>：中继器、集线器、网线</li>
+</ul>
+<h3 id="怎么区分数据链路层和物理层？"><a href="#怎么区分数据链路层和物理层？" class="headerlink" title="怎么区分数据链路层和物理层？"></a>怎么区分数据链路层和物理层？</h3><p>物理层负责物理介质上传输原始的比特流（0、1），不关心内容，只把比特流发出去。<br>数据链路层负责讲原始的比特流组织成帧，并在同一个局域网内实现可靠传输。<br>例如交换机，根据MAC地址转发帧，一旦数据需要跨局域网，就需要“路由”了，超出数据链路层的能力。</p>
+<p>现在，让我们来看输入网址到网页显示的过程</p>
+</div><div class="story post-story"><h2 id="1-解析URL生成HTTP请求"><a href="#1-解析URL生成HTTP请求" class="headerlink" title="1. 解析URL生成HTTP请求"></a>1. 解析URL生成HTTP请求</h2><p>浏览器对URL进行解析，生成HTTP请求<br>URL包括<strong>域名</strong>和<strong>资源文件的路径名</strong></p>
+<h3 id="URL是什么？"><a href="#URL是什么？" class="headerlink" title="URL是什么？"></a>URL是什么？</h3><p>全称：Uniform Resource Locator，统一资源定位符。<br>简单来说，就是网页的“地址”，用来告诉浏览器“去哪里找这个资源”<br>它告诉浏览器：用什么协议、连接哪台服务器、找哪个文件、带什么参数</p>
+</div><div class="story post-story"><h2 id="2-DNS-域名解析得到目的IP"><a href="#2-DNS-域名解析得到目的IP" class="headerlink" title="2. DNS 域名解析得到目的IP"></a>2. DNS 域名解析得到目的IP</h2><p>浏览器在生产HTTP请求后，需要委托操作系统将消息发送给Web服务器。<br>委托操作系统发送消息时，必须提供给对象的IP地址。<br>即：域名 -&gt; IP</p>
+<h3 id="DNS解析流程"><a href="#DNS解析流程" class="headerlink" title="DNS解析流程"></a>DNS解析流程</h3><p><img src="/../images/%E9%94%AE%E5%85%A5%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5%E6%98%BE%E7%A4%BA%EF%BC%8C%E6%9C%9F%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/Pasted%20image%2020251125115040.png" class="lazyload" data-srcset="/../images/%E9%94%AE%E5%85%A5%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5%E6%98%BE%E7%A4%BA%EF%BC%8C%E6%9C%9F%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/Pasted%20image%2020251125115040.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="><br>递归查询比较常用</p>
+</div><div class="story post-story"><h2 id="3-TCP三次握手建立可靠连接"><a href="#3-TCP三次握手建立可靠连接" class="headerlink" title="3. TCP三次握手建立可靠连接"></a>3. TCP三次握手建立可靠连接</h2><p>客户端与服务器建立连接，建立连接后会对每个数据块增加一个TCP头部，每个数据块的长度是MSS。<br><img src="/../images/%E9%94%AE%E5%85%A5%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5%E6%98%BE%E7%A4%BA%EF%BC%8C%E6%9C%9F%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/Pasted%20image%2020251125115547.png" class="lazyload" data-srcset="/../images/%E9%94%AE%E5%85%A5%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5%E6%98%BE%E7%A4%BA%EF%BC%8C%E6%9C%9F%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/Pasted%20image%2020251125115547.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></p>
+</div><div class="story post-story"><h2 id="4-生成IP报文实现远程定位"><a href="#4-生成IP报文实现远程定位" class="headerlink" title="4. 生成IP报文实现远程定位"></a>4. 生成IP报文实现远程定位</h2><p>TCP连接传输消息需要委托给下一层，即网络层。<br>将源IP地址和目的IP地址组成IP头部，就可以发送了。<br><img src="/../images/%E9%94%AE%E5%85%A5%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5%E6%98%BE%E7%A4%BA%EF%BC%8C%E6%9C%9F%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/Pasted%20image%2020251125115939.png" class="lazyload" data-srcset="/../images/%E9%94%AE%E5%85%A5%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5%E6%98%BE%E7%A4%BA%EF%BC%8C%E6%9C%9F%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/Pasted%20image%2020251125115939.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></p>
+</div><div class="story post-story"><h2 id="5-添加MAC头部实现以太网传输"><a href="#5-添加MAC头部实现以太网传输" class="headerlink" title="5. 添加MAC头部实现以太网传输"></a>5. 添加MAC头部实现以太网传输</h2><p>MAC 包头里需要<strong>发送方 MAC 地址</strong> 和 <strong>接收方目标 MAC 地址</strong>，用于两点之间的传输。<br>发送方的MAC地是在<a href="https://zhida.zhihu.com/search?content_id=241099929&content_type=Article&match_order=1&q=%E7%BD%91%E5%8D%A1&zhida_source=entity">网卡</a>生产时写入到 ROM 里的，将这个值读取出来写入到MAC头部；<br>通过ARP协议在以太网中以广播的形式获得目标MAC地址。<br><img src="/../images/%E9%94%AE%E5%85%A5%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5%E6%98%BE%E7%A4%BA%EF%BC%8C%E6%9C%9F%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/Pasted%20image%2020251125120136.png" class="lazyload" data-srcset="/../images/%E9%94%AE%E5%85%A5%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5%E6%98%BE%E7%A4%BA%EF%BC%8C%E6%9C%9F%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/Pasted%20image%2020251125120136.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></p>
+<h3 id="ARP是什么？"><a href="#ARP是什么？" class="headerlink" title="ARP是什么？"></a>ARP是什么？</h3><p>ARP（Address Resolution Protocol，地址解析协议）的主要功能是将网络层的IP地址解析为数据链路层的MAC地址，以实现局域网内的设备<br>通信。尽管其功能涉及数据链路层的MAC地址，但根据协议层级划分，它属于网络层</p>
+</div><div class="story post-story"><h2 id="6-网卡、交换机、路由器"><a href="#6-网卡、交换机、路由器" class="headerlink" title="6. 网卡、交换机、路由器"></a>6. 网卡、交换机、路由器</h2><p>网卡将数字信号转换成电信号然后发送给交换机，<br>交换机再转发给路由器，然后在路由器中层层跳跃最终到达目标服务器</p>
+</div><div class="story post-story"><h2 id="7-服务器响应请求"><a href="#7-服务器响应请求" class="headerlink" title="7. 服务器响应请求"></a>7. 服务器响应请求</h2><p>数据包到达服务器后会先检查MAC地址，不符合直接丢弃。<br>符合则检查IP，根据IP头部知道上层是TCP，再根据TCP头部找到端口号相符合的进程，再根据请求的数据文件路径找到文件并封装在HTTP响应报文中发送给客户端</p>
+</div><div class="story post-story"><h2 id="8-客户端渲染页面"><a href="#8-客户端渲染页面" class="headerlink" title="8. 客户端渲染页面"></a>8. 客户端渲染页面</h2><p>浏览器收到HTTP响应后，会解析HTML、CSS、JavaScript等文件，渲染出最终的网页。</p>
+
+</div>]]></content>
+      <categories>
+        <category>计算机网络</category>
+      </categories>
+      <tags>
+        <tag>HTTP</tag>
+        <tag>TCP</tag>
+        <tag>DNS</tag>
+        <tag>浏览器渲染</tag>
       </tags>
   </entry>
   <entry>
@@ -674,52 +1008,14 @@
       </tags>
   </entry>
   <entry>
-    <title>键入网址到网页显示，期间发生了什么？</title>
-    <url>/2025/04/25/%E9%94%AE%E5%85%A5%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5%E6%98%BE%E7%A4%BA%EF%BC%8C%E6%9C%9F%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/</url>
-    <content><![CDATA[<div class="story post-story"><h2 id="键入网址到网页显示，期间发生了什么？"><a href="#键入网址到网页显示，期间发生了什么？" class="headerlink" title="键入网址到网页显示，期间发生了什么？"></a>键入网址到网页显示，期间发生了什么？</h2><p>输入网址到网页显示，这个过程到底发生了什么，我相信这是初学者很想了解地方。明白这个过程，才能将所学的计算机网络的知识串连起来，而不是孤零零的去学一个点。</p>
-<span id="more"></span>
-<p>首先，让我们来了解一下五层模型。</p>
-</div><div class="story post-story"><h2 id="五层模型"><a href="#五层模型" class="headerlink" title="五层模型"></a>五层模型</h2><ul>
-<li><strong>应用层</strong>：HTTP、DNS、Web socket</li>
-<li><strong>传输层</strong>：TCP、UDP</li>
-<li><strong>网络层</strong>：IP、路由器</li>
-<li><strong>数据链路层</strong>：网桥、交换机</li>
-<li><strong>物理层</strong>：中继器、集线器、网线</li>
-</ul>
-<h3 id="怎么区分数据链路层和物理层？"><a href="#怎么区分数据链路层和物理层？" class="headerlink" title="怎么区分数据链路层和物理层？"></a>怎么区分数据链路层和物理层？</h3><p>物理层负责物理介质上传输原始的比特流（0、1），不关心内容，只把比特流发出去。<br>数据链路层负责讲原始的比特流组织成帧，并在同一个局域网内实现可靠传输。<br>例如交换机，根据MAC地址转发帧，一旦数据需要跨局域网，就需要“路由”了，超出数据链路层的能力。</p>
-<p>现在，让我们来看输入网址到网页显示的过程</p>
-</div><div class="story post-story"><h2 id="1-解析URL生成HTTP请求"><a href="#1-解析URL生成HTTP请求" class="headerlink" title="1. 解析URL生成HTTP请求"></a>1. 解析URL生成HTTP请求</h2><p>浏览器对URL进行解析，生成HTTP请求<br>URL包括<strong>域名</strong>和<strong>资源文件的路径名</strong></p>
-<h3 id="URL是什么？"><a href="#URL是什么？" class="headerlink" title="URL是什么？"></a>URL是什么？</h3><p>全称：Uniform Resource Locator，统一资源定位符。<br>简单来说，就是网页的“地址”，用来告诉浏览器“去哪里找这个资源”<br>它告诉浏览器：用什么协议、连接哪台服务器、找哪个文件、带什么参数</p>
-</div><div class="story post-story"><h2 id="2-DNS-域名解析得到目的IP"><a href="#2-DNS-域名解析得到目的IP" class="headerlink" title="2. DNS 域名解析得到目的IP"></a>2. DNS 域名解析得到目的IP</h2><p>浏览器在生产HTTP请求后，需要委托操作系统将消息发送给Web服务器。<br>委托操作系统发送消息时，必须提供给对象的IP地址。<br>即：域名 -&gt; IP</p>
-<h3 id="DNS解析流程"><a href="#DNS解析流程" class="headerlink" title="DNS解析流程"></a>DNS解析流程</h3><p><img src="/../images/%E9%94%AE%E5%85%A5%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5%E6%98%BE%E7%A4%BA%EF%BC%8C%E6%9C%9F%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/Pasted%20image%2020251125115040.png" class="lazyload" data-srcset="/../images/%E9%94%AE%E5%85%A5%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5%E6%98%BE%E7%A4%BA%EF%BC%8C%E6%9C%9F%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/Pasted%20image%2020251125115040.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="><br>递归查询比较常用</p>
-</div><div class="story post-story"><h2 id="3-TCP三次握手建立可靠连接"><a href="#3-TCP三次握手建立可靠连接" class="headerlink" title="3. TCP三次握手建立可靠连接"></a>3. TCP三次握手建立可靠连接</h2><p>客户端与服务器建立连接，建立连接后会对每个数据块增加一个TCP头部，每个数据块的长度是MSS。<br><img src="/../images/%E9%94%AE%E5%85%A5%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5%E6%98%BE%E7%A4%BA%EF%BC%8C%E6%9C%9F%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/Pasted%20image%2020251125115547.png" class="lazyload" data-srcset="/../images/%E9%94%AE%E5%85%A5%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5%E6%98%BE%E7%A4%BA%EF%BC%8C%E6%9C%9F%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/Pasted%20image%2020251125115547.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></p>
-</div><div class="story post-story"><h2 id="4-生成IP报文实现远程定位"><a href="#4-生成IP报文实现远程定位" class="headerlink" title="4. 生成IP报文实现远程定位"></a>4. 生成IP报文实现远程定位</h2><p>TCP连接传输消息需要委托给下一层，即网络层。<br>将源IP地址和目的IP地址组成IP头部，就可以发送了。<br><img src="/../images/%E9%94%AE%E5%85%A5%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5%E6%98%BE%E7%A4%BA%EF%BC%8C%E6%9C%9F%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/Pasted%20image%2020251125115939.png" class="lazyload" data-srcset="/../images/%E9%94%AE%E5%85%A5%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5%E6%98%BE%E7%A4%BA%EF%BC%8C%E6%9C%9F%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/Pasted%20image%2020251125115939.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></p>
-</div><div class="story post-story"><h2 id="5-添加MAC头部实现以太网传输"><a href="#5-添加MAC头部实现以太网传输" class="headerlink" title="5. 添加MAC头部实现以太网传输"></a>5. 添加MAC头部实现以太网传输</h2><p>MAC 包头里需要<strong>发送方 MAC 地址</strong> 和 <strong>接收方目标 MAC 地址</strong>，用于两点之间的传输。<br>发送方的MAC地是在<a href="https://zhida.zhihu.com/search?content_id=241099929&content_type=Article&match_order=1&q=%E7%BD%91%E5%8D%A1&zhida_source=entity">网卡</a>生产时写入到 ROM 里的，将这个值读取出来写入到MAC头部；<br>通过ARP协议在以太网中以广播的形式获得目标MAC地址。<br><img src="/../images/%E9%94%AE%E5%85%A5%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5%E6%98%BE%E7%A4%BA%EF%BC%8C%E6%9C%9F%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/Pasted%20image%2020251125120136.png" class="lazyload" data-srcset="/../images/%E9%94%AE%E5%85%A5%E7%BD%91%E5%9D%80%E5%88%B0%E7%BD%91%E9%A1%B5%E6%98%BE%E7%A4%BA%EF%BC%8C%E6%9C%9F%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/Pasted%20image%2020251125120136.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></p>
-<h3 id="ARP是什么？"><a href="#ARP是什么？" class="headerlink" title="ARP是什么？"></a>ARP是什么？</h3><p>ARP（Address Resolution Protocol，地址解析协议）的主要功能是将网络层的IP地址解析为数据链路层的MAC地址，以实现局域网内的设备<br>通信。尽管其功能涉及数据链路层的MAC地址，但根据协议层级划分，它属于网络层</p>
-</div><div class="story post-story"><h2 id="6-网卡、交换机、路由器"><a href="#6-网卡、交换机、路由器" class="headerlink" title="6. 网卡、交换机、路由器"></a>6. 网卡、交换机、路由器</h2><p>网卡将数字信号转换成电信号然后发送给交换机，<br>交换机再转发给路由器，然后在路由器中层层跳跃最终到达目标服务器</p>
-</div><div class="story post-story"><h2 id="7-服务器响应请求"><a href="#7-服务器响应请求" class="headerlink" title="7. 服务器响应请求"></a>7. 服务器响应请求</h2><p>数据包到达服务器后会先检查MAC地址，不符合直接丢弃。<br>符合则检查IP，根据IP头部知道上层是TCP，再根据TCP头部找到端口号相符合的进程，再根据请求的数据文件路径找到文件并封装在HTTP响应报文中发送给客户端</p>
-</div><div class="story post-story"><h2 id="8-客户端渲染页面"><a href="#8-客户端渲染页面" class="headerlink" title="8. 客户端渲染页面"></a>8. 客户端渲染页面</h2><p>浏览器收到HTTP响应后，会解析HTML、CSS、JavaScript等文件，渲染出最终的网页。</p>
-
-</div>]]></content>
-      <categories>
-        <category>计算机网络</category>
-      </categories>
-      <tags>
-        <tag>HTTP</tag>
-        <tag>TCP</tag>
-        <tag>DNS</tag>
-        <tag>浏览器渲染</tag>
-      </tags>
-  </entry>
-  <entry>
     <title></title>
     <url>/about/index.html</url>
     <content><![CDATA[<div class="about-card">
  
   <div class="about-content">
-    <p>Hello，我是 HyperZhang；</p>
-    <p>一个爱打篮球的程序猿；</p>
-    <p>希望有天也能成为一个技术大牛；</p>
+    <p>Hello，我是 HyperZhang</p>
+    <p>篮球是梦想，编程是热爱</p>
+    <p>想成为一个技术大牛，首先得假设自己是一个技术大牛</p>
     <p>如果你想交流或合作，可以通过我的邮箱联系我：</p>
     <ul>
       <li>邮箱：<a href="mailto:2569256369@qq.com">2569256369@qq.com</a></li>
@@ -784,12 +1080,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>所有标签</title>
-    <url>/tags/index.html</url>
-    <content><![CDATA[
-]]></content>
-  </entry>
-  <entry>
     <title></title>
     <url>/js/typewriter.js</url>
     <content><![CDATA[// 打字机效果脚本
@@ -822,5 +1112,11 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });]]></content>
+  </entry>
+  <entry>
+    <title>所有标签</title>
+    <url>/tags/index.html</url>
+    <content><![CDATA[
+]]></content>
   </entry>
 </search>
